@@ -609,6 +609,20 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
   font-family: var(--ff-sans); color: var(--text-dim);
   max-height: 18rem; overflow: auto;
 }
+/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
+.site-url {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: .7rem .85rem;
+}
+.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
+.site-url input {
+  display: block; width: 100%; margin-top: .35rem;
+  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
+  background: var(--bg-soft); border: 1px solid var(--border-strong);
+  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
+}
+.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
+
 .paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
 .paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
 .paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
@@ -1026,6 +1040,72 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
+<section class="block wrap">
+  <details class="paste">
+    <summary>LMS 강의 입력 칸에 붙여넣기 <span style="font-weight:400;color:var(--text-faint)">— 교수자용</span></summary>
+    <div class="paste-body">
+
+      <div class="site-url">
+        <label for="siteUrl">내 강의 사이트 주소
+          <input type="url" id="siteUrl" placeholder="https://example.com" spellcheck="false" autocomplete="off">
+        </label>
+        <p>아래 본문의 링크 자리에 채워집니다. <b>한 번만 적으면 10개 주차 전부에 반영</b>됩니다. 아직 배포 전이면 비워 두세요.</p>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">주차 · 제목</span><button class="copy" type="button">복사</button></div>
+<pre>6주 · 융판 블록 — 끌어 옮기는 성경 이야기</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">강의안</span><button class="copy" type="button">복사</button></div>
+<pre>**손가락으로 인물을 옮기며 이야기를 들려주는 화면을 만듭니다.**
+
+그림 만드는 방법은 두 가지인데 **둘째를 씁니다.**
+- 그림 파일(png)로 만들기 → 파일이 여러 개가 되고, 화질이 깨지고, 올리기도 번거롭습니다
+- **코드로 그리기(SVG)** → 파일은 계속 하나. 아무리 확대해도 안 깨집니다. 색도 말로 바꿉니다
+
+그래서 프롬프트에 이 한 줄을 꼭 넣습니다 — **&quot;그림은 SVG 도형으로 코드 안에 직접 그려 줘. 이미지 파일은 쓰지 마.&quot;**
+
+**따라하기**
+- 1단계 배경과 인물: 엘라 골짜기(하늘·언덕·풀밭), 다윗(작은 소년), 골리앗(다윗보다 훨씬 큰 거인), 양, 물맷돌, 나무, 장막. **골리앗을 확실히 크게** — 크기 차이가 이 이야기의 핵심입니다. 얼굴은 단순하게, 표정은 넣지 않는 편이 보기 좋습니다
+- 2단계 드래그: 터치와 마우스 둘 다 되게(포인터 이벤트), 끌고 있는 것이 위로 올라오게, 화면 밖으로 안 나가게, 배경은 고정, &quot;처음으로&quot; 버튼 추가
+- **반드시 실제 태블릿에서** 만져 봅니다. 마우스로는 되는데 손가락으로 안 되는 경우가 있습니다. 끌 때 화면이 같이 밀리면 &quot;손가락으로 끌 때 화면이 스크롤되지 않게 해 줘(touch-action: none)&quot;라고 하세요
+- 내려받아 다시 올립니다
+
+**수업 팁** — 교사가 옮기며 설명하는 것도 좋지만, 더 좋은 것은 **아이가 직접 옮기게** 하는 것입니다. &quot;누가 다윗을 골리앗 앞으로 데려다 줄래요?&quot; 그 순간 이야기는 그 아이의 것이 됩니다.
+
+융판 배치는 저장되지 않습니다. 매 시간 새로 꾸미는 것이 정상입니다.
+
+따라하기 화면 그림 → {{SITE}}/week/6.html</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">과제</span><button class="copy" type="button">복사</button></div>
+<pre>**우리 반 융판**
+
+제출물: 융판 탭이 작동하는 내 페이지 주소
+
+게시판에 주소와 함께 **이 융판으로 어느 장면을 보여 줄 것인지** 한 줄 적어 주세요.
+
+**확인할 것**
+- **태블릿에서** 손가락으로 끌어 옮겨진다
+- 끌 때 화면이 같이 밀리지 않는다
+- 골리앗이 다윗보다 확실히 크다
+- 「처음으로」를 누르면 제자리로 돌아온다
+- 공과 탭이 그대로 남아 있다
+- 이번 index.html도 보관했다
+
+마감: 다음 수업 전까지</pre>
+      </div>
+
+      <p class="tiny" style="font-size:.78rem;color:var(--text-faint)">
+        LMS 강의안 칸은 <b>**굵게**</b>, <b>- 목록</b>, 붙여넣은 링크를 그대로 살립니다. 위 문법에 맞춰 써 두었습니다.
+      </p>
+    </div>
+  </details>
+</section>
+
 <nav class="block wrap">
   <div class="pager">
     <a class="prev" href="5.html"><span class="k">이전</span><span class="v">5주 · 공과 블록</span></a>
@@ -1142,6 +1222,40 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
+  }
+
+  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
+     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
+     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
+  var SITE_KEY = 'course.site';
+  var tpls = document.querySelectorAll('.paste-field pre');
+  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
+
+  function applySite(v) {
+    var shown = v || '[내 강의 사이트 주소]';
+    Array.prototype.forEach.call(tpls, function (pre) {
+      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
+      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
+    });
+  }
+
+  var siteInput = document.getElementById('siteUrl');
+  if (siteInput) {
+    var savedSite = '';
+    if (canStore) {
+      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
+    }
+    siteInput.value = savedSite;
+    siteInput.addEventListener('input', function () {
+      var v = siteInput.value.trim().replace(/\/+$/, '');
+      if (canStore) {
+        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
+      }
+      applySite(v);
+    });
+    applySite(savedSite);
+  } else {
+    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────

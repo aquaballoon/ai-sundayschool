@@ -609,6 +609,20 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
   font-family: var(--ff-sans); color: var(--text-dim);
   max-height: 18rem; overflow: auto;
 }
+/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
+.site-url {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: .7rem .85rem;
+}
+.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
+.site-url input {
+  display: block; width: 100%; margin-top: .35rem;
+  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
+  background: var(--bg-soft); border: 1px solid var(--border-strong);
+  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
+}
+.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
+
 .paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
 .paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
 .paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
@@ -991,6 +1005,76 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
+<section class="block wrap">
+  <details class="paste">
+    <summary>LMS 강의 입력 칸에 붙여넣기 <span style="font-weight:400;color:var(--text-faint)">— 교수자용</span></summary>
+    <div class="paste-body">
+
+      <div class="site-url">
+        <label for="siteUrl">내 강의 사이트 주소
+          <input type="url" id="siteUrl" placeholder="https://example.com" spellcheck="false" autocomplete="off">
+        </label>
+        <p>아래 본문의 링크 자리에 채워집니다. <b>한 번만 적으면 10개 주차 전부에 반영</b>됩니다. 아직 배포 전이면 비워 두세요.</p>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">주차 · 제목</span><button class="copy" type="button">복사</button></div>
+<pre>10주 · 쇼케이스 — 발표와 나눔</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">강의안</span><button class="copy" type="button">복사</button></div>
+<pre>**서로의 완성품을 봅니다. 겨루는 자리가 아니라 서로 가져갈 것을 찾는 자리입니다.**
+
+**5분 발표** — 화면을 공유하고 **실제로 눌러 가면서** 이야기해 주세요. 설명만 하면 5분이 길고, 만지면서 하면 5분이 짧습니다.
+- 1분 우리 반 소개(학년·인원·수업 시간)
+- 2분 화면 시연 — 다섯 탭을 실제로 눌러 보여 주기
+- 1분 만들며 가장 어려웠던 것과 어떻게 넘겼는지
+- 1분 우리 반에서 어떻게 쓸 것인지, 다음에 더하고 싶은 것
+
+**완벽하지 않아도 발표하세요.** 다섯 탭 중 셋만 되어도 괜찮습니다. 어디서 막혔는지를 말해 주시는 것이 다른 분들에게 가장 도움이 됩니다. 듣는 분들은 한 사람당 한 가지씩 — **가져가고 싶은 것** 또는 **궁금한 것**을 말해 주세요. 고칠 점을 지적하는 자리가 아닙니다.
+
+**1주에 적었던 답을 꺼내 보세요.** &quot;10주 뒤에 무엇이 달라져 있으면 성공인가&quot;에 뭐라고 쓰셨나요. 발표에서 한 줄로 말해 주세요 — &quot;저는 ○○가 달라지길 바랐고, 지금은 ○○입니다.&quot; 바라던 대로 안 된 것도 괜찮습니다. 무엇이 왜 안 됐는지 아는 것도 성과입니다.
+
+**AI 생성물 저작권 — 실무적으로는 세 가지면 충분합니다**
+- 이 과정처럼 **도형으로 직접 그린 그림**을 쓴다
+- 남의 것을 가져다 쓸 때는 **출처를 확인**한다 (특정 화풍·캐릭터 모방, 실제 인물 닮은 이미지는 조심)
+- 교회 **안에서 쓰는 것**과 **밖으로 파는 것**은 다르다
+
+**아이 정보 마지막 점검** — 실명 대신 별명·번호 / 사진 없음 / 기록은 교사 기기 안에만 / 학기 끝나면 백업 꺼내 두기. 한 가지만 기억한다면 이것입니다 — **&quot;이 화면을 모르는 사람이 봐도 아이가 다치지 않는가.&quot;**
+
+**이 과정에서 진짜로 배운 것**은 코딩이 아닙니다. 필요한 것을 말로 설명하고, 결과를 확인하고, 고쳐서 쓰는 법입니다. 주보든 안내문이든 행사 기획이든 그대로 쓰입니다.
+
+발표 준비와 정리 → {{SITE}}/week/10.html</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">과제</span><button class="copy" type="button">복사</button></div>
+<pre>**시연과 현장 적용 계획**
+
+발표: 줌 미팅에서 **5분 시연** (1분 반 소개 / 2분 화면 시연 / 1분 어려웠던 것 / 1분 앞으로)
+
+제출물
+1. 완성된 페이지 주소
+2. **현장 적용 계획 1쪽** — 아래 네 가지를 담아 주세요
+
+- **언제 처음 쓸 것인지** — 날짜를 적어 주세요
+- **어느 부분부터** 쓸 것인지 — 다섯 탭을 다 쓸 필요는 없습니다
+- **예상되는 어려움**과 대비책 (와이파이, 기기, 아이들 반응)
+- **한 학기 뒤 무엇을 보고** 잘됐는지 판단할 것인지
+
+게시판에 올리고, **다른 분 발표에 한 가지씩 코멘트**를 남겨 주세요.
+
+**수료 점검** — 주소가 다른 기기에서도 열린다 / 출석·달란트가 새로고침해도 남는다 / **실명·사진이 없다** / 백업을 꺼내 보관했다 / 최종 index.html을 보관했다</pre>
+      </div>
+
+      <p class="tiny" style="font-size:.78rem;color:var(--text-faint)">
+        LMS 강의안 칸은 <b>**굵게**</b>, <b>- 목록</b>, 붙여넣은 링크를 그대로 살립니다. 위 문법에 맞춰 써 두었습니다.
+      </p>
+    </div>
+  </details>
+</section>
+
 <nav class="block wrap">
   <div class="pager">
     <a class="prev" href="9.html"><span class="k">이전</span><span class="v">9주 · 달란트 블록</span></a>
@@ -1107,6 +1191,40 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
+  }
+
+  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
+     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
+     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
+  var SITE_KEY = 'course.site';
+  var tpls = document.querySelectorAll('.paste-field pre');
+  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
+
+  function applySite(v) {
+    var shown = v || '[내 강의 사이트 주소]';
+    Array.prototype.forEach.call(tpls, function (pre) {
+      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
+      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
+    });
+  }
+
+  var siteInput = document.getElementById('siteUrl');
+  if (siteInput) {
+    var savedSite = '';
+    if (canStore) {
+      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
+    }
+    siteInput.value = savedSite;
+    siteInput.addEventListener('input', function () {
+      var v = siteInput.value.trim().replace(/\/+$/, '');
+      if (canStore) {
+        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
+      }
+      applySite(v);
+    });
+    applySite(savedSite);
+  } else {
+    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────

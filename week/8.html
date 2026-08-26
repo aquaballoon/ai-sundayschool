@@ -609,6 +609,20 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
   font-family: var(--ff-sans); color: var(--text-dim);
   max-height: 18rem; overflow: auto;
 }
+/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
+.site-url {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: .7rem .85rem;
+}
+.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
+.site-url input {
+  display: block; width: 100%; margin-top: .35rem;
+  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
+  background: var(--bg-soft); border: 1px solid var(--border-strong);
+  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
+}
+.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
+
 .paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
 .paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
 .paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
@@ -1064,6 +1078,73 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
+<section class="block wrap">
+  <details class="paste">
+    <summary>LMS 강의 입력 칸에 붙여넣기 <span style="font-weight:400;color:var(--text-faint)">— 교수자용</span></summary>
+    <div class="paste-body">
+
+      <div class="site-url">
+        <label for="siteUrl">내 강의 사이트 주소
+          <input type="url" id="siteUrl" placeholder="https://example.com" spellcheck="false" autocomplete="off">
+        </label>
+        <p>아래 본문의 링크 자리에 채워집니다. <b>한 번만 적으면 10개 주차 전부에 반영</b>됩니다. 아직 배포 전이면 비워 두세요.</p>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">주차 · 제목</span><button class="copy" type="button">복사</button></div>
+<pre>8주 · 출석 블록 — 기록이 남는 출석부</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">강의안</span><button class="copy" type="button">복사</button></div>
+<pre>**오늘 처음으로 기록이 남습니다.**
+
+Claude 화면 안에서 만든 것은 새로고침하면 사라집니다. 그런데 여러분의 페이지는 지금 **내 주소**에서 돌고 있습니다. 그래서 저장이 됩니다. **4주에 GitHub Pages부터 배운 이유가 오늘 드러납니다.**
+
+다만 기록은 **그 기기의 브라우저 안**에 저장됩니다. 서버로 가지 않습니다. 그래서 **수업용 태블릿 하나를 정해** 계속 그것으로 출석을 찍으세요. 다른 기기에서 같은 주소를 열면 그 기기의 기록(= 빈 화면)이 보입니다.
+
+**아이 정보 — 기술이 아니라 안전 문제입니다.** 여러분의 주소는 공개입니다. 기록 자체는 각자 기기에만 남지만 **명단에 적은 이름은 코드 안에 들어가 공개됩니다.** 그래서 **실명 대신 별명이나 번호**를 씁니다 — 「민들레」, 「3번」처럼요. 누가 누구인지는 교사가 알면 충분합니다.
+
+**따라하기**
+- 먼저 우리 반 명단을 별명으로 정합니다(예: 1번 민들레, 2번 해바라기…)
+- 출석 화면: 이름마다 출석/지각/결석 버튼 3개, 누르면 색이 칠해지고 다시 누르면 취소, 맨 위에 오늘 집계, &quot;모두 출석&quot;과 &quot;오늘 지우기&quot;
+- **기록이 남게**: 껐다 켜도 유지, 날짜별로 쌓이게, 아래에 &quot;누적 출석&quot;을 &quot;3 / 4주&quot;처럼 표시(지각도 나온 것으로), 저장이 안 되는 환경에서도 앱이 멈추지 않게
+- 내려받아 올린 뒤 **반드시 시험**: 내 주소를 연다 → 출석 두세 명 찍는다 → **새로고침한다** → 그대로 있으면 성공
+
+**사라진다면** 주소창을 보세요. **github.io**여야 합니다. claude.ai면 사라지는 게 정상입니다.
+
+**과제가 특별합니다** — 이번 주일에 실제 분반공부에서 출석을 찍어 보고, 다음 주에 다시 열어 기록이 남았는지 확인해 주세요.
+
+따라하기 화면 그림 → {{SITE}}/week/8.html</pre>
+      </div>
+
+      <div class="paste-field">
+        <div class="fh"><span class="fn">과제</span><button class="copy" type="button">복사</button></div>
+<pre>**실제로 한 주 써 보기**
+
+제출물: 출석 탭이 작동하는 내 페이지 주소
+
+**이번 주는 특별 과제입니다.** 이번 주일에 **실제 분반공부에서 출석을 찍어 보세요.** 그리고 다음 주에 다시 열어 기록이 남았는지 확인해 주세요.
+
+게시판에 주소와 함께 **실제로 써 본 소감 두세 줄** — 무엇이 편했고 무엇이 불편했는지 적어 주세요.
+
+**확인할 것**
+- **새로고침해도 출석이 남는 것을 확인했다**
+- 명단에 **실명 대신 별명·번호**를 썼다
+- 수업용 기기를 하나로 정했다
+- 누적 출석이 「몇 / 몇 주」로 보인다
+- 앞의 세 탭이 그대로 남아 있다
+
+마감: 다음 수업 전까지</pre>
+      </div>
+
+      <p class="tiny" style="font-size:.78rem;color:var(--text-faint)">
+        LMS 강의안 칸은 <b>**굵게**</b>, <b>- 목록</b>, 붙여넣은 링크를 그대로 살립니다. 위 문법에 맞춰 써 두었습니다.
+      </p>
+    </div>
+  </details>
+</section>
+
 <nav class="block wrap">
   <div class="pager">
     <a class="prev" href="7.html"><span class="k">이전</span><span class="v">7주 · 퀴즈 블록</span></a>
@@ -1180,6 +1261,40 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
+  }
+
+  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
+     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
+     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
+  var SITE_KEY = 'course.site';
+  var tpls = document.querySelectorAll('.paste-field pre');
+  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
+
+  function applySite(v) {
+    var shown = v || '[내 강의 사이트 주소]';
+    Array.prototype.forEach.call(tpls, function (pre) {
+      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
+      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
+    });
+  }
+
+  var siteInput = document.getElementById('siteUrl');
+  if (siteInput) {
+    var savedSite = '';
+    if (canStore) {
+      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
+    }
+    siteInput.value = savedSite;
+    siteInput.addEventListener('input', function () {
+      var v = siteInput.value.trim().replace(/\/+$/, '');
+      if (canStore) {
+        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
+      }
+      applySite(v);
+    });
+    applySite(savedSite);
+  } else {
+    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────
