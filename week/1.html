@@ -537,6 +537,51 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes sType{ 0% { width: 0; } 46%, 100% { width: 100%; } }
 .scene .clip { overflow: hidden; }
 
+/* ── 읽기 자료 (인쇄해서 읽을 수 있게) ──────────────── */
+.reading {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: clamp(1.4rem, 4vw, 2.4rem);
+  box-shadow: var(--shadow);
+}
+.reading .kicker {
+  font-family: var(--ff-mono); font-size: .72rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--accent-ink);
+}
+.reading h2 {
+  margin: .5rem 0 0; font-size: clamp(1.25rem, 1.1rem + .9vw, 1.6rem);
+}
+.reading .by {
+  margin-top: .5rem; font-size: .82rem; color: var(--text-faint);
+  padding-bottom: 1.1rem; border-bottom: 1px solid var(--border);
+}
+.reading > p, .reading > blockquote, .reading > h3 { max-width: 38rem; }
+.reading > p { margin-top: 1.05rem; line-height: 1.85; }
+.reading > h3 {
+  margin-top: 2rem; font-size: 1.05rem;
+  padding-left: .7rem; border-left: 3px solid var(--accent);
+}
+.reading blockquote {
+  margin-top: 1.2rem; padding: .1rem 0 .1rem 1.1rem;
+  border-left: 3px solid var(--accent-line); color: var(--text-dim);
+}
+.reading blockquote cite {
+  display: block; margin-top: .4rem; font-style: normal;
+  font-size: .82rem; color: var(--text-faint);
+}
+.reading .pull {
+  margin: 1.6rem 0; padding: 1rem 1.2rem; border-radius: var(--r-md);
+  background: var(--accent-tint); border: 1px solid var(--accent-line);
+  font-weight: 700; line-height: 1.65;
+}
+.reading .end {
+  margin-top: 1.8rem; padding-top: 1.1rem; border-top: 1px solid var(--border);
+  font-size: .86rem; color: var(--text-faint);
+}
+@media print {
+  .reading { border: 0; padding: 0; box-shadow: none; break-inside: auto; }
+  .reading .pull { background: #f4f4f1; }
+}
+
 /* ── 과제 블록 ─────────────────────────────────────── */
 .hw {
   background: var(--bg-card); border: 2px solid var(--accent-line);
@@ -911,7 +956,11 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <section class="block wrap">
   <span class="h-eyebrow">읽기 자료</span>
-  <h2 style="margin-bottom:1rem">토론 전에 읽어 오세요</h2>
+  <h2 style="margin-bottom:.4rem">토론 전에 읽어 오세요</h2>
+  <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.2rem">
+    위 강의안이 <b>요지</b>라면 아래 글은 <b>그 근거와 반론</b>까지 담은 본문입니다.
+    도구가 답이 아닐 수 있다는 이야기도 여기에 있습니다.
+  </p>
 
   <div class="card">
     <h3>성경 본문 — 예수님은 어떻게 가르치셨나</h3>
@@ -922,12 +971,76 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     </ul>
   </div>
 
-  <div class="card">
-    <h3>추가 자료</h3>
-    <p style="color:var(--text-dim);font-size:.93rem">
-      수업 게시판에 올라온 아티클을 함께 읽어 주세요. 2주 예습으로
-      <b>「디지털 코드 10」</b>을 미리 훑어보셔도 좋습니다.
-    </p>
+  <div class="reading">
+    <span class="kicker">읽기 자료</span>
+    <h2>우리가 잃어버린 40분</h2>
+    <p class="by">10분이면 읽습니다 · 인쇄해서 읽으셔도 됩니다</p>
+
+    <p>주일 아침, 분반공부 시작 10분째입니다. 교사는 오늘 본문을 설명하고 있습니다. 앞줄 아이는 듣고 있고, 뒷줄 아이는 신발을 만지작거립니다. 한 아이가 옆 아이에게 뭐라고 말하고, 교사는 잠깐 멈췄다가 다시 이어 갑니다. 40분이 끝나고 아이들이 나갑니다. 교사는 생각합니다. <b>오늘 뭐가 남았을까.</b></p>
+
+    <p>많은 교사가 이 장면을 압니다. 그리고 대개 두 가지 중 하나로 설명합니다. 아이들이 산만해졌거나, 내가 잘 못 가르쳤거나. 그런데 세 번째 설명이 있습니다.</p>
+
+    <h3>아이는 고장 나지 않았습니다</h3>
+
+    <p>지금 초등부에 앉아 있는 아이는 글자보다 화면을 먼저 배웠습니다. 그 세계에는 규칙이 있습니다. <b>만지면 반응합니다.</b> 누르면 무언가 일어나고, 아무 일도 일어나지 않으면 그건 고장 난 것입니다. <b>내가 고릅니다.</b> 무엇을 볼지 스스로 정하며 자랐고, 정해진 순서대로 따라가 본 경험이 적습니다. <b>지루하면 끝납니다.</b> 참는 훈련이 아니라 넘기는 훈련을 받았습니다. 손가락 한 번이면 다음 것이 옵니다.</p>
+
+    <p>그리고 주일 아침, 이 아이는 40분 동안 앉아서 듣는 자리에 옵니다. 만져도 반응하지 않고, 고를 수 없고, 지루해도 넘길 수 없는 자리입니다.</p>
+
+    <div class="pull">아이가 산만한 것이 아니라, 두 세계의 문법이 다른 것입니다.</div>
+
+    <p>이 구분이 중요한 이유가 있습니다. 「아이들이 문제다」로 시작하면 해결책은 결국 <b>통제</b>가 됩니다. 더 엄하게, 더 조용하게. 그런데 통제는 그 40분 동안만 작동하고, 아이가 교회 밖으로 나가는 순간 끝납니다. 반면 「전달 방식이 문제다」로 시작하면 바꿀 것이 교사 쪽에 생깁니다. 그건 우리가 할 수 있는 일입니다.</p>
+
+    <h3>그런데 이건 새로운 문제가 아닙니다</h3>
+
+    <p>여기서 흔히 나오는 결론이 「그러니 요즘 아이들에 맞게 새로운 교육법을 배워야 한다」입니다. 저는 반대로 말하고 싶습니다. <b>우리에게 필요한 방식은 이미 성경 안에 있습니다.</b></p>
+
+    <p>예수님이 사마리아 여인을 만나셨을 때를 보십시오. 그분은 이 여인의 문제를 알고 계셨습니다. 그런데 지적하지 않으셨습니다. 물으셨습니다.</p>
+
+    <blockquote>
+      “네 남편을 불러 오라”
+      <cite>요한복음 4장 16절</cite>
+    </blockquote>
+
+    <p>여인은 “나는 남편이 없나이다”라고 답합니다. 예수님이 알려 주신 것이 아니라 <b>여인이 스스로 말한 것</b>입니다. 그리고 그 순간부터 대화가 완전히 달라집니다. 만약 예수님이 처음부터 “너는 남편이 다섯이었다”라고 시작하셨다면, 그 여인은 물동이를 두고 마을로 뛰어가지 않았을 것입니다.</p>
+
+    <p>또 보십시오. 예수님은 걱정에 대해 가르치실 때 걱정의 해로움을 설명하지 않으셨습니다. 손을 들어 가리키셨습니다.</p>
+
+    <blockquote>
+      “들의 백합화가 어떻게 자라는가 생각하여 보라”
+      <cite>마태복음 6장 28절</cite>
+    </blockquote>
+
+    <p>씨 뿌리는 자의 비유도 마찬가지입니다(마 13장). 「말씀을 받는 네 가지 태도」라는 목록을 주실 수도 있었습니다. 그런데 이야기를 주셨습니다. 밭이 있고, 새가 있고, 돌짝밭이 있고, 가시떨기가 있습니다. 듣는 사람이 <b>머릿속에 장면을 그리게</b> 하신 것입니다.</p>
+
+    <p><b>질문</b>과 <b>보여 주기.</b> 예수님의 두 가지 방식은 공통점이 하나 있습니다. 둘 다 듣는 사람을 <b>구경꾼에서 참여자로</b> 옮깁니다. 질문을 받으면 생각해야 하고, 장면을 보면 상상해야 합니다.</p>
+
+    <p>그러니 우리 아이들이 「만지면 반응하는 것」과 「내가 고르는 것」에 익숙하다는 사실은, 사실 우리에게 나쁜 소식이 아닙니다. 예수님이 쓰신 방식이 원래 그런 것이었으니까요.</p>
+
+    <h3>그렇다면 도구가 답인가</h3>
+
+    <p>여기서 솔직해야 할 부분이 있습니다. 이 과정은 10주 동안 <b>웹페이지 하나를 만드는</b> 과정입니다. 그런데 도구가 문제를 해결해 주지는 않습니다.</p>
+
+    <p>태블릿을 켜면 아이들은 조용해집니다. 하지만 그 조용함은 앞에서 말한 「지루하면 넘기는」 세계의 조용함일 수 있습니다. 화면이 재미있어서 조용한 것과, 말씀 앞에서 마음이 움직여 조용한 것은 전혀 다른 일입니다. 도구는 그 둘을 구별해 주지 않습니다.</p>
+
+    <p>그래서 이 과정에서 만드는 화면에는 한 가지 원칙이 있습니다. <b>모든 화면은 아이가 말하게 하는 쪽으로 설계합니다.</b> 융판은 교사가 보여 주기 위한 것이 아니라 아이가 직접 옮기게 하기 위한 것이고, 퀴즈는 정답을 맞히는 것이 아니라 왜 그런지 함께 보기 위한 것입니다. 공과 화면에 가장 크게 들어가는 것은 설명이 아니라 <b>질문</b>입니다.</p>
+
+    <p>도구가 답이 아니라, <b>도구가 방식을 바꾸기 쉽게 만들어 줄 뿐</b>입니다. 종이로도 할 수 있는 일입니다. 다만 매주 만들기가 어려울 뿐입니다.</p>
+
+    <h3>숫자에 대하여</h3>
+
+    <p>이런 글에는 보통 통계가 들어갑니다. 아이들이 하루 몇 시간 화면을 본다든지, 집중 시간이 몇 초로 줄었다든지 하는 숫자들입니다. 이 글에는 넣지 않았습니다.</p>
+
+    <p>그런 숫자를 확인 없이 옮기는 일이 이 과정에서 가장 경계하는 습관이기 때문입니다. 3주에 배우겠지만 <b>AI는 그럴듯한 숫자를 아주 자신 있게 만들어 냅니다.</b> 우리는 7주에 성경 구절 하나하나를 대조하는 훈련을 하게 됩니다. 그 훈련을 시키는 글이 정작 확인하지 않은 숫자로 시작하면 안 될 것 같았습니다.</p>
+
+    <p>대신 이렇게 부탁드립니다. <b>이번 주일에 우리 반을 한 번 보십시오.</b> 몇 명이 눈을 맞추고 있는지, 언제 흐트러지는지, 무엇을 할 때 살아나는지. 남의 통계보다 그것이 정확합니다. 그리고 그것이 이번 주 과제입니다.</p>
+
+    <h3>10주 뒤에</h3>
+
+    <p>이 과정을 마치면 손에 웹페이지 하나가 남습니다. 공과와 융판과 퀴즈, 그리고 출석부와 달란트 통장이 들어 있는 화면입니다. 코딩은 한 줄도 배우지 않습니다. 필요한 것을 말로 설명하면 AI가 만듭니다.</p>
+
+    <p>하지만 진짜로 남기를 바라는 것은 따로 있습니다. <b>아이에게 설명하는 대신 물어보는 습관</b>입니다. 도구는 몇 년 뒤에 낡습니다. 그 습관은 낡지 않습니다.</p>
+
+    <p class="end">읽고 나서 아래 토론 질문에 답해 주세요. 특히 세 번째 질문에는 <b>반대 의견도 환영합니다</b> — 이 글의 주장이 틀렸다고 생각하시면 그렇게 적어 주셔도 좋습니다.</p>
   </div>
 
   <div class="card">
@@ -1060,6 +1173,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 그러니 우리에게 필요한 것은 새로운 교육 철학이 아닙니다. 이미 있는 방식을 지금 아이들이 알아듣는 형태로 옮기는 일입니다. 이 과정에서 코딩은 한 줄도 배우지 않습니다. 말로 부탁하면 AI가 만듭니다.
 
 **읽기 자료**
+- **「우리가 잃어버린 40분」** — 이번 주 읽기 자료(10분). 강의 페이지 안에 있습니다. 인쇄해서 읽으셔도 됩니다
 - 요한복음 4:1-26 — 사마리아 여인. 예수님이 던지신 질문의 순서를 눈여겨보세요
 - 마태복음 13:1-23 — 씨 뿌리는 비유. 왜 설명 대신 이야기를 쓰셨을까요
 - 마태복음 6:25-34 — 들의 백합화. 눈앞의 것을 가리키신 방식
@@ -1070,6 +1184,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 - 도구가 생기면 정말 달라질까요, 아니면 도구가 없어도 할 수 있는 일이 먼저일까요?
 
 **오늘은 AI 사용법을 다루지 않습니다.** 그건 3주에 통째로 다룹니다.
+
+한 가지 덧붙입니다. 읽기 자료에는 통계 숫자를 넣지 않았습니다. 확인하지 않은 숫자를 옮기는 습관이 이 과정에서 가장 경계하는 것이기 때문입니다(3주 AI 환각, 7주 성경 구절 검증). 남의 통계보다 **이번 주일에 우리 반을 직접 보시는 것**이 정확합니다. 그것이 이번 주 과제입니다.
 
 전체 강의안 · 완성품 미리보기 → {{SITE}}/week/1.html</pre>
       </div>
