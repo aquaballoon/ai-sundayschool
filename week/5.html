@@ -6,6 +6,7 @@
 <title>5주 · 공과 블록 — 오늘의 공과를 화면에 — AI 시대와 교회교육</title>
 <meta name="description" content="본문과 수업 흐름, 발견형 질문을 공과 탭에 채웁니다.">
 <meta name="theme-color" content="#F9F9F6">
+<meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -46,28 +47,14 @@
              'Malgun Gothic', sans-serif;
   --ff-mono: 'Space Grotesk', ui-monospace, 'SF Mono', Menlo, monospace;
 
+  /* 밝은 화면으로 고정한다 — 원래 디자인 기준이 Warm Sand 다.
+     color-scheme 을 박아 두어야 OS 가 다크여도 입력칸·스크롤바가
+     어두워지지 않는다. */
+  color-scheme: light;
+
   --w-read: 44rem;   /* 본문 읽기 폭 */
   --w-wide: 68rem;   /* 그리드·표 폭 */
   --r-sm: 8px; --r-md: 14px; --r-lg: 20px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-page:  #14171C;
-    --bg-card:  #1B1F26;
-    --bg-soft:  #21262F;
-    --bg-sunk:  #171B21;
-    --text:     #ECEFF5;
-    --text-dim: #A9B3C2;
-    --text-faint: #78838F;
-    --border:   #2B313B;
-    --border-strong: #3A4250;
-    --shadow:   0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
-    --shadow-lg: 0 2px 4px rgba(0,0,0,.35), 0 24px 48px -24px rgba(0,0,0,.7);
-    --accent-ink:  color-mix(in oklab, var(--accent) 82%, #FFFFFF);
-    --accent-tint: color-mix(in oklab, var(--accent) 16%, var(--bg-card));
-    --accent-line: color-mix(in oklab, var(--accent) 46%, var(--border));
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -217,10 +204,6 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .callout.tip   { background: var(--accent-tint); border-color: var(--accent-line); }
 .callout.warn  { background: #FDF3E4; border-color: #E9CFA0; color: #6B4A16; }
 .callout.warn a { color: #8A5A12; }
-@media (prefers-color-scheme: dark) {
-  .callout.warn { background: #2D2416; border-color: #5B4726; color: #F0DDBB; }
-  .callout.warn a { color: #F5C97A; }
-}
 
 .grid { display: grid; gap: 1rem; }
 .grid.two { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
@@ -322,10 +305,6 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
   position: relative; margin-top: 1rem;
   border: 1px solid var(--border-strong); border-radius: var(--r-md);
   background: var(--mk-face); overflow: hidden; box-shadow: var(--shadow);
-}
-@media (prefers-color-scheme: dark) {
-  .mock { --mk-bar: #262C35; --mk-face: #1E232A; --mk-line: #333A45;
-          --mk-ink: #E7ECF3; --mk-dim: #8B97A5; }
 }
 .mock-bar {
   display: flex; align-items: center; gap: 0.4rem;
