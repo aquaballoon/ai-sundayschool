@@ -1,0 +1,7 @@
+# .gitignore 의 복사본 — 손으로 동기화한다.
+# 심볼릭 링크로 두면 vercel 빌드 컨테이너에서 끊겨 ENOENT 로 죽는다.
+
+.DS_Store
+node_modules/
+.vercel
+*.log

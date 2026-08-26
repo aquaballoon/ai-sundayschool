@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ko" style="--accent:#E09419">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6주 · 융판 블록 — 끌어 옮기는 성경 이야기 — AI 시대와 교회교육</title>
+<meta name="description" content="손가락으로 인물을 옮기며 이야기를 들려주는 디지털 융판을 만듭니다.">
+<meta name="theme-color" content="#F9F9F6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+@charset "UTF-8";
+/* ═══════════════════════════════════════════════════════════════
+   AI 시대와 교회교육 — 공통 스타일
+   기준색: Warm Sand #F9F9F6 · Deep Charcoal #2C3E50
+   (local/10주 슬라이드 강의안.md 의 디자인 기준)
+
+   ⚠️ 모션 규칙 — 모든 애니메이션 요소의 "기본 상태 = 마지막 프레임".
+   애니메이션은 `.mock.is-playing` 이 붙었을 때만 돈다. 따라서
+   prefers-reduced-motion 이나 JS 미동작 시에도 그림이 완성된 채로 보인다.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg-page:  #F9F9F6;
+  --bg-card:  #FFFFFF;
+  --bg-soft:  #F1F0EA;
+  --bg-sunk:  #EDEBE3;
+  --text:     #2C3E50;
+  --text-dim: #5A6B7B;
+  --text-faint: #8B98A5;
+  --border:   #E2E0D6;
+  --border-strong: #CFCCBE;
+  --shadow:   0 1px 2px rgba(44,62,80,.05), 0 8px 24px -12px rgba(44,62,80,.16);
+  --shadow-lg: 0 2px 4px rgba(44,62,80,.06), 0 24px 48px -24px rgba(44,62,80,.28);
+
+  /* 페이지마다 <html style="--accent:…"> 로 덮어쓴다 */
+  --accent: #5EAFFF;
+
+  /* 파생색 — 밝은 배경에서 명도가 모자란 원색(라임·민트)을 글자에 쓰지 않기 위해 */
+  --accent-ink:  color-mix(in oklab, var(--accent) 62%, #1B2A38);
+  --accent-tint: color-mix(in oklab, var(--accent) 13%, var(--bg-card));
+  --accent-line: color-mix(in oklab, var(--accent) 42%, var(--border));
+
+  --ff-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+             'Malgun Gothic', sans-serif;
+  --ff-mono: 'Space Grotesk', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --w-read: 44rem;   /* 본문 읽기 폭 */
+  --w-wide: 68rem;   /* 그리드·표 폭 */
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page:  #14171C;
+    --bg-card:  #1B1F26;
+    --bg-soft:  #21262F;
+    --bg-sunk:  #171B21;
+    --text:     #ECEFF5;
+    --text-dim: #A9B3C2;
+    --text-faint: #78838F;
+    --border:   #2B313B;
+    --border-strong: #3A4250;
+    --shadow:   0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    --shadow-lg: 0 2px 4px rgba(0,0,0,.35), 0 24px 48px -24px rgba(0,0,0,.7);
+    --accent-ink:  color-mix(in oklab, var(--accent) 82%, #FFFFFF);
+    --accent-tint: color-mix(in oklab, var(--accent) 16%, var(--bg-card));
+    --accent-line: color-mix(in oklab, var(--accent) 46%, var(--border));
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: var(--ff-sans);
+  font-size: clamp(16px, 0.95rem + 0.25vw, 18px);
+  line-height: 1.75;
+  word-break: keep-all;      /* 한글 어절 단위 줄바꿈 */
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; }
+a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3, h4 { line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; }
+h1 { font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.75rem); }
+h2 { font-size: clamp(1.3rem, 1.1rem + 1vw, 1.7rem); }
+h3 { font-size: clamp(1.08rem, 1rem + 0.4vw, 1.25rem); }
+p + p { margin-top: 0.9em; }
+
+.mono { font-family: var(--ff-mono); font-variant-numeric: tabular-nums; }
+
+/* ── 레이아웃 ──────────────────────────────────────── */
+.wrap { width: min(100% - 2.5rem, var(--w-read)); margin-inline: auto; }
+.wrap-wide { width: min(100% - 2.5rem, var(--w-wide)); margin-inline: auto; }
+@media (max-width: 30rem) { .wrap, .wrap-wide { width: calc(100% - 1.75rem); } }
+
+.stack > * + * { margin-top: var(--gap, 1.1rem); }
+.stack-lg > * + * { margin-top: 2rem; }
+
+section.block { padding-block: clamp(2rem, 5vw, 3.5rem); }
+section.block + section.block { border-top: 1px solid var(--border); }
+
+/* ── 상단 바 ───────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg-page) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-in {
+  width: min(100% - 2rem, var(--w-wide)); margin-inline: auto;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: 3.25rem; font-size: 0.86rem;
+}
+.topbar a { color: var(--text-dim); text-decoration: none; font-weight: 600; }
+.topbar a:hover { color: var(--accent-ink); }
+.topbar .home { display: flex; align-items: center; gap: 0.5rem; color: var(--text); }
+.topbar .dot {
+  width: 0.6rem; height: 0.6rem; border-radius: 50%;
+  background: var(--accent); flex: none;
+}
+.topbar .spacer { flex: 1; }
+.topbar .wk-of { color: var(--text-faint); font-family: var(--ff-mono); }
+
+/* ── 강의 헤더 ─────────────────────────────────────── */
+.hero { padding-block: clamp(2.25rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2.5rem); }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--ff-mono); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-line);
+  padding: 0.3rem 0.75rem; border-radius: 100px;
+}
+.badge.plain { color: var(--text-dim); background: var(--bg-soft); border-color: var(--border); }
+.hero h1 { margin-top: 1rem; }
+.lede {
+  margin-top: 0.9rem; font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.2rem);
+  color: var(--text-dim); line-height: 1.7;
+}
+.meta-row {
+  margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+  font-size: 0.85rem; color: var(--text-faint);
+}
+.meta-row b { color: var(--text-dim); font-weight: 600; }
+
+/* ── 목표 리스트 ───────────────────────────────────── */
+.goals {
+  list-style: none; padding: 1.15rem 1.3rem; margin-top: 1.75rem;
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-md);
+}
+.goals > li { position: relative; padding-left: 1.6rem; }
+.goals > li + li { margin-top: 0.55rem; }
+.goals > li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.5rem; height: 0.5rem; border-radius: 2px;
+  background: var(--accent);
+}
+.goals .h {
+  font-family: var(--ff-mono); font-size: 0.74rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent-ink); font-weight: 700;
+  padding-left: 0; margin-bottom: 0.7rem;
+}
+.goals .h::before { display: none; }
+
+/* ── 본문 요소 ─────────────────────────────────────── */
+.h-eyebrow {
+  font-family: var(--ff-mono); font-size: 0.76rem; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent-ink);
+  display: block; margin-bottom: 0.5rem;
+}
+.prose > * + * { margin-top: 1.1rem; }
+.prose h2 { margin-top: 2.5rem; }
+.prose h3 { margin-top: 1.9rem; }
+.prose ul, .prose ol { padding-left: 1.35rem; }
+.prose li + li { margin-top: 0.4rem; }
+.prose strong { font-weight: 700; background: linear-gradient(transparent 62%, var(--accent-tint) 62%); }
+.prose blockquote {
+  border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1.1rem;
+  color: var(--text-dim); font-style: normal;
+}
+.prose blockquote cite {
+  display: block; margin-top: 0.5rem; font-size: 0.85rem;
+  color: var(--text-faint); font-style: normal;
+}
+
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 1.25rem 1.35rem; box-shadow: var(--shadow);
+}
+.card h3 { margin-bottom: 0.5rem; }
+
+.callout {
+  border-radius: var(--r-md); padding: 1.05rem 1.2rem;
+  background: var(--bg-soft); border: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+.callout .t {
+  font-weight: 700; display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.callout.tip   { background: var(--accent-tint); border-color: var(--accent-line); }
+.callout.warn  { background: #FDF3E4; border-color: #E9CFA0; color: #6B4A16; }
+.callout.warn a { color: #8A5A12; }
+@media (prefers-color-scheme: dark) {
+  .callout.warn { background: #2D2416; border-color: #5B4726; color: #F0DDBB; }
+  .callout.warn a { color: #F5C97A; }
+}
+
+.grid { display: grid; gap: 1rem; }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.grid.three { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+
+/* 비교 카드 (약한 프롬프트 vs 강한 프롬프트 등) */
+.vs { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.vs > div { border-radius: var(--r-md); padding: 1.1rem 1.2rem; border: 1px solid var(--border); }
+.vs .bad  { background: var(--bg-soft); }
+.vs .good { background: var(--accent-tint); border-color: var(--accent-line); }
+.vs .tag {
+  font-family: var(--ff-mono); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; display: block;
+}
+.vs .bad .tag  { color: var(--text-faint); }
+.vs .good .tag { color: var(--accent-ink); }
+
+/* 표 */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 30rem; }
+th, td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 700; color: var(--text-dim); font-size: 0.8rem; letter-spacing: 0.03em; }
+tbody tr:hover { background: var(--bg-soft); }
+td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
+
+/* ── 프롬프트 복사 블록 ────────────────────────────── */
+.prompt {
+  --p-bg: #232C36;
+  position: relative; border-radius: var(--r-md); overflow: hidden;
+  background: var(--p-bg); border: 1px solid #333E4A;
+}
+.prompt-head {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.55rem 0.7rem 0.55rem 0.95rem;
+  border-bottom: 1px solid #333E4A;
+}
+.prompt-head .lbl {
+  font-family: var(--ff-mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #93A2B2;
+  flex: 1;
+}
+.prompt pre {
+  margin: 0; padding: 0.95rem 1.05rem; overflow-x: auto;
+  color: #E6EBF1; font-family: var(--ff-sans); font-size: 0.9rem;
+  line-height: 1.7; white-space: pre-wrap; word-break: keep-all;
+}
+.copy {
+  font: inherit; font-size: 0.78rem; font-weight: 600; font-family: var(--ff-sans);
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: #35414F; color: #DCE4EC; border: 1px solid #46535F;
+  border-radius: 7px; padding: 0.3rem 0.7rem; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.copy:hover { background: #43515F; }
+.copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
+
+/* ── STEP 따라하기 ─────────────────────────────────── */
+.steps { counter-reset: step; list-style: none; padding: 0; }
+.steps > li {
+  counter-increment: step; position: relative;
+  padding-left: 3.1rem; padding-bottom: 2.25rem;
+}
+.steps > li::before {
+  content: "STEP " counter(step);
+  position: absolute; left: 0; top: 0.05rem;
+  font-family: var(--ff-mono); font-size: 0.63rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--accent-ink);
+  width: 2.35rem; text-align: center; line-height: 1.15;
+  padding-top: 0.42rem; padding-bottom: 0.42rem;
+  background: var(--accent-tint); border: 1px solid var(--accent-line);
+  border-radius: 8px;
+}
+.steps > li::after {
+  content: ""; position: absolute; left: 1.16rem; top: 2.6rem; bottom: 0.4rem;
+  width: 2px; background: var(--border);
+}
+.steps > li:last-child { padding-bottom: 0; }
+.steps > li:last-child::after { display: none; }
+.steps h3 { font-size: 1.08rem; margin-bottom: 0.35rem; }
+.steps > li > * + * { margin-top: 0.75rem; }
+@media (max-width: 34rem) {
+  .steps > li { padding-left: 0; padding-top: 2.4rem; }
+  .steps > li::before { top: 0; }
+  .steps > li::after { display: none; }
+}
+
+/* 화면에서 누를 곳 지목 */
+.ui-key {
+  font-family: var(--ff-mono); font-size: 0.85em; font-weight: 700;
+  background: var(--bg-sunk); border: 1px solid var(--border-strong);
+  border-bottom-width: 2px; border-radius: 6px; padding: 0.08em 0.42em;
+  white-space: nowrap; color: var(--text);
+}
+
+/* ── 모션 목업 ─────────────────────────────────────── */
+.mock {
+  --mk-bar: #E7E5DC; --mk-face: #FBFBF8; --mk-line: #D9D6CA;
+  --mk-ink: #2C3E50; --mk-dim: #8A98A5;
+  position: relative; margin-top: 1rem;
+  border: 1px solid var(--border-strong); border-radius: var(--r-md);
+  background: var(--mk-face); overflow: hidden; box-shadow: var(--shadow);
+}
+@media (prefers-color-scheme: dark) {
+  .mock { --mk-bar: #262C35; --mk-face: #1E232A; --mk-line: #333A45;
+          --mk-ink: #E7ECF3; --mk-dim: #8B97A5; }
+}
+.mock-bar {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.75rem; background: var(--mk-bar);
+  border-bottom: 1px solid var(--mk-line);
+}
+.mock-bar i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--mk-dim); opacity: .5; }
+.mock-bar .ttl {
+  font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--mk-dim); margin-left: 0.4rem;
+  text-transform: uppercase;
+}
+.mock-body { display: grid; grid-template-columns: 1fr 1.15fr; min-height: 13rem; }
+.mock-body.solo { grid-template-columns: 1fr; }
+@media (max-width: 34rem) { .mock-body { grid-template-columns: 1fr; } }
+
+.mock-chat { padding: 0.85rem; border-right: 1px solid var(--mk-line); }
+@media (max-width: 34rem) { .mock-chat { border-right: 0; border-bottom: 1px solid var(--mk-line); } }
+.mock-msg {
+  font-size: 0.76rem; line-height: 1.55; color: var(--mk-ink);
+  background: var(--bg-soft); border: 1px solid var(--mk-line);
+  border-radius: 10px; padding: 0.5rem 0.65rem;
+}
+.mock-msg + .mock-msg { margin-top: 0.5rem; }
+.mock-msg.me { background: var(--accent-tint); border-color: var(--accent-line); }
+
+/* 타이핑 — 기본 상태는 "다 쳐진" 모습 */
+.mock-type {
+  display: block; white-space: nowrap; overflow: hidden;
+  border-right: 2px solid transparent;
+}
+.is-playing .mock-type {
+  animation: mkType 3.2s steps(26, end) infinite, mkCaret .7s step-end infinite;
+}
+@keyframes mkType { 0% { width: 0; } 42%, 100% { width: 100%; } }
+@keyframes mkCaret { 0%, 100% { border-right-color: var(--accent); } 50% { border-right-color: transparent; } }
+
+/* Artifact 패널 — 기본 상태는 "열린" 모습 */
+.mock-panel { padding: 0.85rem; background: var(--mk-face); position: relative; }
+.is-playing .mock-panel { animation: mkPanel 8s ease-out infinite; }
+@keyframes mkPanel {
+  0%, 34% { opacity: 0; transform: translateX(14%); }
+  46%, 100% { opacity: 1; transform: none; }
+}
+.mock-panel .cap {
+  font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--mk-dim); margin-bottom: 0.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+}
+.mock-pill {
+  font-family: var(--ff-sans); font-size: 0.62rem; font-weight: 700;
+  background: var(--accent); color: #16202A;
+  border-radius: 100px; padding: 0.12rem 0.5rem; letter-spacing: 0;
+}
+
+/* 커서 — 기본 상태는 최종 위치 */
+.mock-cursor {
+  position: absolute; width: 16px; height: 16px; pointer-events: none;
+  left: var(--cx2, 70%); top: var(--cy2, 62%); z-index: 4;
+}
+.mock-cursor svg { display: block; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+.is-playing .mock-cursor { animation: mkCursor 8s ease-in-out infinite; }
+@keyframes mkCursor {
+  0%, 30%   { left: var(--cx1, 22%); top: var(--cy1, 78%); }
+  52%, 100% { left: var(--cx2, 70%); top: var(--cy2, 62%); }
+}
+.mock-cursor::after {
+  content: ""; position: absolute; inset: -9px; border-radius: 50%;
+  border: 2px solid var(--accent); opacity: 0;
+}
+.is-playing .mock-cursor::after { animation: mkPing 8s ease-out infinite; }
+@keyframes mkPing {
+  0%, 48% { opacity: 0; transform: scale(.4); }
+  54% { opacity: .9; transform: scale(.6); }
+  66%, 100% { opacity: 0; transform: scale(1.5); }
+}
+
+/* 토스트 — 기본 상태는 보이는 상태 */
+.mock-toast {
+  position: absolute; left: 50%; bottom: 0.7rem; transform: translateX(-50%);
+  background: var(--mk-ink); color: var(--mk-face);
+  font-size: 0.68rem; font-weight: 600; padding: 0.3rem 0.7rem;
+  border-radius: 100px; white-space: nowrap; z-index: 5;
+}
+.is-playing .mock-toast { animation: mkToast 8s ease-out infinite; }
+@keyframes mkToast {
+  0%, 62% { opacity: 0; transform: translate(-50%, 8px); }
+  70%, 92% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 0); }
+}
+
+/* 재생 / 멈춤 */
+.mock-ctrl {
+  position: absolute; right: 0.5rem; top: 0.42rem; z-index: 6;
+  font: inherit; font-size: 0.66rem; font-weight: 700; font-family: var(--ff-mono);
+  background: var(--mk-face); color: var(--mk-dim);
+  border: 1px solid var(--mk-line); border-radius: 100px;
+  padding: 0.15rem 0.55rem; cursor: pointer; letter-spacing: 0.04em;
+}
+.mock-ctrl:hover { color: var(--accent-ink); border-color: var(--accent-line); }
+.mock-cap {
+  font-size: 0.8rem; color: var(--text-faint); margin-top: 0.5rem;
+  display: flex; gap: 0.4rem;
+}
+.mock-cap::before { content: "▸"; color: var(--accent-ink); }
+
+/* ── 씬 공통 (SVG 결과물 미리보기) ─────────────────── */
+.scene { display: block; width: 100%; height: auto; border-radius: 8px; background: var(--bg-soft); }
+.scene .sky { fill: var(--accent-tint); }
+.scene .ground { fill: color-mix(in oklab, var(--accent) 26%, var(--bg-sunk)); }
+.scene .ink { fill: var(--mk-ink, var(--text)); }
+.scene .dim { fill: var(--mk-dim, var(--text-faint)); }
+.scene .acc { fill: var(--accent); }
+.scene .box { fill: var(--bg-card); stroke: var(--border-strong); stroke-width: 1; }
+
+/* 4주 — 질문 카드가 순서대로 뒤집힌다 */
+.is-playing .s4-card { animation: s4flip 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.is-playing .s4-card:nth-of-type(2) { animation-delay: .5s; }
+.is-playing .s4-card:nth-of-type(3) { animation-delay: 1s; }
+.is-playing .s4-card:nth-of-type(4) { animation-delay: 1.5s; }
+@keyframes s4flip {
+  0%, 8%  { transform: scaleX(.05); opacity: .35; }
+  22%, 100% { transform: scaleX(1); opacity: 1; }
+}
+
+/* 5주 — 캐릭터를 손가락으로 끌어 옮긴다 */
+.is-playing .s5-figure { animation: s5drag 5s ease-in-out infinite; }
+.is-playing .s5-hand   { animation: s5hand 5s ease-in-out infinite; }
+@keyframes s5drag { 0%, 12% { transform: translate(0,0); } 60%, 100% { transform: translate(96px, -10px); } }
+@keyframes s5hand { 0%, 12% { transform: translate(0,0); opacity: .95; }
+                    60% { transform: translate(96px, -10px); opacity: .95; }
+                    75%, 100% { transform: translate(96px, -10px); opacity: 0; } }
+
+/* 6주 — 물맷돌이 날아가고 골리앗이 흔들리고 말풍선이 뜬다 */
+.is-playing .s6-stone { animation: s6stone 5s cubic-bezier(.3,0,.7,1) infinite; }
+.is-playing .s6-giant { animation: s6shake 5s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom center; }
+.is-playing .s6-bubble { animation: s6pop 5s ease-out infinite; transform-box: fill-box; transform-origin: bottom left; }
+@keyframes s6stone {
+  0%, 10% { transform: translate(0,0); opacity: 0; }
+  14% { opacity: 1; }
+  46% { transform: translate(74px, -34px); opacity: 1; }
+  62%, 100% { transform: translate(148px, 4px); opacity: 0; }
+}
+@keyframes s6shake {
+  0%, 60% { transform: rotate(0); }
+  66% { transform: rotate(-7deg); } 72% { transform: rotate(6deg); }
+  78% { transform: rotate(-4deg); } 84%, 100% { transform: rotate(0); }
+}
+@keyframes s6pop { 0%, 74% { transform: scale(0); opacity: 0; } 84%, 100% { transform: scale(1); opacity: 1; } }
+
+/* 7주 — 선택지를 고르면 정답 표시와 폭죽 */
+.is-playing .s7-pick { animation: s7pick 5.5s ease-out infinite; }
+.is-playing .s7-check { animation: s7check 5.5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.is-playing .s7-spark { animation: s7spark 5.5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes s7pick { 0%, 26% { opacity: 0; } 34%, 100% { opacity: 1; } }
+@keyframes s7check { 0%, 40% { transform: scale(0); } 52% { transform: scale(1.25); } 60%, 100% { transform: scale(1); } }
+@keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
+                     85%, 100% { opacity: 0; transform: scale(1.5); } }
+
+/* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
+.is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
+.is-playing .s8-coin:nth-of-type(2) { animation-delay: .18s; }
+.is-playing .s8-coin:nth-of-type(3) { animation-delay: .36s; }
+@keyframes s8stamp {
+  0%, 18% { transform: scale(2.4); opacity: 0; }
+  30% { transform: scale(.9); opacity: 1; }
+  36%, 100% { transform: scale(1); opacity: 1; }
+}
+@keyframes s8coin {
+  0%, 40% { transform: translateY(-18px); opacity: 0; }
+  56%, 100% { transform: translateY(0); opacity: 1; }
+}
+
+/* 9주 — 네 개 모듈이 탭 하나로 합쳐진다 */
+.is-playing .s9-mod { animation: s9merge 6s ease-in-out infinite; }
+.is-playing .s9-mod:nth-of-type(2) { animation-name: s9merge2; }
+.is-playing .s9-mod:nth-of-type(3) { animation-name: s9merge3; }
+.is-playing .s9-mod:nth-of-type(4) { animation-name: s9merge4; }
+.is-playing .s9-app { animation: s9app 6s ease-out infinite; }
+@keyframes s9merge  { 0%, 22% { transform: translate(0,0); opacity: 1; } 52%, 100% { transform: translate(56px, 34px); opacity: 0; } }
+@keyframes s9merge2 { 0%, 22% { transform: translate(0,0); opacity: 1; } 52%, 100% { transform: translate(-18px, 34px); opacity: 0; } }
+@keyframes s9merge3 { 0%, 22% { transform: translate(0,0); opacity: 1; } 52%, 100% { transform: translate(56px, -22px); opacity: 0; } }
+@keyframes s9merge4 { 0%, 22% { transform: translate(0,0); opacity: 1; } 52%, 100% { transform: translate(-18px, -22px); opacity: 0; } }
+@keyframes s9app   { 0%, 46% { opacity: 0; transform: scale(.86); } 62%, 100% { opacity: 1; transform: scale(1); } }
+
+/* 3주 — 프롬프트 3요소가 쌓인다 */
+.is-playing .s3-part { animation: s3in 5s ease-out infinite; }
+.is-playing .s3-part:nth-of-type(2) { animation-delay: .35s; }
+.is-playing .s3-part:nth-of-type(3) { animation-delay: .7s; }
+@keyframes s3in { 0%, 10% { opacity: 0; transform: translateX(-14px); } 26%, 100% { opacity: 1; transform: none; } }
+
+/* ── 범용 씬 동작 (배포 화면 등) ────────────────────
+   기본 상태 = 마지막 프레임. 재생될 때만 앞 구간이 돈다. */
+.is-playing .s-ring  { animation: sRing 4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+.is-playing .s-in    { animation: sIn 4s ease-out infinite; }
+.is-playing .s-in2   { animation: sIn 4s ease-out infinite; animation-delay: .4s; }
+.is-playing .s-in3   { animation: sIn 4s ease-out infinite; animation-delay: .8s; }
+.is-playing .s-drop  { animation: sDrop 4s cubic-bezier(.4,0,.6,1) infinite; }
+.is-playing .s-type  { animation: sType 4s steps(18, end) infinite; }
+@keyframes sRing {
+  0%, 30% { opacity: 0; transform: scale(.5); }
+  42% { opacity: 1; transform: scale(1.15); }
+  54%, 100% { opacity: 1; transform: scale(1); }
+}
+@keyframes sIn  { 0%, 18% { opacity: 0; transform: translateY(6px); } 34%, 100% { opacity: 1; transform: none; } }
+@keyframes sDrop{ 0%, 12% { opacity: 0; transform: translateY(-38px); } 20% { opacity: 1; }
+                  46%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes sType{ 0% { width: 0; } 46%, 100% { width: 100%; } }
+.scene .clip { overflow: hidden; }
+
+/* ── 과제 블록 ─────────────────────────────────────── */
+.hw {
+  background: var(--bg-card); border: 2px solid var(--accent-line);
+  border-radius: var(--r-lg); padding: clamp(1.25rem, 3vw, 1.85rem);
+  box-shadow: var(--shadow);
+}
+.hw > * + * { margin-top: 1.1rem; }
+.hw-title { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+.hw-title h2 { margin: 0; }
+.hw dl { display: grid; grid-template-columns: auto 1fr; gap: 0.55rem 1.1rem; font-size: 0.95rem; }
+.hw dt {
+  font-family: var(--ff-mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-faint);
+  padding-top: 0.35em; white-space: nowrap;
+}
+.hw dd { margin: 0; }
+@media (max-width: 30rem) {
+  .hw dl { grid-template-columns: 1fr; gap: 0.2rem; }
+  .hw dd + dt { margin-top: 0.7rem; }
+}
+
+.checklist { list-style: none; padding: 0; }
+.checklist li + li { margin-top: 0.35rem; }
+.checklist label {
+  display: flex; gap: 0.65rem; align-items: flex-start; cursor: pointer;
+  padding: 0.5rem 0.7rem; border-radius: var(--r-sm);
+  background: var(--bg-soft); border: 1px solid var(--border);
+  font-size: 0.92rem; transition: background .15s;
+}
+.checklist label:hover { background: var(--bg-sunk); }
+.checklist input { margin-top: 0.32em; accent-color: var(--accent); flex: none; width: 1.05em; height: 1.05em; }
+.checklist input:checked + span { color: var(--text-faint); text-decoration: line-through; }
+
+/* ── 자주 막히는 곳 ────────────────────────────────── */
+.faq { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--bg-card); }
+.faq details + details { border-top: 1px solid var(--border); }
+.faq summary {
+  cursor: pointer; padding: 0.85rem 1.1rem; font-weight: 600; font-size: 0.94rem;
+  list-style: none; display: flex; gap: 0.6rem; align-items: baseline;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: "＋"; color: var(--accent-ink); font-weight: 700; flex: none; }
+.faq details[open] summary::before { content: "－"; }
+.faq details[open] summary { color: var(--accent-ink); }
+.faq .a { padding: 0 1.1rem 1rem 2.35rem; font-size: 0.92rem; color: var(--text-dim); }
+.faq .a > * + * { margin-top: 0.7rem; }
+
+/* ── LMS 붙여넣기용 ────────────────────────────────── */
+.paste { border: 1px dashed var(--border-strong); border-radius: var(--r-md); background: var(--bg-sunk); }
+.paste > summary {
+  cursor: pointer; padding: 0.8rem 1.05rem; font-size: 0.86rem; font-weight: 600;
+  color: var(--text-dim); list-style: none; display: flex; align-items: center; gap: 0.55rem;
+}
+.paste > summary::-webkit-details-marker { display: none; }
+.paste > summary::before { content: "⧉"; color: var(--accent-ink); }
+.paste[open] > summary { border-bottom: 1px dashed var(--border-strong); }
+.paste-body { padding: 0.9rem 1.05rem; }
+.paste-body > * + * { margin-top: 0.9rem; }
+.paste-field .fh {
+  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;
+}
+.paste-field .fn {
+  font-size: 0.78rem; font-weight: 700; color: var(--text-dim); flex: 1;
+  font-family: var(--ff-mono); letter-spacing: 0.04em;
+}
+.paste-field pre {
+  margin: 0; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 0.75rem 0.85rem; font-size: 0.82rem;
+  line-height: 1.65; white-space: pre-wrap; word-break: keep-all;
+  font-family: var(--ff-sans); color: var(--text-dim);
+  max-height: 18rem; overflow: auto;
+}
+.paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
+.paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
+.paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
+
+/* ── 주차 카드 그리드 (홈) ─────────────────────────── */
+.wk-grid { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); }
+.wk-card {
+  --accent: var(--wk, #5EAFFF);
+  display: flex; flex-direction: column; gap: 0.45rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-md); padding: 1.05rem 1.15rem;
+  text-decoration: none; color: inherit;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.wk-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.wk-card .n {
+  font-family: var(--ff-mono); font-size: 0.74rem; font-weight: 700;
+  letter-spacing: 0.09em; color: var(--accent-ink); text-transform: uppercase;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.wk-card .n .kind {
+  font-size: 0.64rem; padding: 0.08rem 0.45rem; border-radius: 100px;
+  background: var(--bg-soft); color: var(--text-faint); border: 1px solid var(--border);
+  letter-spacing: 0.03em;
+}
+.wk-card .t { font-weight: 700; font-size: 1rem; line-height: 1.42; }
+.wk-card .d { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+.wk-card .hwline {
+  margin-top: auto; padding-top: 0.6rem; font-size: 0.78rem; color: var(--text-faint);
+  border-top: 1px dashed var(--border); display: flex; gap: 0.4rem;
+}
+.wk-card .hwline b { color: var(--text-dim); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .wk-card:hover { transform: none; } }
+
+/* ── 이전 / 다음 ───────────────────────────────────── */
+.pager { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.pager a {
+  display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none;
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: 0.9rem 1.05rem; background: var(--bg-card); color: inherit;
+  transition: border-color .15s, background .15s;
+}
+.pager a:hover { border-color: var(--accent-line); background: var(--accent-tint); }
+.pager .k { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-faint); }
+.pager .v { font-weight: 600; font-size: 0.92rem; }
+.pager a.next { text-align: right; }
+.pager a.disabled { opacity: .4; pointer-events: none; }
+
+/* ── 푸터 ──────────────────────────────────────────── */
+footer.site {
+  border-top: 1px solid var(--border); margin-top: 3rem;
+  padding-block: 2rem 3rem; font-size: 0.84rem; color: var(--text-faint);
+}
+footer.site a { color: var(--text-dim); }
+footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+
+/* ── 인쇄 ──────────────────────────────────────────── */
+@media print {
+  :root { --bg-page: #fff; --bg-card: #fff; --bg-soft: #f4f4f1; --shadow: none; --shadow-lg: none; }
+  .topbar, .mock-ctrl, .copy, .pager, footer.site, .paste { display: none !important; }
+  body { font-size: 11pt; }
+  .mock, .card, .hw, .faq { break-inside: avoid; }
+  .steps > li { break-inside: avoid; }
+  .prompt { --p-bg: #f4f4f1; border-color: #ccc; }
+  .prompt pre { color: #222; }
+  .prompt-head .lbl { color: #555; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+}
+
+/* ── 토스트 (course.js 가 만든다) ──────────────────── */
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, 1rem);
+  background: var(--text); color: var(--bg-card);
+  padding: .6rem 1.15rem; border-radius: 100px;
+  font-size: .88rem; font-weight: 600; z-index: 90;
+  opacity: 0; pointer-events: none; box-shadow: var(--shadow-lg);
+  max-width: calc(100vw - 2rem); text-align: center;
+  transition: opacity .2s, transform .2s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+
+/* ── 완성품 보기 배너 (모든 실습 차시 상단) ─────────── */
+.aim {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  background: var(--bg-card); border: 1px solid var(--accent-line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-md); padding: .95rem 1.15rem;
+}
+.aim .txt { flex: 1; min-width: 12rem; }
+.aim .k {
+  font-family: var(--ff-mono); font-size: .68rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink);
+}
+.aim .v { font-size: .9rem; color: var(--text-dim); margin-top: .15rem; line-height: 1.55; }
+.aim .go {
+  flex: none; display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--accent); color: #16202A; text-decoration: none;
+  font-weight: 700; font-size: .86rem; padding: .6rem 1rem;
+  border-radius: 10px; min-height: 2.75rem;
+}
+.aim .go:hover { filter: brightness(.94); }
+
+/* ── 이번 주에 더하는 블록 ─────────────────────────── */
+.blocks { display: flex; gap: .3rem; flex-wrap: wrap; margin-top: .9rem; }
+.blocks span {
+  font-size: .76rem; font-weight: 600; padding: .28rem .65rem;
+  border-radius: 100px; background: var(--bg-soft);
+  color: var(--text-faint); border: 1px solid var(--border);
+}
+.blocks span.done { background: var(--bg-sunk); color: var(--text-dim); }
+.blocks span.now {
+  background: var(--accent); color: #16202A; border-color: transparent;
+}
+.blocks span.now::before { content: "＋ "; }
+.blocks span.done::before { content: "✓ "; color: var(--accent-ink); }
+
+/* ── 붙여넣을 자리 안내 ────────────────────────────── */
+.where {
+  display: flex; gap: .6rem; align-items: baseline;
+  background: var(--bg-sunk); border-radius: var(--r-sm);
+  padding: .6rem .8rem; font-size: .86rem; color: var(--text-dim);
+}
+.where::before {
+  content: "붙일 곳"; flex: none;
+  font-family: var(--ff-mono); font-size: .66rem; font-weight: 700;
+  letter-spacing: .08em; color: var(--accent-ink);
+  background: var(--bg-card); border: 1px solid var(--accent-line);
+  border-radius: 100px; padding: .1rem .5rem; align-self: center;
+}
+
+/* ── 접근성: 화면에는 없고 낭독기에만 ──────────────── */
+.sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: -999px; top: 0; z-index: 100;
+  background: var(--accent); color: #16202A; padding: 0.6rem 1rem;
+  border-radius: 0 0 8px 0; font-weight: 700;
+}
+.skip:focus { left: 0; }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="home" href="../index.html"><span class="dot"></span>AI 시대와 교회교육</a>
+    <span class="spacer"></span>
+    <span class="wk-of">6 / 10</span>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap">
+  <span class="badge">6주 · 따라하기</span>
+  <h1>융판 블록 — 끌어 옮기는 성경 이야기</h1>
+  <p class="lede">화면 위 인물을 손가락으로 옮기며 이야기를 들려줍니다. 종이 융판이 하던 일을 태블릿이 합니다.</p>
+
+  <div class="meta-row">
+    <span><b>소요</b> 50~70분</span>
+    <span><b>지난주 필요</b> 공과 탭이 채워진 파일</span>
+    <span><b>채우는 탭</b> 융판</span>
+  </div>
+
+  <ul class="goals">
+    <li class="h">이번 주에 할 수 있게 되는 것</li>
+    <li>배경과 인물을 그림으로 만든다 (그림 실력 필요 없음)</li>
+    <li>손가락으로 끌어 옮기는 화면을 만든다</li>
+    <li>아이가 직접 만져 보게 하는 수업 방법을 안다</li>
+  </ul>
+</section>
+
+<section class="block wrap">
+  <div class="aim">
+    <div class="txt">
+      <div class="k">오늘 만들 모습</div>
+      <div class="v">완성품의 <b>융판 탭</b>에서 다윗을 끌어 보세요. 오늘 이 화면까지 갑니다.</div>
+    </div>
+    <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
+  </div>
+
+  <div class="blocks" style="margin-top:1rem">
+    <span class="done">4주 뼈대와 탭</span>
+    <span class="done">5주 공과</span>
+    <span class="now">6주 융판</span>
+    <span>7주 퀴즈</span>
+    <span>8주 출석</span>
+    <span>9주 달란트</span>
+  </div>
+</section>
+
+<section class="block wrap prose">
+  <span class="h-eyebrow">강의안</span>
+  <h2>그림은 AI가 그립니다. 다만 방식이 중요합니다</h2>
+
+  <p>인물 그림을 만드는 방법은 두 가지입니다. <b>둘째를 씁니다.</b></p>
+
+  <div class="vs">
+    <div class="bad">
+      <span class="tag">그림 파일로 만들기</span>
+      AI 그림 생성기로 png를 만들어 붙입니다.<br>
+      <span style="font-size:.85rem;color:var(--text-faint)">→ 파일이 여러 개가 되고, 화질이 깨지고, 올리기도 번거롭습니다.</span>
+    </div>
+    <div class="good">
+      <span class="tag">코드로 그리기 (SVG)</span>
+      Claude가 도형으로 그림을 그려 <b>파일 안에 넣습니다.</b><br>
+      <span style="font-size:.85rem;color:var(--text-dim)">→ 파일은 계속 하나. 아무리 확대해도 안 깨집니다. 색도 말로 바꿉니다.</span>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="t">그래서 프롬프트에 이 한 줄을 꼭 넣습니다</div>
+    <b>“그림은 SVG 도형으로 코드 안에 직접 그려 줘. 이미지 파일은 쓰지 마.”</b>
+  </div>
+
+  <h2>이 화면을 아이에게 넘기세요</h2>
+  <p>교사가 옮기며 설명하는 것도 좋지만, 더 좋은 것은 <b>아이가 직접 옮기게</b> 하는 것입니다.</p>
+  <p>“누가 다윗을 골리앗 앞으로 데려다 줄래요?” — 한 아이가 나와서 손가락으로 옮깁니다. 그 순간 이야기는 그 아이의 것이 됩니다.</p>
+</section>
+
+<section class="block wrap">
+  <span class="h-eyebrow">따라하기</span>
+  <h2 style="margin-bottom:1.5rem">융판 탭 만들기</h2>
+
+  <ol class="steps">
+
+    <li>
+      <h3>배경과 인물을 만들어 달라고 합니다</h3>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 1단계</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>융판 탭을 만들어 줘.
+
+- 배경: 엘라 골짜기. 위는 하늘, 가운데 언덕, 아래 풀밭
+- 인물과 사물: 다윗(작은 소년), 골리앗(다윗보다 훨씬 큰 거인),
+  양, 물맷돌, 나무, 장막
+- 골리앗은 다윗보다 확실히 크게 그려 줘. 크기 차이가 이 이야기의 핵심이야
+- 그림은 전부 SVG 도형으로 코드 안에 직접 그려 줘.
+  이미지 파일이나 인터넷 주소는 쓰지 마
+- 아이들이 보는 것이니 따뜻하고 부드러운 색으로</pre>
+      </div>
+      <div class="callout warn">
+        <div class="t">얼굴은 단순하게</div>
+        사람 얼굴을 자세히 그리라고 하면 어색해집니다. <b>“얼굴은 단순하게, 표정은 넣지 마”</b>라고 하면 오히려 보기 좋습니다.
+      </div>
+    </li>
+
+    <li>
+      <h3>손가락으로 끌 수 있게 합니다</h3>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 2단계</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>이제 인물과 사물을 손가락으로 끌어 옮길 수 있게 해 줘.
+
+- 태블릿 터치와 마우스 둘 다 되게 (포인터 이벤트로)
+- 끌고 있는 것이 다른 것 위로 올라오게
+- 화면 밖으로는 나가지 않게
+- 배경(하늘, 언덕, 풀밭)은 고정 — 인물만 움직이게
+- 아래에 "처음으로" 버튼을 넣어 원래 자리로 되돌릴 수 있게</pre>
+      </div>
+
+      <div class="mock">
+        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">융판 탭</span></div>
+        <div class="mock-body solo">
+          <div class="mock-panel">
+            <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="엘라 골짜기 배경 위에서 작은 다윗을 손가락으로 끌어 큰 골리앗 앞으로 옮기는 모습">
+              <defs>
+                <linearGradient id="w6sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#CFE3F5"/><stop offset="1" stop-color="#EAF2FA"/>
+                </linearGradient>
+              </defs>
+              <rect width="320" height="150" rx="6" fill="url(#w6sky)"/>
+              <circle cx="278" cy="28" r="13" fill="#F7E3A8"/>
+              <path d="M0 76 Q60 52 120 70 T240 66 T320 72 V150 H0Z" fill="#C3B98E"/>
+              <path d="M0 104 Q90 92 180 102 T320 98 V150 H0Z" fill="#8E9A5E"/>
+
+              <!-- 장막 · 나무 -->
+              <path d="M44 62 L60 100 L28 100 Z" fill="#C7A57A"/>
+              <g><rect x="272" y="82" width="5" height="18" rx="2" fill="#7A5C3A"/><circle cx="274" cy="78" r="12" fill="#5E7F43"/></g>
+
+              <!-- 골리앗 (큼) -->
+              <g transform="translate(210,60)">
+                <ellipse cx="0" cy="46" rx="17" ry="4" fill="rgba(0,0,0,.16)"/>
+                <path d="M-12 45 L-7 16 L7 16 L12 45 Z" fill="#6E6257"/>
+                <rect x="-10" y="6" width="20" height="16" rx="5" fill="#8A7C6D"/>
+                <circle cx="0" cy="-2" r="9" fill="#D9B48F"/>
+                <path d="M-9 -5 Q0 -14 9 -5 L9 -8 Q0 -13 -9 -8Z" fill="#4A4038"/>
+                <path d="M11 14 L20 -6" stroke="#7A6A55" stroke-width="3" stroke-linecap="round"/>
+              </g>
+
+              <!-- 다윗 (작음) — 끌려서 이동 -->
+              <g class="s5-figure" transform="translate(96,80)">
+                <ellipse cx="0" cy="26" rx="10" ry="3" fill="rgba(0,0,0,.16)"/>
+                <path d="M-6 25 L-3 10 L3 10 L6 25 Z" fill="#5B7FA8"/>
+                <rect x="-5" y="4" width="10" height="9" rx="3.5" fill="#7A9CC4"/>
+                <circle cx="0" cy="-1" r="5" fill="#E8C39A"/>
+                <path d="M-5 -3 Q0 -9 5 -3 Q3 -6 0 -6.5 Q-3 -6 -5 -3Z" fill="#6B4A2A"/>
+              </g>
+
+              <!-- 손가락 -->
+              <g class="s5-hand" transform="translate(96,80)">
+                <circle cx="10" cy="12" r="11" fill="var(--accent)" opacity=".22"/>
+                <circle cx="10" cy="12" r="5" fill="var(--accent)" opacity=".55"/>
+              </g>
+
+              <!-- 양 · 물맷돌 -->
+              <g transform="translate(56,118)">
+                <ellipse cx="0" cy="2" rx="10" ry="7" fill="#F4F1EA"/>
+                <circle cx="-8" cy="-2" r="4" fill="#4A4238"/>
+              </g>
+              <ellipse cx="140" cy="124" rx="5" ry="4" fill="#9AA0A6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <p class="mock-cap">작은 다윗을 큰 골리앗 앞으로 — 크기 차이가 그대로 메시지가 됩니다</p>
+    </li>
+
+    <li>
+      <h3>태블릿에서 직접 만져 봅니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        마우스로는 잘 되는데 손가락으로는 안 되는 경우가 있습니다. <b>반드시 실제 태블릿에서</b> 확인하세요.
+      </p>
+      <div class="callout warn">
+        <div class="t">손가락으로 끌면 화면이 같이 스크롤되면</div>
+        이렇게 말하세요 — <b>“융판 위에서는 손가락으로 끌 때 화면이 스크롤되지 않게 해 줘 (touch-action: none)”</b>
+      </div>
+    </li>
+
+    <li>
+      <h3>내려받아 다시 올립니다</h3>
+      <div class="where">Artifact 내려받기 → GitHub → <span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span> → <span class="ui-key">Commit changes</span></div>
+      <p style="color:var(--text-dim);font-size:.92rem;margin-top:.6rem">
+        1분 뒤 내 주소를 <b>태블릿에서</b> 새로고침해 만져 보세요.
+      </p>
+    </li>
+
+  </ol>
+</section>
+
+<section class="block wrap">
+  <div class="hw">
+    <div class="hw-title">
+      <span class="badge">과제</span>
+      <h2>우리 반 융판</h2>
+    </div>
+
+    <dl>
+      <dt>제출물</dt>
+      <dd>융판 탭이 작동하는 내 페이지 주소</dd>
+      <dt>제출 방법</dt>
+      <dd>게시판에 주소와 함께 <b>“이 융판으로 어느 장면을 보여 줄 것인지”</b> 한 줄 적어 주세요.</dd>
+      <dt>마감</dt>
+      <dd>다음 수업 전까지</dd>
+    </dl>
+
+    <div>
+      <h3>스스로 점검</h3>
+      <ul class="checklist">
+        <li><label><input type="checkbox" id="w6c1"><span><b>태블릿에서</b> 손가락으로 끌어 옮겨진다</span></label></li>
+        <li><label><input type="checkbox" id="w6c2"><span>끌 때 화면이 같이 밀리지 않는다</span></label></li>
+        <li><label><input type="checkbox" id="w6c3"><span>골리앗이 다윗보다 확실히 크다</span></label></li>
+        <li><label><input type="checkbox" id="w6c4"><span>「처음으로」를 누르면 제자리로 돌아온다</span></label></li>
+        <li><label><input type="checkbox" id="w6c5"><span>공과 탭이 그대로 남아 있다</span></label></li>
+        <li><label><input type="checkbox" id="w6c6"><span>이번 <span class="ui-key">index.html</span>도 보관했다</span></label></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block wrap">
+  <span class="h-eyebrow">막히면</span>
+  <h2 style="margin-bottom:1rem">자주 나오는 문제</h2>
+
+  <div class="faq">
+    <details>
+      <summary>그림이 이상하게 나옵니다</summary>
+      <div class="a">
+        <p>한 번에 완벽하게 나오지 않습니다. 하나씩 짚어 말하면 됩니다 —
+        <b>“골리앗을 1.5배 크게”</b>, <b>“다윗 옷을 파란색으로”</b>, <b>“나무를 오른쪽으로 옮겨”</b>.</p>
+        <p>사람보다 <b>도형에 가깝게</b> 부탁하면 훨씬 안정적입니다.</p>
+      </div>
+    </details>
+    <details>
+      <summary>마우스로는 되는데 태블릿에서는 안 끌립니다</summary>
+      <div class="a">
+        <p>터치 처리가 빠진 것입니다. <b>“마우스와 터치 둘 다 되도록 포인터 이벤트로 다시 만들어 줘”</b>라고 하세요.</p>
+      </div>
+    </details>
+    <details>
+      <summary>인물이 화면 밖으로 나가 사라집니다</summary>
+      <div class="a">
+        <p><b>“인물이 화면 밖으로 나가지 않도록 가장자리에서 멈추게 해 줘”</b>라고 하면 됩니다.
+        급하면 「처음으로」를 눌러 되돌리세요.</p>
+      </div>
+    </details>
+    <details>
+      <summary>수업 중에 아이가 다 흐트러뜨렸습니다</summary>
+      <div class="a">
+        <p>그게 좋은 수업입니다. 「처음으로」를 누르면 3초 만에 정리됩니다.</p>
+        <p>참고로 <b>융판 배치는 저장되지 않습니다.</b> 매 시간 새로 꾸미는 것이 정상입니다 —
+        출석·달란트와 달리 남길 이유가 없는 정보이기 때문입니다.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<nav class="block wrap">
+  <div class="pager">
+    <a class="prev" href="5.html"><span class="k">이전</span><span class="v">5주 · 공과 블록</span></a>
+    <a class="next" href="7.html"><span class="k">다음</span><span class="v">7주 · 퀴즈 블록</span></a>
+  </div>
+</nav>
+
+<footer class="site wrap">
+  <div class="row">
+    <a href="../index.html">과정 홈</a>
+    <a href="../syllabus.html">실라버스</a>
+    <a href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 미리보기</a>
+  </div>
+  <p style="margin-top:.6rem">AI 시대와 교회교육 · 주일학교 교사를 위한 10주 과정</p>
+</footer>
+</main>
+
+<script>
+/* AI 시대와 교회교육 — 강의 페이지 공통 스크립트
+   ① 프롬프트 복사  ② 과제 체크리스트(저장)  ③ 모션 목업 재생/정지 */
+(function () {
+  "use strict";
+
+  /* ── 토스트 ───────────────────────────────────────── */
+  var toastEl = null, toastTimer = null;
+  function toast(msg) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'toast';
+      toastEl.setAttribute('role', 'status');
+      toastEl.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+  }
+
+  /* ── ① 프롬프트 복사 ──────────────────────────────
+     클립보드가 막힌 환경에서도 실패하지 않도록, 안 되면
+     텍스트를 통째로 선택해 준다 (교사가 직접 복사하면 된다). */
+  function selectAll(node) {
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(node);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.copy');
+    if (!btn) return;
+
+    var wrap = btn.closest('.prompt') || btn.closest('.paste-field');
+    var pre = wrap && wrap.querySelector('pre');
+    if (!pre) return;
+    var text = pre.innerText;
+
+    function done() {
+      var old = btn.textContent;
+      btn.textContent = '복사됨';
+      btn.setAttribute('data-done', '1');
+      setTimeout(function () {
+        btn.textContent = old;
+        btn.removeAttribute('data-done');
+      }, 1600);
+    }
+    function manual() {
+      if (selectAll(pre)) toast('직접 복사해 주세요 — 이미 선택해 두었습니다');
+      else toast('복사에 실패했습니다');
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done)['catch'](manual);
+    } else manual();
+  });
+
+  /* ── ② 과제 체크리스트 ────────────────────────────
+     페이지 경로별로 따로 저장한다. 저장이 막힌 곳에서는
+     조용히 넘어간다 — 체크는 그대로 되고 기억만 안 될 뿐이다. */
+  var CK = 'course.check.' + (location.pathname || 'page');
+  var canStore = (function () {
+    try {
+      var t = '__p__';
+      window.localStorage.setItem(t, '1');
+      window.localStorage.removeItem(t);
+      return true;
+    } catch (e) { return false; }
+  })();
+
+  function readChecks() {
+    if (!canStore) return {};
+    try { return JSON.parse(window.localStorage.getItem(CK)) || {}; }
+    catch (e) { return {}; }
+  }
+  function writeChecks(o) {
+    if (!canStore) return;
+    try { window.localStorage.setItem(CK, JSON.stringify(o)); } catch (e) {}
+  }
+
+  var boxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+  if (boxes.length) {
+    var saved = readChecks();
+    Array.prototype.forEach.call(boxes, function (box, i) {
+      var key = box.id || ('c' + i);
+      if (saved[key]) box.checked = true;
+      box.addEventListener('change', function () {
+        var cur = readChecks();
+        if (box.checked) cur[key] = 1; else delete cur[key];
+        writeChecks(cur);
+      });
+    });
+  }
+
+  /* ── ③ 모션 목업 ──────────────────────────────────
+     기본 상태가 곧 마지막 프레임이므로, 재생되지 않아도
+     그림은 완성된 채로 읽힌다. 움직임 최소화 설정이면 켜지 않는다. */
+  var reduce = window.matchMedia &&
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var mocks = Array.prototype.slice.call(document.querySelectorAll('.mock'));
+
+  mocks.forEach(function (mock) {
+    if (reduce) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'mock-ctrl';
+    btn.type = 'button';
+    mock.appendChild(btn);
+
+    var wanted = true;   // 교사가 멈춰 두었는가
+    var visible = false; // 화면 안에 있는가
+
+    function sync() {
+      var on = wanted && visible;
+      mock.classList.toggle('is-playing', on);
+      btn.textContent = wanted ? '⏸ 멈춤' : '▶ 재생';
+      btn.setAttribute('aria-label', wanted ? '애니메이션 멈추기' : '애니메이션 재생하기');
+    }
+    btn.addEventListener('click', function () { wanted = !wanted; sync(); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        sync();
+      }, { threshold: 0.25 }).observe(mock);
+    } else {
+      visible = true;
+    }
+    sync();
+  });
+
+  /* ── 좌우 화살표로 주차 이동 ──────────────────────── */
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+
+    var sel = e.key === 'ArrowLeft' ? '.pager a.prev'
+            : e.key === 'ArrowRight' ? '.pager a.next' : null;
+    if (!sel) return;
+    var link = document.querySelector(sel);
+    if (link && !link.classList.contains('disabled')) link.click();
+  });
+})();
+
+</script>
+</body>
+</html>
