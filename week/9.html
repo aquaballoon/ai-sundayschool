@@ -987,48 +987,12 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       </div>
     </li>
 
-    <li>
-      <h3>비밀번호 잠금을 답니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        수업 중에 아이가 태블릿을 만져 출석·달란트를 바꾸는 일을 막습니다.
-      </p>
-      <div class="prompt">
-        <div class="prompt-head">
-          <span class="lbl">Claude에 붙여넣기 · 3단계</span>
-          <button class="copy" type="button">복사</button>
-        </div>
-<pre>출석 탭과 달란트 탭에 비밀번호 잠금을 달아 줘.
-
-- 공과·융판·퀴즈 탭은 잠그지 마 (아이들에게 보여 주는 화면이야)
-- 출석·달란트 탭만 잠기고, 열쇠 화면에서 숫자를 넣으면 열리게
-- 비밀번호는 코드에 적지 말고, 교사가 화면에서 정하게 해 줘
-  그리고 그 기기에만 저장되게 (localStorage)
-- 달란트 탭 아래에 "비밀번호" 칸을 만들어
-  정하기 / 바꾸기 / 없애기 를 할 수 있게
-- 맨 위에 "잠그기" 버튼 — 수업 끝나고 누르면 다시 잠기게
-- 새로고침하면 다시 잠긴 상태로 시작하게
-- 틀리면 "비밀번호가 다릅니다"라고 알려 주고 입력칸을 비워 줘</pre>
-      </div>
-      <div class="callout warn">
-        <div class="t">「코드에 적지 마」가 핵심입니다</div>
-        비밀번호를 코드에 적으면 <b>페이지 소스를 열었을 때 그대로 보입니다.</b> 아무 의미가 없습니다.
-        교사가 화면에서 정하게 하면 그 기기에만 남고, <b>공개되는 파일 안에는 비밀이 하나도 없게</b> 됩니다.
-        <br><br>
-        다만 이건 <b>아이 손을 막는 잠금이지 인터넷 상대의 보안이 아닙니다.</b>
-        그러니 실명·사진을 넣지 않는 규칙은 그대로 지킵니다.
-      </div>
-      <div class="callout tip">
-        <div class="t">확인하는 법</div>
-        비밀번호를 정한 뒤 <b>브라우저에서 「페이지 소스 보기」</b>를 열어 그 숫자를 찾아보세요.
-        <b>안 나오면 제대로 만든 것입니다.</b>
-      </div>
-    </li>
 
     <li>
       <h3>백업 기능을 넣습니다</h3>
       <div class="prompt">
         <div class="prompt-head">
-          <span class="lbl">Claude에 붙여넣기 · 4단계</span>
+          <span class="lbl">Claude에 붙여넣기 · 3단계</span>
           <button class="copy" type="button">복사</button>
         </div>
 <pre>학기 기록을 백업할 수 있게 해 줘.
@@ -1093,7 +1057,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <li><label><input type="checkbox" id="w9c2"><span>달란트가 새로고침해도 남는다</span></label></li>
         <li><label><input type="checkbox" id="w9c3"><span>명단을 화면에서 추가·수정·삭제할 수 있다</span></label></li>
         <li><label><input type="checkbox" id="w9c4"><span><b>백업 텍스트를 꺼내 카톡에 저장해 두었다</b></span></label></li>
-        <li><label><input type="checkbox" id="w9c8"><span>비밀번호를 정하고, <b>페이지 소스에 그 숫자가 없는 것</b>을 확인했다</span></label></li>
         <li><label><input type="checkbox" id="w9c5"><span>실명·사진이 들어가 있지 않다 (마지막 점검)</span></label></li>
         <li><label><input type="checkbox" id="w9c6"><span>최종 <span class="ui-key">index.html</span>을 보관했다</span></label></li>
         <li><label><input type="checkbox" id="w9c7"><span>발표 3가지를 생각해 두었다</span></label></li>
@@ -1182,8 +1145,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 **따라하기**
 - 1단계 달란트 통장: **출석 탭과 같은 명단을 쓰게**(따로 만들지 말고), 이름마다 [−] [숫자] [＋] [＋5], 0 아래로 안 내려가게, 맨 위에 반 전체 합계와 최다, 줄 때 알림이 잠깐 뜨게, 출석과 똑같이 기록이 남게
 - 2단계 명단 관리: 이름을 눌러 바로 고치기, 추가·삭제, 반 이름 바꾸기, 그리고 &quot;실명 대신 별명이나 번호를 쓰세요&quot; 안내 문구
-- 3단계 **비밀번호 잠금**: 출석·달란트 탭만 잠그고 공과·융판·퀴즈는 열어 둡니다(아이들에게 보여 주는 화면이니까요). 핵심은 **&quot;비밀번호를 코드에 적지 말고 교사가 화면에서 정하게, 그 기기에만 저장되게&quot;** 입니다. 코드에 적으면 페이지 소스에 그대로 보여 아무 의미가 없습니다. 맨 위에 &quot;잠그기&quot; 버튼을 두고, 새로고침하면 다시 잠기게 합니다. **확인하는 법 — 비밀번호를 정한 뒤 「페이지 소스 보기」로 그 숫자를 찾아보세요. 안 나오면 제대로 만든 것입니다.** 다만 이건 아이 손을 막는 잠금이지 인터넷 상대의 보안은 아닙니다
-- 4단계 **백업**: &quot;학기 기록 꺼내기&quot; 버튼 → 화면 안 텍스트 상자에 &quot;1번 민들레 — 출석 8/10주, 달란트 24개&quot; 형식으로. 다시 불러오는 칸도 함께. 클립보드가 막힐 수 있으니 텍스트 상자에 그대로 보여 주고 교사가 직접 복사하게
+- 3단계 **백업**: &quot;학기 기록 꺼내기&quot; 버튼 → 화면 안 텍스트 상자에 &quot;1번 민들레 — 출석 8/10주, 달란트 24개&quot; 형식으로. 다시 불러오는 칸도 함께. 클립보드가 막힐 수 있으니 텍스트 상자에 그대로 보여 주고 교사가 직접 복사하게
 - 마지막으로 올리고 **다섯 탭을 모두 확인**합니다
 
 **왜 백업이 필요한가** — 기록은 그 기기 안에만 있습니다. 태블릿이 바뀌거나 브라우저를 정리하면 사라집니다. 학기 말에 한 번은 꼭 꺼내 두세요.
