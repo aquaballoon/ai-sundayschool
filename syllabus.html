@@ -608,49 +608,6 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 .faq .a { padding: 0 1.1rem 1rem 2.35rem; font-size: 0.92rem; color: var(--text-dim); }
 .faq .a > * + * { margin-top: 0.7rem; }
 
-/* ── LMS 붙여넣기용 ────────────────────────────────── */
-.paste { border: 1px dashed var(--border-strong); border-radius: var(--r-md); background: var(--bg-sunk); }
-.paste > summary {
-  cursor: pointer; padding: 0.8rem 1.05rem; font-size: 0.86rem; font-weight: 600;
-  color: var(--text-dim); list-style: none; display: flex; align-items: center; gap: 0.55rem;
-}
-.paste > summary::-webkit-details-marker { display: none; }
-.paste > summary::before { content: "⧉"; color: var(--accent-ink); }
-.paste[open] > summary { border-bottom: 1px dashed var(--border-strong); }
-.paste-body { padding: 0.9rem 1.05rem; }
-.paste-body > * + * { margin-top: 0.9rem; }
-.paste-field .fh {
-  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;
-}
-.paste-field .fn {
-  font-size: 0.78rem; font-weight: 700; color: var(--text-dim); flex: 1;
-  font-family: var(--ff-mono); letter-spacing: 0.04em;
-}
-.paste-field pre {
-  margin: 0; background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 0.75rem 0.85rem; font-size: 0.82rem;
-  line-height: 1.65; white-space: pre-wrap; word-break: keep-all;
-  font-family: var(--ff-sans); color: var(--text-dim);
-  max-height: 18rem; overflow: auto;
-}
-/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
-.site-url {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: .7rem .85rem;
-}
-.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
-.site-url input {
-  display: block; width: 100%; margin-top: .35rem;
-  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
-  background: var(--bg-soft); border: 1px solid var(--border-strong);
-  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
-}
-.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
-
-.paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
-.paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
-.paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
-
 /* ── 주차 카드 그리드 (홈) ─────────────────────────── */
 .wk-grid { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); }
 .wk-card {
@@ -708,7 +665,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 /* ── 인쇄 ──────────────────────────────────────────── */
 @media print {
   :root { --bg-page: #fff; --bg-card: #fff; --bg-soft: #f4f4f1; --shadow: none; --shadow-lg: none; }
-  .topbar, .mock-ctrl, .copy, .pager, footer.site, .paste { display: none !important; }
+  .topbar, .mock-ctrl, .copy, .pager, footer.site { display: none !important; }
   body { font-size: 11pt; }
   .mock, .card, .hw, .faq { break-inside: avoid; }
   .steps > li { break-inside: avoid; }
@@ -982,7 +939,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     var btn = e.target.closest && e.target.closest('.copy');
     if (!btn) return;
 
-    var wrap = btn.closest('.prompt') || btn.closest('.paste-field');
+    var wrap = btn.closest('.prompt');
     var pre = wrap && wrap.querySelector('pre');
     if (!pre) return;
     var text = pre.innerText;
@@ -1041,40 +998,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
-  }
-
-  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
-     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
-     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
-  var SITE_KEY = 'course.site';
-  var tpls = document.querySelectorAll('.paste-field pre');
-  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
-
-  function applySite(v) {
-    var shown = v || '[내 강의 사이트 주소]';
-    Array.prototype.forEach.call(tpls, function (pre) {
-      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
-      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
-    });
-  }
-
-  var siteInput = document.getElementById('siteUrl');
-  if (siteInput) {
-    var savedSite = '';
-    if (canStore) {
-      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
-    }
-    siteInput.value = savedSite;
-    siteInput.addEventListener('input', function () {
-      var v = siteInput.value.trim().replace(/\/+$/, '');
-      if (canStore) {
-        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
-      }
-      applySite(v);
-    });
-    applySite(savedSite);
-  } else {
-    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────

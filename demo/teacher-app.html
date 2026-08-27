@@ -392,9 +392,9 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 
     <div class="card">
       <h3>명단 관리</h3>
-      <p class="tiny" style="margin-bottom:.6rem">아이 실명 대신 <b>별명이나 번호</b>를 쓰세요. 링크를 아는 사람은 누구나 볼 수 있습니다.</p>
+      <p class="tiny" style="margin-bottom:.6rem">아이 실명 대신 <b>가명</b>을 쓰세요 — 동물(다람쥐·사슴) 이나 성경 인물(요셉·한나) 이 좋습니다. <b>사진은 올리지 않습니다.</b></p>
       <div class="btn-row" style="margin-bottom:.6rem">
-        <input type="text" id="newName" placeholder="예: 1번 민들레" style="flex:1; min-width:9rem">
+        <input type="text" id="newName" placeholder="예: 1번 다람쥐" style="flex:1; min-width:9rem">
         <button class="btn primary" id="addStudent">추가</button>
       </div>
       <ul class="roster" id="manageList"></ul>
@@ -468,11 +468,11 @@ function blankState(){
   return {
     className: '우리 반 주일학교',
     students: [
-      { id: s_id(), name: '1번 민들레', talents: 0, att: {} },
-      { id: s_id(), name: '2번 해바라기', talents: 0, att: {} },
-      { id: s_id(), name: '3번 도토리', talents: 0, att: {} },
-      { id: s_id(), name: '4번 초록이', talents: 0, att: {} },
-      { id: s_id(), name: '5번 파랑새', talents: 0, att: {} }
+      { id: s_id(), name: '1번 다람쥐', talents: 0, att: {} },
+      { id: s_id(), name: '2번 사슴', talents: 0, att: {} },
+      { id: s_id(), name: '3번 참새', talents: 0, att: {} },
+      { id: s_id(), name: '4번 고래', talents: 0, att: {} },
+      { id: s_id(), name: '5번 나비', talents: 0, att: {} }
     ]
   };
 }

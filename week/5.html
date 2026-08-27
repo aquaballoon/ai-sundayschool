@@ -608,49 +608,6 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 .faq .a { padding: 0 1.1rem 1rem 2.35rem; font-size: 0.92rem; color: var(--text-dim); }
 .faq .a > * + * { margin-top: 0.7rem; }
 
-/* ── LMS 붙여넣기용 ────────────────────────────────── */
-.paste { border: 1px dashed var(--border-strong); border-radius: var(--r-md); background: var(--bg-sunk); }
-.paste > summary {
-  cursor: pointer; padding: 0.8rem 1.05rem; font-size: 0.86rem; font-weight: 600;
-  color: var(--text-dim); list-style: none; display: flex; align-items: center; gap: 0.55rem;
-}
-.paste > summary::-webkit-details-marker { display: none; }
-.paste > summary::before { content: "⧉"; color: var(--accent-ink); }
-.paste[open] > summary { border-bottom: 1px dashed var(--border-strong); }
-.paste-body { padding: 0.9rem 1.05rem; }
-.paste-body > * + * { margin-top: 0.9rem; }
-.paste-field .fh {
-  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;
-}
-.paste-field .fn {
-  font-size: 0.78rem; font-weight: 700; color: var(--text-dim); flex: 1;
-  font-family: var(--ff-mono); letter-spacing: 0.04em;
-}
-.paste-field pre {
-  margin: 0; background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 0.75rem 0.85rem; font-size: 0.82rem;
-  line-height: 1.65; white-space: pre-wrap; word-break: keep-all;
-  font-family: var(--ff-sans); color: var(--text-dim);
-  max-height: 18rem; overflow: auto;
-}
-/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
-.site-url {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: .7rem .85rem;
-}
-.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
-.site-url input {
-  display: block; width: 100%; margin-top: .35rem;
-  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
-  background: var(--bg-soft); border: 1px solid var(--border-strong);
-  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
-}
-.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
-
-.paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
-.paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
-.paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
-
 /* ── 주차 카드 그리드 (홈) ─────────────────────────── */
 .wk-grid { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); }
 .wk-card {
@@ -708,7 +665,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 /* ── 인쇄 ──────────────────────────────────────────── */
 @media print {
   :root { --bg-page: #fff; --bg-card: #fff; --bg-soft: #f4f4f1; --shadow: none; --shadow-lg: none; }
-  .topbar, .mock-ctrl, .copy, .pager, footer.site, .paste { display: none !important; }
+  .topbar, .mock-ctrl, .copy, .pager, footer.site { display: none !important; }
   body { font-size: 11pt; }
   .mock, .card, .hw, .faq { break-inside: avoid; }
   .steps > li { break-inside: avoid; }
@@ -1073,73 +1030,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
-<section class="block wrap">
-  <details class="paste">
-    <summary>LMS 강의 입력 칸에 붙여넣기 <span style="font-weight:400;color:var(--text-faint)">— 교수자용</span></summary>
-    <div class="paste-body">
-
-      <div class="site-url">
-        <label for="siteUrl">내 강의 사이트 주소
-          <input type="url" id="siteUrl" placeholder="https://example.com" spellcheck="false" autocomplete="off">
-        </label>
-        <p>아래 본문의 링크 자리에 채워집니다. <b>한 번만 적으면 10개 주차 전부에 반영</b>됩니다. 아직 배포 전이면 비워 두세요.</p>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">주차 · 제목</span><button class="copy" type="button">복사</button></div>
-<pre>5주 · 공과 블록 — 오늘의 공과를 화면에</pre>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">강의안</span><button class="copy" type="button">복사</button></div>
-<pre>**빈 서랍 첫 칸을 채웁니다.**
-
-공과 화면에 본문과 흐름만 있으면 결국 교사가 말하고 아이는 듣습니다. 예수님은 반대로 하셨습니다 — **물으셨습니다.** 그래서 이 화면에는 교사가 읽을 질문을 눈에 잘 띄게 넣습니다. 수업 중에 흘깃 보고 그대로 물으면 됩니다.
-
-- **닫힌 질문** &quot;다윗은 누구를 이겼나요?&quot; → 답이 하나. 아는 아이만 말합니다
-- **발견형 질문** &quot;사울 왕이 갑옷을 입혔는데 다윗은 왜 벗었을까요?&quot; → 답이 여럿. 모두가 말할 수 있습니다
-
-**오늘 넣을 네 가지**: 공과 제목과 한 줄 질문 / 성경 본문 한 구절 / 5단계 수업 흐름(시간 포함) / 발견형 질문 4개
-
-**따라하기**
-- 지난주 대화를 다시 엽니다. **새 대화를 만들지 마세요** — 지난주 것 위에 쌓아야 합니다. 대화를 못 찾으면 보관해 둔 index.html 코드를 붙여넣고 &quot;이 코드에 이어서 작업해 줘&quot;로 시작합니다
-- 공과 탭 안에 카드 3개를 넣어 달라고 부탁합니다: ① 제목·한 줄 질문·성경 구절 ② 수업 흐름 5단계(도입 5분 / 말씀 12분 / 활동 10분 / 적용 8분 / 기도 5분) ③ 발견형 질문 4개
-- 수업하듯 **소리 내어 읽어 봅니다.** 걸리는 곳이 바로 고칠 곳입니다
-- 내려받아 같은 이름(index.html)으로 다시 올립니다
-
-**꼭 확인하세요** — AI는 성경 구절을 비슷하게 **지어낼 수 있습니다.** 화면에 올리기 전에 성경을 펴서 대조하세요. 아이들에게 가르치는 내용입니다.
-
-**막히면** — 공과를 고쳤더니 다른 탭이 사라졌다면 &quot;탭 5개는 그대로 두고 공과 탭 안만 바꿔 줘&quot;라고 하세요. 그래서 매주 파일을 보관해 두는 것입니다.
-
-따라하기 화면 그림 → {{SITE}}/week/5.html</pre>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">과제</span><button class="copy" type="button">복사</button></div>
-<pre>**우리 반 공과 한 편**
-
-제출물: 공과 탭이 채워진 내 페이지 주소 (지난주와 같은 주소)
-
-게시판에 주소와 함께 **이번 달에 실제로 가르칠 본문**을 한 줄 적어 주세요.
-
-**확인할 것**
-- 공과 탭에 제목·본문·흐름·질문이 다 있다
-- 질문이 **답이 하나로 정해지지 않는** 질문이다
-- 태블릿에서 글씨가 읽을 만큼 크다
-- 성경 구절을 **성경으로 대조**했다
-- 이번 index.html도 내 컴퓨터에 보관했다
-
-**평가에서 보는 것** — 화면 완성도보다 **질문의 질**을 봅니다. 아이가 스스로 말하게 하는 질문인가요?
-
-마감: 다음 수업 전까지</pre>
-      </div>
-
-      <p class="tiny" style="font-size:.78rem;color:var(--text-faint)">
-        LMS 강의안 칸은 <b>**굵게**</b>, <b>- 목록</b>, 붙여넣은 링크를 그대로 살립니다. 위 문법에 맞춰 써 두었습니다.
-      </p>
-    </div>
-  </details>
-</section>
 
 <nav class="block wrap">
   <div class="pager">
@@ -1198,7 +1088,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     var btn = e.target.closest && e.target.closest('.copy');
     if (!btn) return;
 
-    var wrap = btn.closest('.prompt') || btn.closest('.paste-field');
+    var wrap = btn.closest('.prompt');
     var pre = wrap && wrap.querySelector('pre');
     if (!pre) return;
     var text = pre.innerText;
@@ -1257,40 +1147,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
-  }
-
-  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
-     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
-     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
-  var SITE_KEY = 'course.site';
-  var tpls = document.querySelectorAll('.paste-field pre');
-  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
-
-  function applySite(v) {
-    var shown = v || '[내 강의 사이트 주소]';
-    Array.prototype.forEach.call(tpls, function (pre) {
-      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
-      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
-    });
-  }
-
-  var siteInput = document.getElementById('siteUrl');
-  if (siteInput) {
-    var savedSite = '';
-    if (canStore) {
-      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
-    }
-    siteInput.value = savedSite;
-    siteInput.addEventListener('input', function () {
-      var v = siteInput.value.trim().replace(/\/+$/, '');
-      if (canStore) {
-        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
-      }
-      applySite(v);
-    });
-    applySite(savedSite);
-  } else {
-    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────

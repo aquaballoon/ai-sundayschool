@@ -608,49 +608,6 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 .faq .a { padding: 0 1.1rem 1rem 2.35rem; font-size: 0.92rem; color: var(--text-dim); }
 .faq .a > * + * { margin-top: 0.7rem; }
 
-/* ── LMS 붙여넣기용 ────────────────────────────────── */
-.paste { border: 1px dashed var(--border-strong); border-radius: var(--r-md); background: var(--bg-sunk); }
-.paste > summary {
-  cursor: pointer; padding: 0.8rem 1.05rem; font-size: 0.86rem; font-weight: 600;
-  color: var(--text-dim); list-style: none; display: flex; align-items: center; gap: 0.55rem;
-}
-.paste > summary::-webkit-details-marker { display: none; }
-.paste > summary::before { content: "⧉"; color: var(--accent-ink); }
-.paste[open] > summary { border-bottom: 1px dashed var(--border-strong); }
-.paste-body { padding: 0.9rem 1.05rem; }
-.paste-body > * + * { margin-top: 0.9rem; }
-.paste-field .fh {
-  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;
-}
-.paste-field .fn {
-  font-size: 0.78rem; font-weight: 700; color: var(--text-dim); flex: 1;
-  font-family: var(--ff-mono); letter-spacing: 0.04em;
-}
-.paste-field pre {
-  margin: 0; background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: 0.75rem 0.85rem; font-size: 0.82rem;
-  line-height: 1.65; white-space: pre-wrap; word-break: keep-all;
-  font-family: var(--ff-sans); color: var(--text-dim);
-  max-height: 18rem; overflow: auto;
-}
-/* 사이트 주소 한 번 적으면 10개 주차 붙여넣기에 모두 반영 */
-.site-url {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--r-sm); padding: .7rem .85rem;
-}
-.site-url label { display: block; font-size: .78rem; font-weight: 700; color: var(--text-dim); }
-.site-url input {
-  display: block; width: 100%; margin-top: .35rem;
-  font-family: var(--ff-mono); font-size: .84rem; color: var(--text);
-  background: var(--bg-soft); border: 1px solid var(--border-strong);
-  border-radius: 7px; padding: .45rem .6rem; min-height: 2.4rem;
-}
-.site-url p { font-size: .76rem; color: var(--text-faint); margin-top: .4rem; }
-
-.paste .copy { background: var(--bg-soft); color: var(--text-dim); border-color: var(--border-strong); }
-.paste .copy:hover { background: var(--bg-card); color: var(--accent-ink); }
-.paste .copy[data-done="1"] { background: var(--accent); color: #16202A; border-color: transparent; }
-
 /* ── 주차 카드 그리드 (홈) ─────────────────────────── */
 .wk-grid { display: grid; gap: 0.85rem; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); }
 .wk-card {
@@ -708,7 +665,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 /* ── 인쇄 ──────────────────────────────────────────── */
 @media print {
   :root { --bg-page: #fff; --bg-card: #fff; --bg-soft: #f4f4f1; --shadow: none; --shadow-lg: none; }
-  .topbar, .mock-ctrl, .copy, .pager, footer.site, .paste { display: none !important; }
+  .topbar, .mock-ctrl, .copy, .pager, footer.site { display: none !important; }
   body { font-size: 11pt; }
   .mock, .card, .hw, .faq { break-inside: avoid; }
   .steps > li { break-inside: avoid; }
@@ -894,7 +851,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   · ＋는 1개, ＋5는 5개 주기
   · −는 1개 빼기, 0 아래로는 안 내려가게
 - 맨 위에 "반 전체 합계"와 "최다 받은 아이"
-- 달란트를 줄 때 화면 아래에 "민들레 +5 달란트" 같은 알림이 잠깐 뜨게
+- 달란트를 줄 때 화면 아래에 "다람쥐 +5 달란트" 같은 알림이 잠깐 뜨게
 - 출석과 똑같이 기록이 남게 (껐다 켜도 유지)
 - 버튼은 손가락으로 누르기 쉽게 크게</pre>
       </div>
@@ -911,12 +868,12 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
                 <text x="86" y="28" font-size="13" font-weight="700" text-anchor="middle" fill="#D9A32B">12</text>
                 <text x="86" y="37" font-size="6.5" text-anchor="middle" class="dim">반 전체</text>
                 <rect x="164" y="12" width="140" height="30" rx="6" fill="var(--bg-soft)"/>
-                <text x="234" y="28" font-size="10" font-weight="700" text-anchor="middle" class="ink">민들레</text>
+                <text x="234" y="28" font-size="10" font-weight="700" text-anchor="middle" class="ink">다람쥐</text>
                 <text x="234" y="37" font-size="6.5" text-anchor="middle" class="dim">최다</text>
               </g>
 
               <g class="s-in2">
-                <text x="16" y="62" font-size="8.5" font-weight="700" class="ink">1번 민들레</text>
+                <text x="16" y="62" font-size="8.5" font-weight="700" class="ink">1번 다람쥐</text>
                 <rect x="176" y="52" width="20" height="16" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
                 <text x="186" y="63.5" font-size="10" font-weight="700" class="ink" text-anchor="middle">−</text>
                 <g class="s8-coin">
@@ -929,7 +886,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
                 <text x="277" y="63.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">+5</text>
                 <line x1="16" y1="74" x2="304" y2="74" stroke="var(--border)"/>
 
-                <text x="16" y="88" font-size="8.5" font-weight="700" class="ink">2번 해바라기</text>
+                <text x="16" y="88" font-size="8.5" font-weight="700" class="ink">2번 사슴</text>
                 <rect x="176" y="78" width="20" height="16" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
                 <text x="186" y="89.5" font-size="10" font-weight="700" class="ink" text-anchor="middle">−</text>
                 <g class="s8-coin">
@@ -942,7 +899,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
                 <text x="277" y="89.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">+5</text>
                 <line x1="16" y1="100" x2="304" y2="100" stroke="var(--border)"/>
 
-                <text x="16" y="114" font-size="8.5" font-weight="700" class="ink">3번 도토리</text>
+                <text x="16" y="114" font-size="8.5" font-weight="700" class="ink">3번 참새</text>
                 <rect x="176" y="104" width="20" height="16" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
                 <text x="186" y="115.5" font-size="10" font-weight="700" class="ink" text-anchor="middle">−</text>
                 <g class="s8-coin">
@@ -957,7 +914,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
               <g class="s-in3">
                 <rect x="106" y="128" width="108" height="16" rx="8" class="ink"/>
-                <text x="160" y="139" font-size="7.5" font-weight="700" fill="var(--bg-card)" text-anchor="middle">민들레 +5 달란트</text>
+                <text x="160" y="139" font-size="7.5" font-weight="700" fill="var(--bg-card)" text-anchor="middle">다람쥐 +5 달란트</text>
               </g>
             </svg>
           </div>
@@ -1001,8 +958,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 - 누르면 화면 안에 텍스트 상자가 열리고 이런 내용이 들어가게
 
   [우리 반 기록] 초등 3부 햇살반
-  · 1번 민들레 — 출석 8/10주, 달란트 24개
-  · 2번 해바라기 — 출석 9/10주, 달란트 18개
+  · 1번 다람쥐 — 출석 8/10주, 달란트 24개
+  · 2번 사슴 — 출석 9/10주, 달란트 18개
   ...
 
 - 그 아래에 "이 기록 다시 불러오기" 버튼과 붙여넣는 칸도 만들어 줘
@@ -1111,7 +1068,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <div class="a">
         <p>지금 구조로는 안 됩니다. 기록이 <b>교사 기기 안에만</b> 있어서, 부모가 같은 주소를 열어도 빈 화면이 보입니다.</p>
         <p>대신 <b>백업 텍스트를 카톡으로 보내는 것</b>이 가장 간단합니다 —
-        “민들레 출석 8/10주, 달란트 24개”처럼 사람이 읽는 부분만 잘라 보내면 됩니다.</p>
+        “다람쥐 출석 8/10주, 달란트 24개”처럼 사람이 읽는 부분만 잘라 보내면 됩니다.</p>
         <p>부모가 직접 들어와 보는 화면은 서버가 필요해서 이 과정의 범위를 넘습니다.
         아이 정보를 인터넷에 올리는 일이라 신중해야 할 부분이기도 합니다.</p>
       </div>
@@ -1119,72 +1076,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
-<section class="block wrap">
-  <details class="paste">
-    <summary>LMS 강의 입력 칸에 붙여넣기 <span style="font-weight:400;color:var(--text-faint)">— 교수자용</span></summary>
-    <div class="paste-body">
-
-      <div class="site-url">
-        <label for="siteUrl">내 강의 사이트 주소
-          <input type="url" id="siteUrl" placeholder="https://example.com" spellcheck="false" autocomplete="off">
-        </label>
-        <p>아래 본문의 링크 자리에 채워집니다. <b>한 번만 적으면 10개 주차 전부에 반영</b>됩니다. 아직 배포 전이면 비워 두세요.</p>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">주차 · 제목</span><button class="copy" type="button">복사</button></div>
-<pre>9주 · 달란트 블록 — 달란트 통장과 학기 마무리</pre>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">강의안</span><button class="copy" type="button">복사</button></div>
-<pre>**마지막 서랍을 채우고, 이 도구를 계속 쓸 수 있게 정리합니다.**
-
-달란트를 「잘한 아이에게 주는 상」으로만 쓰면 늘 같은 아이가 받습니다. 조금만 바꾸면 달라집니다 — 정답을 맞힌 아이가 아니라 **용기 내어 말한 아이, 친구를 도운 아이, 처음 손든 아이**에게 줍니다. 그러면 모든 아이에게 받을 길이 열립니다. ＋5 버튼은 특별한 순간을 표시하기 위한 것입니다. 한 개는 흔한 일, 다섯 개는 오래 기억할 일 — 아이도 그 차이를 압니다.
-
-**따라하기**
-- 1단계 달란트 통장: **출석 탭과 같은 명단을 쓰게**(따로 만들지 말고), 이름마다 [−] [숫자] [＋] [＋5], 0 아래로 안 내려가게, 맨 위에 반 전체 합계와 최다, 줄 때 알림이 잠깐 뜨게, 출석과 똑같이 기록이 남게
-- 2단계 명단 관리: 이름을 눌러 바로 고치기, 추가·삭제, 반 이름 바꾸기, 그리고 &quot;실명 대신 별명이나 번호를 쓰세요&quot; 안내 문구
-- 3단계 **백업**: &quot;학기 기록 꺼내기&quot; 버튼 → 화면 안 텍스트 상자에 &quot;1번 민들레 — 출석 8/10주, 달란트 24개&quot; 형식으로. 다시 불러오는 칸도 함께. 클립보드가 막힐 수 있으니 텍스트 상자에 그대로 보여 주고 교사가 직접 복사하게
-- 마지막으로 올리고 **다섯 탭을 모두 확인**합니다
-
-**왜 백업이 필요한가** — 기록은 그 기기 안에만 있습니다. 태블릿이 바뀌거나 브라우저를 정리하면 사라집니다. 학기 말에 한 번은 꼭 꺼내 두세요.
-
-**다음 단원에 다시 쓰려면** — &quot;공과 내용과 퀴즈 문제만 「모세와 홍해」로 바꿔 줘. 출석·달란트 기록은 그대로 둬.&quot; 융판 그림도 &quot;바다와 모세로 바꿔 줘&quot;라고 하면 됩니다. 뼈대는 계속 씁니다.
-
-따라하기 화면 그림 → {{SITE}}/week/9.html</pre>
-      </div>
-
-      <div class="paste-field">
-        <div class="fh"><span class="fn">과제</span><button class="copy" type="button">복사</button></div>
-<pre>**완성품과 발표 준비**
-
-제출물: 다섯 탭이 모두 작동하는 내 페이지 주소 **+ 백업 텍스트**
-
-**다음 주 발표 준비** — 10주에 5분 시연을 합니다. 화면을 보여 주며 세 가지를 이야기해 주세요.
-1. 우리 반에서 어떻게 쓸 것인지
-2. 만들며 가장 어려웠던 것
-3. 다음에 더하고 싶은 것
-
-**확인할 것**
-- 다섯 탭이 모두 열리고 작동한다
-- 달란트가 새로고침해도 남는다
-- 명단을 화면에서 추가·수정·삭제할 수 있다
-- **백업 텍스트를 꺼내 저장해 두었다**
-- 실명·사진이 들어가 있지 않다 (마지막 점검)
-- 최종 index.html을 보관했다
-
-**완벽하지 않아도 됩니다.** 다섯 탭 중 넷만 되어도 발표하세요. 실제로 쓸 수 있는가가 기준이지 완성도가 기준이 아닙니다.
-
-마감: 발표 전까지</pre>
-      </div>
-
-      <p class="tiny" style="font-size:.78rem;color:var(--text-faint)">
-        LMS 강의안 칸은 <b>**굵게**</b>, <b>- 목록</b>, 붙여넣은 링크를 그대로 살립니다. 위 문법에 맞춰 써 두었습니다.
-      </p>
-    </div>
-  </details>
-</section>
 
 <nav class="block wrap">
   <div class="pager">
@@ -1243,7 +1134,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     var btn = e.target.closest && e.target.closest('.copy');
     if (!btn) return;
 
-    var wrap = btn.closest('.prompt') || btn.closest('.paste-field');
+    var wrap = btn.closest('.prompt');
     var pre = wrap && wrap.querySelector('pre');
     if (!pre) return;
     var text = pre.innerText;
@@ -1302,40 +1193,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         writeChecks(cur);
       });
     });
-  }
-
-  /* ── ②-b LMS 붙여넣기 · 사이트 주소 채우기 ─────────
-     강의안 본문의 {{SITE}} 자리에 교수자의 실제 주소를 넣는다.
-     한 번 적으면 저장돼 다른 주차 페이지에서도 그대로 쓰인다. */
-  var SITE_KEY = 'course.site';
-  var tpls = document.querySelectorAll('.paste-field pre');
-  Array.prototype.forEach.call(tpls, function (pre) { pre._tpl = pre.textContent; });
-
-  function applySite(v) {
-    var shown = v || '[내 강의 사이트 주소]';
-    Array.prototype.forEach.call(tpls, function (pre) {
-      if (pre._tpl.indexOf('{{SITE}}') === -1) return;
-      pre.textContent = pre._tpl.split('{{SITE}}').join(shown);
-    });
-  }
-
-  var siteInput = document.getElementById('siteUrl');
-  if (siteInput) {
-    var savedSite = '';
-    if (canStore) {
-      try { savedSite = window.localStorage.getItem(SITE_KEY) || ''; } catch (e) {}
-    }
-    siteInput.value = savedSite;
-    siteInput.addEventListener('input', function () {
-      var v = siteInput.value.trim().replace(/\/+$/, '');
-      if (canStore) {
-        try { window.localStorage.setItem(SITE_KEY, v); } catch (e) {}
-      }
-      applySite(v);
-    });
-    applySite(savedSite);
-  } else {
-    applySite('');
   }
 
   /* ── ③ 모션 목업 ──────────────────────────────────
