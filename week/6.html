@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>6주 · 활동 블록 — 퀴즈와 짝 맞추기 — AI 시대와 교회교육</title>
-<meta name="description" content="눌러서 푸는 성경 퀴즈와, 카드를 뒤집는 짝 맞추기 게임을 만듭니다.">
+<meta name="description" content="눌러서 푸는 성경 퀴즈와, 카드를 뒤집는 짝 맞추기 게임을 탭 두 개로 만듭니다.">
 <meta name="theme-color" content="#F9F9F6">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -787,8 +787,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <div class="meta-row">
     <span><b>소요</b> 40~60분</span>
-    <span><b>지난주 필요</b> 그림 이야기까지 된 Artifact</span>
-    <span><b>채우는 탭</b> 퀴즈 (게임 두 개)</span>
+    <span><b>지난주 필요</b> 성경 이야기까지 된 Artifact</span>
+    <span><b>채우는 탭</b> 퀴즈 · 짝 맞추기</span>
   </div>
 
   <ul class="goals">
@@ -804,14 +804,14 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="aim">
     <div class="txt">
       <div class="k">오늘 만들 모습</div>
-      <div class="v">완성품의 <b>퀴즈 탭</b>을 열어 보세요. 위는 퀴즈, 아래는 짝 맞추기입니다. 오늘 이 화면까지 갑니다.</div>
+      <div class="v">완성품의 <b>퀴즈</b>와 <b>짝 맞추기</b> 탭을 열어 보세요. 오늘 이 화면까지 갑니다.</div>
     </div>
     <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
 
   <div class="blocks" style="margin-top:1rem">
     <span class="done">4주 틀과 공과</span>
-    <span class="done">5주 그림 이야기</span>
+    <span class="done">5주 성경 이야기</span>
     <span class="now">6주 퀴즈·게임</span>
     <span>7주 인터넷에 올리기</span>
     <span>8주 출석</span>
@@ -1007,9 +1007,9 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <section class="block wrap">
   <span class="h-eyebrow">따라하기 ②</span>
-  <h2 style="margin-bottom:.4rem">② 짝 맞추기 만들기</h2>
+  <h2 style="margin-bottom:.4rem">② 짝 맞추기 탭 만들기</h2>
   <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.5rem">
-    같은 대화에 이어서, 퀴즈 <b>아래에</b> 게임 하나를 더 붙입니다.
+    같은 대화에 이어서, <b>짝 맞추기 탭</b> 안을 채웁니다.
   </p>
 
   <ol class="steps">
@@ -1017,11 +1017,11 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <li>
       <h3>무엇으로 짝을 지을지 먼저 정합니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        오늘 이야기에 <b>실제로 나온 것</b>만 고릅니다. 여섯에서 여덟 개면 충분합니다.
+        오늘 이야기에 <b>실제로 나온 것</b>만 고릅니다. 여섯 개면 충분합니다.
       </p>
       <div class="callout">
         <div class="t">다윗과 골리앗이라면</div>
-        양 · 물맷돌 · 칼 · 왕관 · 갑옷 · 수금 · 장막 · 들판.
+        양 · 물맷돌 · 칼 · 왕관 · 갑옷 · 수금.
         <b>사람 이름보다 물건</b>이 좋습니다 — 그림 하나로 알아보기 쉽기 때문입니다.
       </div>
     </li>
@@ -1033,8 +1033,9 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
           <span class="lbl">Claude에 붙여넣기</span>
           <button class="copy" type="button">복사</button>
         </div>
-<pre>퀴즈 아래에 "짝 맞추기" 카드 게임을 하나 더 만들어 줘.
-아이들에게 보여 줄 것이니 카드를 크고 시원하게 해 줘.
+<pre>"짝 맞추기" 탭 안에 카드 게임을 만들어 줘.
+(퀴즈 안이 아니라 별도의 탭이야)
+교실 화면으로 보여 줄 것이니 카드를 아주 크게 해 줘.
 
 1) 규칙
    - 카드는 모두 엎어져 있고, 누르면 뒤집힌다
@@ -1042,13 +1043,14 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
    - 다 맞히면 축하 효과와 "몇 번 만에 다 맞혔어요" 표시
 
 2) 카드에 넣을 것 (같은 그림 두 장이 한 짝)
-   양 / 물맷돌 / 칼 / 왕관 / 갑옷 / 수금 / 장막 / 들판
-   - 그림은 이모지로, 그림 아래에 낱말도 같이 (아직 글을 못 읽는 아이를 위해)
+   양 / 물맷돌 / 칼 / 왕관 / 갑옷 / 수금
+   - 그림은 이모지로 크게, 그림 아래에 낱말도 큼직하게
+     (아직 글을 못 읽는 아이는 그림으로, 읽는 아이는 낱말로 맞힌다)
    - 이미지 파일은 쓰지 마
 
 3) 화면
    - 가로 4칸으로 배치
-   - 위에 "쉬움 4쌍 / 보통 6쌍 / 어려움 8쌍" 고르는 단추
+   - 위에 "쉬움 4쌍 / 보통 6쌍" 고르는 단추 (둘이면 충분하다)
    - 위에 "맞춘 짝"과 "뒤집기" 횟수 표시
    - "다시 섞기" 단추
    - 카드가 뒤집힐 때 넘어가는 느낌이 나게
@@ -1157,8 +1159,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <li><label><input type="checkbox" id="w6c2"><span>틀린 문제가 있어 고치거나 뺐다 (없었다면 그대로 통과)</span></label></li>
         <li><label><input type="checkbox" id="w6c3"><span>맞았을 때·틀렸을 때 표시와 <b>점수판</b>이 나온다</span></label></li>
         <li><label><input type="checkbox" id="w6c4"><span>답을 고른 뒤에는 다시 눌리지 않는다</span></label></li>
-        <li><label><input type="checkbox" id="w6c5"><span>짝 맞추기가 되고, 다 맞히면 축하가 나온다</span></label></li>
-        <li><label><input type="checkbox" id="w6c7"><span>공과·그림 이야기 탭이 그대로 남아 있다</span></label></li>
+        <li><label><input type="checkbox" id="w6c5"><span>짝 맞추기 탭에서 게임이 되고, 다 맞히면 축하가 나온다</span></label></li>
+        <li><label><input type="checkbox" id="w6c7"><span>공과·성경 이야기 탭이 그대로 남아 있다</span></label></li>
         <li><label><input type="checkbox" id="w6c6"><span>이번 <span class="ui-key">index.html</span>도 보관했다</span></label></li>
       </ul>
     </div>
@@ -1204,9 +1206,9 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       </div>
     </details>
     <details>
-      <summary>퀴즈를 넣었더니 그림 이야기가 안 움직입니다</summary>
+      <summary>퀴즈를 넣었더니 성경 이야기가 안 움직입니다</summary>
       <div class="a">
-        <p>코드를 다시 쓰면서 깨진 것입니다. <b>“그림 성경 이야기 탭 기능은 건드리지 말고 퀴즈 탭만 바꿔 줘”</b>라고 다시 부탁하세요.</p>
+        <p>코드를 다시 쓰면서 깨진 것입니다. <b>“성경 이야기 탭 기능은 건드리지 말고 퀴즈 탭만 바꿔 줘”</b>라고 다시 부탁하세요.</p>
         <p>그래도 안 되면 지난주 보관 파일로 되돌아가 다시 하면 됩니다.</p>
       </div>
     </details>
@@ -1216,7 +1218,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <nav class="block wrap">
   <div class="pager">
-    <a class="prev" href="5.html"><span class="k">이전</span><span class="v">5주 · 그림 성경 이야기</span></a>
+    <a class="prev" href="5.html"><span class="k">이전</span><span class="v">5주 · 성경 이야기</span></a>
     <a class="next" href="7.html"><span class="k">다음</span><span class="v">7주 · 인터넷에 올리기</span></a>
   </div>
 </nav>

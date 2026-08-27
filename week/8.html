@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>8주 · 출석 블록 — 기록이 남는 출석부 — AI 시대와 교회교육</title>
-<meta name="description" content="이름마다 버튼 하나로 출석을 찍고, 새로고침해도 남는 출석부를 만듭니다.">
+<meta name="description" content="온 횟수가 쌓이는 출석부를 만듭니다. 새로고침해도 남습니다.">
 <meta name="theme-color" content="#F9F9F6">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -782,7 +782,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <section class="hero wrap">
   <span class="badge">8주 · 따라하기</span>
   <h1>출석 블록 — 기록이 남는 출석부</h1>
-  <p class="lede">오늘 처음으로 <b>기록이 남습니다.</b> 새로고침해도, 다음 주에 다시 열어도 지난주 출석이 그대로 있습니다.</p>
+  <p class="lede">오늘 처음으로 <b>기록이 남습니다.</b> 새로고침해도, 다음 주에 다시 열어도 지난주까지 쌓인 출석이 그대로 있습니다.</p>
 
   <div class="meta-row">
     <span><b>소요</b> 50~70분</span>
@@ -792,7 +792,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <ul class="goals">
     <li class="h">이번 주에 할 수 있게 되는 것</li>
-    <li>이름마다 버튼 하나로 출석을 찍고, 지난주·다음주로 옮긴다</li>
+    <li>온 횟수가 쌓이는 출석부를 만든다 — 아이가 자기 잎이 자라는 것을 본다</li>
     <li>기록이 왜 남는지, 어디에 남는지 안다</li>
     <li>아이 정보를 다룰 때 지켜야 할 선을 안다</li>
   </ul>
@@ -809,7 +809,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <div class="blocks" style="margin-top:1rem">
     <span class="done">4주 틀과 공과</span>
-    <span class="done">5주 그림 이야기</span>
+    <span class="done">5주 성경 이야기</span>
     <span class="done">6주 퀴즈·게임</span>
     <span class="done">7주 인터넷에 올리기</span>
     <span class="now">8주 출석</span>
@@ -912,13 +912,13 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 - 우리 반 명단 (이 이름 그대로 써 줘)
   다람쥐 / 사슴 / 참새 / 고래 / 나비
-- 이름마다 오른쪽에 "출석" 버튼 하나만.
-  누르면 초록으로 칠해지고, 다시 누르면 취소되게
-  (지각·결석은 만들지 마. 왔는지 안 왔는지만 있으면 된다)
-- 맨 위에 집계: 이 날 온 친구 몇 명 / 전체 몇 명 / 누적 몇 주
-- 그 위에 날짜를 크게 두고, "◀ 지난주"와 "다음주 ▶" 로 옮길 수 있게.
-  오늘이 아닐 때만 "오늘로 돌아가기" 버튼이 나오게
-- 아래에 "모두 출석" 과 "이 날 지우기" 버튼
+- 날짜는 따지지 말고 온 횟수만 쌓이게 해 줘.
+  이름마다 [−] 와 [＋] 버튼. ＋ 를 누르면 1번씩 늘어나고,
+  잘못 눌렀으면 − 로 빼게 (지각·결석은 만들지 마)
+- 이름 옆에 온 횟수만큼 잎 🌿 이 자라게.
+  그 옆에 "5번" 처럼 숫자도 같이. 아이가 자기 잎을 보는 화면이야
+- 맨 위에 "우리 반 누적 출석" 합계와 "가장 많이 온 친구"
+- 아래에 "오늘 모두 ＋1" 버튼
 - 버튼은 손가락으로 누르기 쉽게 크게
 - 이름 앞에 그 가명에 맞는 이모지를 붙여 줘.
   다람쥐면 🐿️, 사슴이면 🦌 처럼. 이미지 파일은 쓰지 마.
@@ -937,83 +937,77 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <pre>이제 출석 기록이 남게 해 줘.
 
 - 브라우저를 껐다 켜도, 다음 주에 다시 열어도 남아 있게
-- 날짜별로 쌓이게 (오늘 것을 찍으면 지난주 것은 그대로)
-- 아래에 "우리 반 출석 나무" 칸을 만들어 줘.
-  아이들에게 보여 주는 화면이야
-  · 이름마다 온 횟수만큼 잎 🌿 이 자라게
-  · 옆에 초록 막대 그래프로 얼마나 왔는지 한눈에
-  · "3 / 6" 처럼 숫자도 함께
 - 저장이 안 되는 환경일 수도 있으니, 저장을 시도할 때
-  오류가 나면 앱이 멈추지 말고 그냥 넘어가게 해 줘</pre>
+  오류가 나면 앱이 멈추지 말고 그냥 넘어가게 해 줘
+- 아래에 "출석 처음부터" 버튼도 하나 넣어 줘.
+  다만 한 번 누르면 "정말 지울까요?" 로 바뀌고,
+  한 번 더 눌러야 실제로 지워지게 해 줘</pre>
       </div>
 
       <div class="mock">
         <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">출석 탭</span></div>
         <div class="mock-body solo">
           <div class="mock-panel">
-            <svg class="scene" viewBox="0 0 320 168" role="img" aria-label="위에 날짜와 지난주·다음주 단추가 있고, 이름마다 출석 버튼 하나가 있으며, 아래에 누적 출석이 보이는 화면">
+            <svg class="scene" viewBox="0 0 320 168" role="img" aria-label="이름마다 잎과 온 횟수가 있고 옆에 빼기 더하기 버튼이 있으며, 맨 위에 우리 반 누적 출석이 보이는 화면">
               <rect width="320" height="168" rx="6" class="box"/>
-
-              <!-- 날짜 줄 -->
-              <g class="s-in">
-                <rect x="16" y="10" width="46" height="14" rx="7" fill="var(--bg-card)" stroke="var(--border-strong)"/>
-                <text x="39" y="20" font-size="6.5" class="dim" text-anchor="middle">◀ 지난주</text>
-                <text x="160" y="19" font-size="9" font-weight="700" class="ink" text-anchor="middle">8월 30일 (일)</text>
-                <rect x="258" y="10" width="46" height="14" rx="7" fill="var(--bg-card)" stroke="var(--border-strong)"/>
-                <text x="281" y="20" font-size="6.5" class="dim" text-anchor="middle">다음주 ▶</text>
-              </g>
 
               <!-- 집계 -->
               <g class="s-in">
-                <rect x="16" y="30" width="92" height="26" rx="6" fill="var(--bg-soft)"/>
-                <text x="62" y="44" font-size="12" font-weight="700" text-anchor="middle" fill="#2E9E6B">3</text>
-                <text x="62" y="52" font-size="6.5" text-anchor="middle" class="dim">이 날 온 친구</text>
-                <rect x="114" y="30" width="92" height="26" rx="6" fill="var(--bg-soft)"/>
-                <text x="160" y="44" font-size="12" font-weight="700" text-anchor="middle" class="ink">5</text>
-                <text x="160" y="52" font-size="6.5" text-anchor="middle" class="dim">전체</text>
-                <rect x="212" y="30" width="92" height="26" rx="6" fill="var(--bg-soft)"/>
-                <text x="258" y="44" font-size="12" font-weight="700" text-anchor="middle" class="ink">4</text>
-                <text x="258" y="52" font-size="6.5" text-anchor="middle" class="dim">누적 주</text>
+                <rect x="16" y="12" width="140" height="30" rx="6" fill="var(--bg-soft)"/>
+                <text x="86" y="28" font-size="13" font-weight="700" text-anchor="middle" fill="#2E9E6B">16</text>
+                <text x="86" y="37" font-size="6.5" text-anchor="middle" class="dim">우리 반 누적 출석</text>
+                <rect x="164" y="12" width="140" height="30" rx="6" fill="var(--bg-soft)"/>
+                <text x="234" y="28" font-size="10" font-weight="700" text-anchor="middle" class="ink">도토리</text>
+                <text x="234" y="37" font-size="6.5" text-anchor="middle" class="dim">가장 많이 온 친구</text>
               </g>
 
-              <!-- 명단 — 이름마다 버튼 하나 -->
+              <!-- 명단 — 잎이 자란다 -->
               <g class="s-in2">
-                <text x="16" y="72" font-size="8.5" class="ink">🐿️</text>
-                <text x="30" y="72" font-size="8.5" font-weight="700" class="ink">다람쥐</text>
+                <rect x="16" y="50" width="288" height="24" rx="7" fill="var(--bg-card)" stroke="var(--border)"/>
+                <text x="26" y="66" font-size="9" class="ink">🐿️</text>
+                <text x="42" y="66" font-size="8.5" font-weight="700" class="ink">다람쥐</text>
+                <text x="150" y="66" font-size="9" class="ink">🌿🌿🌿🌿🌿</text>
+                <text x="228" y="66" font-size="9" font-weight="700" fill="#3F7A46" text-anchor="end">5번</text>
+                <rect x="238" y="55" width="14" height="14" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
+                <text x="245" y="65" font-size="8" class="dim" text-anchor="middle">−</text>
                 <g class="s8-stamp">
-                  <rect x="248" y="63" width="56" height="14" rx="7" fill="#2E9E6B"/>
-                  <text x="276" y="72.5" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">✓ 출석</text>
+                  <rect x="256" y="55" width="14" height="14" rx="4" fill="#2E9E6B"/>
+                  <text x="263" y="65.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">+</text>
                 </g>
-                <line x1="16" y1="82" x2="304" y2="82" stroke="var(--border)"/>
 
-                <text x="16" y="95" font-size="8.5" class="ink">🦌</text>
-                <text x="30" y="95" font-size="8.5" font-weight="700" class="ink">사슴</text>
-                <rect x="248" y="86" width="56" height="14" rx="7" fill="var(--bg-card)" stroke="var(--border-strong)"/>
-                <text x="276" y="95.5" font-size="7" class="dim" text-anchor="middle">○ 출석</text>
-                <line x1="16" y1="105" x2="304" y2="105" stroke="var(--border)"/>
+                <rect x="16" y="80" width="288" height="24" rx="7" fill="var(--bg-card)" stroke="var(--border)"/>
+                <text x="26" y="96" font-size="9" class="ink">🦌</text>
+                <text x="42" y="96" font-size="8.5" font-weight="700" class="ink">사슴</text>
+                <text x="180" y="96" font-size="9" class="ink">🌿🌿🌿</text>
+                <text x="228" y="96" font-size="9" font-weight="700" fill="#3F7A46" text-anchor="end">3번</text>
+                <rect x="238" y="85" width="14" height="14" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
+                <text x="245" y="95" font-size="8" class="dim" text-anchor="middle">−</text>
+                <rect x="256" y="85" width="14" height="14" rx="4" fill="#2E9E6B"/>
+                <text x="263" y="95.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">+</text>
 
-                <text x="16" y="118" font-size="8.5" class="ink">🐤</text>
-                <text x="30" y="118" font-size="8.5" font-weight="700" class="ink">참새</text>
-                <rect x="248" y="109" width="56" height="14" rx="7" fill="#2E9E6B"/>
-                <text x="276" y="118.5" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">✓ 출석</text>
+                <rect x="16" y="110" width="288" height="24" rx="7" fill="var(--bg-card)" stroke="var(--border)"/>
+                <text x="26" y="126" font-size="9" class="ink">🐤</text>
+                <text x="42" y="126" font-size="8.5" font-weight="700" class="ink">참새</text>
+                <text x="196" y="126" font-size="9" class="dim">첫 출석을 기다려요</text>
+                <text x="228" y="126" font-size="9" font-weight="700" fill="#3F7A46" text-anchor="end" opacity="0">0번</text>
+                <rect x="238" y="115" width="14" height="14" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
+                <text x="245" y="125" font-size="8" class="dim" text-anchor="middle">−</text>
+                <rect x="256" y="115" width="14" height="14" rx="4" fill="#2E9E6B"/>
+                <text x="263" y="125.5" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">+</text>
               </g>
 
-              <!-- 누적 -->
+              <!-- 아래 단추 -->
               <g class="s-in3">
-                <rect x="16" y="128" width="288" height="30" rx="6" fill="var(--bg-soft)"/>
-                <text x="26" y="139" font-size="7" font-weight="700" class="dim">우리 반 출석 나무</text>
-                <text x="26" y="152" font-size="8" class="ink">🐿️ 다람쥐</text>
-                <text x="86" y="152" font-size="8" class="ink">🌿🌿🌿🌿</text>
-                <text x="146" y="152" font-size="8" font-weight="700" class="acc" text-anchor="end">4 / 4</text>
-                <text x="170" y="152" font-size="8" class="ink">🦌 사슴</text>
-                <text x="222" y="152" font-size="8" class="ink">🌿🌿🌿</text>
-                <text x="294" y="152" font-size="8" font-weight="700" class="acc" text-anchor="end">3 / 4</text>
+                <rect x="16" y="142" width="72" height="16" rx="8" fill="var(--bg-card)" stroke="var(--border-strong)"/>
+                <text x="52" y="153" font-size="7" class="dim" text-anchor="middle">오늘 모두 ＋1</text>
+                <rect x="232" y="142" width="72" height="16" rx="8" fill="var(--bg-card)" stroke="var(--border-strong)"/>
+                <text x="268" y="153" font-size="7" class="dim" text-anchor="middle">출석 처음부터</text>
               </g>
             </svg>
           </div>
         </div>
       </div>
-      <p class="mock-cap">누르면 도장 찍히듯 색이 칠해지고, 아래에 누적이 쌓입니다</p>
+      <p class="mock-cap">＋를 누를 때마다 잎이 하나씩 자랍니다. 아이가 자기 줄을 보고 있습니다</p>
     </li>
 
     <li>
@@ -1060,7 +1054,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <li><label><input type="checkbox" id="w8c2"><span>명단에 <b>실명 대신 가명</b>(동물·성경 인물)을 썼다</span></label></li>
         <li><label><input type="checkbox" id="w8c7"><span><b>아이 사진을 넣지 않았다</b></span></label></li>
         <li><label><input type="checkbox" id="w8c3"><span>수업용 기기를 하나로 정했다</span></label></li>
-        <li><label><input type="checkbox" id="w8c4"><span>누적 출석이 「몇 / 몇 주」로 보인다</span></label></li>
+        <li><label><input type="checkbox" id="w8c4"><span>잎과 숫자로 <b>몇 번 왔는지</b>가 보인다</span></label></li>
+        <li><label><input type="checkbox" id="w8c7"><span>「처음부터」를 <b>두 번</b> 눌러야 지워진다</span></label></li>
         <li><label><input type="checkbox" id="w8c5"><span>앞의 세 탭이 그대로 남아 있다</span></label></li>
         <li><label><input type="checkbox" id="w8c6"><span>이번 <span class="ui-key">index.html</span>도 보관했다</span></label></li>
       </ul>
