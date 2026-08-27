@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -792,10 +808,10 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 
   <div class="blocks" style="margin-top:1rem">
-    <span class="done">4주 뼈대와 탭</span>
-    <span class="done">5주 공과</span>
-    <span class="done">6주 융판</span>
-    <span class="done">7주 퀴즈</span>
+    <span class="done">4주 틀과 공과</span>
+    <span class="done">5주 그림 이야기</span>
+    <span class="done">6주 퀴즈·게임</span>
+    <span class="done">7주 인터넷에 올리기</span>
     <span class="done">8주 출석</span>
     <span class="now">9주 달란트</span>
   </div>
@@ -980,13 +996,13 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <h3>마지막으로 올리고, 여섯 탭을 모두 확인합니다</h3>
       <div class="where">Artifact 내려받기 → GitHub → <span class="ui-key">Upload files</span> → <span class="ui-key">Commit changes</span></div>
       <p style="color:var(--text-dim);font-size:.92rem;margin-top:.7rem">
-        내 주소를 열고 <b>공과 · 융판 · 퀴즈 · 출석 · 달란트 · 반 관리</b>를 차례로 눌러 봅니다. 여섯 개가 다 돌면 완성입니다.
+        내 주소를 열고 <b>공과 · 그림 이야기 · 퀴즈 · 출석 · 달란트 · 반 관리</b>를 차례로 눌러 봅니다. 여섯 개가 다 돌면 완성입니다.
       </p>
       <div class="callout">
         <div class="t">다음 단원에 다시 쓰려면</div>
         Claude에 이렇게 부탁하세요 —
         <b>“공과 내용과 퀴즈 문제만 「모세와 홍해」로 바꿔 줘. 출석·달란트 기록은 그대로 둬.”</b>
-        <br>융판 그림도 “바다와 모세로 바꿔 줘”라고 하면 됩니다. 뼈대는 계속 씁니다.
+        <br>그림 이야기 그림도 “바다와 모세로 바꿔 줘”라고 하면 됩니다. 뼈대는 계속 씁니다.
       </div>
     </li>
 

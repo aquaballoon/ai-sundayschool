@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -782,7 +798,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   문제는 기술이 부족한 것이 아니라 <b>전달 방식</b>입니다.</p>
 
   <p>이 과목은 주일학교 교사가 <b>코딩 없이</b> AI에게 말로 부탁해, 우리 반에서 실제로 쓰는 수업 도구를 직접 만드는 과정입니다.
-  10주 뒤에 각자 <b>공과 · 디지털 융판 · 성경 퀴즈 · 출석부 · 달란트 통장</b>이 한 화면에 들어간 웹페이지 하나와,
+  10주 뒤에 각자 <b>공과 · 그림 성경 이야기 · 성경 퀴즈 · 짝 맞추기 · 출석부 · 달란트 통장</b>이 한 화면에 들어간 웹페이지 하나와,
   그것을 계속 고쳐 쓸 수 있는 능력을 갖게 됩니다.</p>
 
   <p>도구는 전부 무료이며, 필요한 컴퓨터 기술은 인터넷 검색·복사 붙여넣기·파일 끌어다 놓기 세 가지뿐입니다.</p>
@@ -822,8 +838,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <div class="callout tip">
     <div class="t">평가 기준의 원칙</div>
-    화면 완성도가 아니라 <b>실제로 쓸 수 있는가</b>를 봅니다. 다섯 기능 중 셋만 작동해도 통과합니다.
-    다만 <b>성경 내용의 정확성</b>(7주 근거 절)과 <b>아이 개인정보 보호</b>(실명·사진 없음)는 예외 없이 확인합니다.
+    화면 완성도가 아니라 <b>실제로 쓸 수 있는가</b>를 봅니다. 여섯 기능 중 넷만 작동해도 통과합니다.
+    다만 <b>성경 내용의 정확성</b>(6주 근거 절)과 <b>아이 개인정보 보호</b>(실명·사진 없음)는 예외 없이 확인합니다.
   </div>
 </section>
 
@@ -845,7 +861,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <h3>GitHub <span style="font-weight:500;color:var(--text-faint);font-size:.8rem">필수 · 무료</span></h3>
       <p style="font-size:.89rem;color:var(--text-dim)">
         <a href="https://github.com/signup" target="_blank" rel="noopener">github.com</a> —
-        만든 페이지를 인터넷에 올립니다. 4주에 함께 가입합니다.
+        만든 페이지를 인터넷에 올립니다. 7주에 함께 가입합니다.
       </p>
     </div>
   </div>
@@ -868,10 +884,10 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <tr><td class="num"><a href="week/1.html">1</a></td><td>왜 지금인가 — 디지털 세대와 교회교육</td><td>읽기·토론</td><td>우리 부서 진단 5문항</td></tr>
         <tr><td class="num"><a href="week/2.html">2</a></td><td>디지털 예방 교육 — 절제와 디지털 코드 10</td><td>읽기·토론</td><td>자가진단 + 규칙 3개</td></tr>
         <tr><td class="num"><a href="week/3.html">3</a></td><td>AI 제대로 쓰는 법 — 프롬프트와 95/5 원칙</td><td>실습 준비</td><td>Claude 가입 + 환영 카드 링크</td></tr>
-        <tr><td class="num"><a href="week/4.html">4</a></td><td>첫 페이지 만들고 인터넷에 올리기</td><td>따라하기</td><td>내 페이지 주소</td></tr>
-        <tr><td class="num"><a href="week/5.html">5</a></td><td>공과 블록 — 오늘의 공과를 화면에</td><td>따라하기</td><td>공과 탭이 채워진 주소</td></tr>
-        <tr><td class="num"><a href="week/6.html">6</a></td><td>융판 블록 — 끌어 옮기는 성경 이야기</td><td>따라하기</td><td>융판이 작동하는 주소</td></tr>
-        <tr><td class="num"><a href="week/7.html">7</a></td><td>퀴즈 블록 — 눌러서 푸는 성경 퀴즈</td><td>따라하기</td><td>퀴즈 + 근거 절 목록</td></tr>
+        <tr><td class="num"><a href="week/4.html">4</a></td><td>첫 페이지 만들기 — 탭 틀과 오늘의 공과</td><td>따라하기</td><td>공과가 채워진 Artifact 링크</td></tr>
+        <tr><td class="num"><a href="week/5.html">5</a></td><td>그림 성경 이야기 — 끌어 옮기는 융판</td><td>따라하기</td><td>그림 이야기가 되는 링크</td></tr>
+        <tr><td class="num"><a href="week/6.html">6</a></td><td>활동 블록 — 퀴즈와 짝 맞추기</td><td>따라하기</td><td>게임 두 개 링크 + 근거 절</td></tr>
+        <tr><td class="num"><a href="week/7.html">7</a></td><td>인터넷에 올리기 — 나만의 주소 만들기</td><td>따라하기</td><td>내 GitHub Pages 주소</td></tr>
         <tr><td class="num"><a href="week/8.html">8</a></td><td>출석 블록 — 기록이 남는 출석부</td><td>따라하기</td><td>출석부 + 실제 사용 소감</td></tr>
         <tr><td class="num"><a href="week/9.html">9</a></td><td>달란트 블록 — 달란트 통장과 학기 마무리</td><td>따라하기</td><td>완성품 + 백업 텍스트</td></tr>
         <tr><td class="num"><a href="week/10.html">10</a></td><td>쇼케이스 — 발표와 나눔</td><td>발표</td><td>5분 시연 + 적용 계획</td></tr>

@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }

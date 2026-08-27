@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4주 · 첫 페이지 만들고 인터넷에 올리기 — AI 시대와 교회교육</title>
-<meta name="description" content="Claude로 우리 반 수업 도구의 뼈대를 만들고, GitHub Pages에 올려 인터넷 주소를 받습니다.">
+<title>4주 · 첫 페이지 만들기 — 탭 틀과 오늘의 공과 — AI 시대와 교회교육</title>
+<meta name="description" content="Claude로 탭이 있는 화면을 만들고, 첫 칸에 이번 주 공과를 채웁니다.">
 <meta name="theme-color" content="#F9F9F6">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -765,20 +781,20 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <main id="main">
 <section class="hero wrap">
   <span class="badge">4주 · 따라하기</span>
-  <h1>첫 페이지 만들고 인터넷에 올리기</h1>
-  <p class="lede">오늘 우리 반 수업 도구의 <b>뼈대</b>를 만들고, 진짜 인터넷 주소를 받습니다. 이 주소는 학기 내내 그대로 씁니다.</p>
+  <h1>첫 페이지 만들기 — 탭 틀과 오늘의 공과</h1>
+  <p class="lede">오늘 처음으로 <b>화면이 나옵니다.</b> 우리 반 수업 도구의 틀을 세우고, 첫 칸에 이번 주 공과를 채웁니다.</p>
 
   <div class="meta-row">
-    <span><b>소요</b> 60~80분</span>
+    <span><b>소요</b> 50~70분</span>
     <span><b>준비물</b> 노트북 또는 데스크톱</span>
-    <span><b>계정</b> Claude(무료) · GitHub(무료)</span>
+    <span><b>계정</b> Claude (3주에 만든 것)</span>
   </div>
 
   <ul class="goals">
     <li class="h">이번 주에 할 수 있게 되는 것</li>
-    <li>Claude에게 부탁해 파일 하나짜리 웹페이지를 만든다</li>
-    <li>그 파일을 GitHub Pages에 올려 인터넷 주소를 받는다</li>
-    <li>고친 파일을 다시 올려 화면을 바꾼다</li>
+    <li>Claude에게 부탁해 탭이 있는 화면 하나를 만든다</li>
+    <li>공과 탭에 본문·질문·수업 흐름을 채운다</li>
+    <li>마음에 안 드는 곳을 <b>말로</b> 고친다</li>
   </ul>
 </section>
 
@@ -786,49 +802,40 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="aim">
     <div class="txt">
       <div class="k">10주 뒤 완성품</div>
-      <div class="v">공과 · 융판 · 퀴즈 · 출석 · 달란트가 한 화면에 들어간 수업 도구입니다. 먼저 열어 보고 시작하세요.</div>
+      <div class="v">공과 · 그림 이야기 · 퀴즈 · 출석 · 달란트가 한 화면에 들어간 수업 도구입니다. 먼저 열어 보고 시작하세요.</div>
     </div>
     <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
 
   <div class="blocks" style="margin-top:1rem">
-    <span class="now">4주 뼈대와 탭</span>
-    <span>5주 공과</span>
-    <span>6주 융판</span>
-    <span>7주 퀴즈</span>
+    <span class="now">4주 틀과 공과</span>
+    <span>5주 그림 이야기</span>
+    <span>6주 퀴즈·게임</span>
+    <span>7주 인터넷에 올리기</span>
     <span>8주 출석</span>
     <span>9주 달란트</span>
   </div>
   <p class="tiny" style="color:var(--text-faint);font-size:.82rem;margin-top:.5rem">
-    매주 <b>탭 하나씩</b> 채워 갑니다. 오늘은 빈 서랍을 만드는 날입니다.
+    매주 <b>블록 하나씩</b> 쌓아 갑니다. 오늘은 서랍장을 짜고 첫 칸을 채우는 날입니다.
   </p>
 </section>
 
 <section class="block wrap prose">
   <span class="h-eyebrow">강의안</span>
-  <h2>왜 두 곳을 쓰나요?</h2>
-  <p>Claude는 <b>만드는 곳</b>이고, GitHub Pages는 <b>쓰는 곳</b>입니다. 역할이 다릅니다.</p>
+  <h2>오늘은 Claude 안에서만 만듭니다</h2>
 
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>　</th><th>Claude</th><th>GitHub Pages</th></tr></thead>
-      <tbody>
-        <tr><td><b>하는 일</b></td><td>코드를 만들고 고친다</td><td>만든 것을 주소로 열어 준다</td></tr>
-        <tr><td><b>출석 기록이 남나요</b></td><td>남지 않는다</td><td><b>남는다</b></td></tr>
-        <tr><td><b>주소</b></td><td>대화마다 달라진다</td><td>학기 내내 고정</td></tr>
-        <tr><td><b>비용</b></td><td>무료</td><td>무료</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>Claude에게 말로 부탁하면 화면이 만들어집니다. 그 화면은 <b>Artifact</b>라는 칸에 나타나고,
+  링크 하나로 다른 사람에게 보여 줄 수도 있습니다. 오늘부터 6주까지는 여기서만 작업합니다.</p>
 
   <div class="callout tip">
-    <div class="t">여기가 핵심입니다</div>
-    Claude 화면 안에서는 출석·달란트가 <b>새로고침하면 사라집니다.</b> 브라우저 저장소가 막혀 있기 때문입니다.
-    GitHub Pages에 올리면 그 제약이 사라져 기록이 남습니다. 그래서 8주까지 미루지 않고 <b>오늘 배포부터 배웁니다.</b>
+    <div class="t">인터넷에 올리는 것은 7주입니다</div>
+    지금 서두를 필요가 없습니다. 6주까지 만드는 <b>공과 · 그림 이야기 · 퀴즈</b>는 Claude 화면 안에서 완전히 작동합니다.
+    저장이 필요한 <b>출석 · 달란트</b>를 만들기 직전인 7주에, 진짜 인터넷 주소를 받습니다.
+    가장 어려운 단계를 뒤로 미루고, 먼저 <b>되는 경험</b>을 쌓는 순서입니다.
   </div>
 
   <h2>오늘 만들 것</h2>
-  <p>제목과 날짜, 그리고 탭 다섯 개. 탭 안은 아직 비어 있습니다. 다음 주부터 하나씩 채웁니다.</p>
+  <p>제목과 날짜, 탭 여섯 개, 그리고 <b>첫 탭에 들어갈 공과</b>. 나머지 탭 안은 아직 비어 있습니다.</p>
 </section>
 
 <section class="block wrap">
@@ -862,7 +869,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 - 외부 라이브러리 없이 파일 하나짜리 HTML로 만들어 줘
 - 맨 위에 반 이름 "초등 3부 햇살반"과 오늘 날짜를 보여 줘
-- 그 아래 탭 6개: 공과 / 융판 / 퀴즈 / 출석 / 달란트 / 반 관리
+- 그 아래 탭 6개: 공과 / 그림 성경 이야기 / 퀴즈 / 출석 / 달란트 / 반 관리
 - 지금은 각 탭 안에 "다음 주에 만듭니다"라고만 보여 줘
 - 손가락으로 누르는 것이라 버튼은 크게 (최소 44px)
 - 배경은 따뜻한 아이보리 #F9F9F6, 글자는 진한 남색 #2C3E50
@@ -919,207 +926,151 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </ol>
 </section>
 
+
+<section class="block wrap prose">
+  <span class="h-eyebrow">강의안</span>
+  <h2>왜 「질문」이 화면에 있어야 하나요</h2>
+  <p>공과 화면에 본문과 흐름만 있으면 결국 교사가 말하고 아이는 듣습니다. 예수님은 반대로 하셨습니다 — <b>물으셨습니다.</b></p>
+
+  <blockquote>
+    “네 남편을 불러 오라”
+    <cite>요한복음 4장 16절 — 답을 주지 않고, 스스로 말하게 하신 질문</cite>
+  </blockquote>
+
+  <p>그래서 이 화면에는 <b>교사가 읽을 질문</b>을 눈에 잘 띄게 넣습니다. 수업 중에 흘깃 보고 그대로 물으면 됩니다.</p>
+
+  <div class="vs">
+    <div class="bad">
+      <span class="tag">닫힌 질문</span>
+      “다윗은 누구를 이겼나요?”<br>
+      <span style="font-size:.85rem;color:var(--text-faint)">→ 답이 하나. 아는 아이만 말합니다.</span>
+    </div>
+    <div class="good">
+      <span class="tag">발견형 질문</span>
+      “사울 왕이 갑옷을 입혔는데 다윗은 왜 벗었을까요?”<br>
+      <span style="font-size:.85rem;color:var(--text-dim)">→ 답이 여럿. 모두가 말할 수 있습니다.</span>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="t">순서가 중요합니다</div>
+    <b>질문을 수업 흐름 위에</b> 둡니다. 수업을 여는 것이 질문이기 때문입니다.
+    흐름표는 교사가 보는 것이라 맨 아래로 내립니다.
+  </div>
+</section>
+
+
 <section class="block wrap">
   <span class="h-eyebrow">따라하기 ②</span>
-  <h2 style="margin-bottom:.4rem">인터넷에 올리기</h2>
+  <h2 style="margin-bottom:.4rem">공과 탭 채우기</h2>
   <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.5rem">
-    처음 한 번만 어렵습니다. 다음 주부터는 <b>STEP 9만</b> 반복하면 됩니다.
+    같은 대화에 <b>이어서</b> 부탁합니다. 새 대화를 열지 마세요 — 방금 만든 화면 위에 쌓아야 합니다.
   </p>
 
   <ol class="steps">
 
     <li>
-      <h3>코드를 파일로 내려받습니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        Artifact 칸 오른쪽 위 메뉴에서 내려받기를 누릅니다.
-      </p>
-      <div class="callout warn">
-        <div class="t">내려받기 버튼이 안 보이면</div>
-        Claude에게 이렇게 부탁하세요 — <b>“전체 코드를 하나로 보여 줘”</b>.
-        그 코드를 전부 복사해서 <b>메모장</b>에 붙여넣고, 저장할 때 파일 이름을
-        <span class="ui-key">index.html</span>로, 파일 형식을 <b>모든 파일</b>로 바꿔 저장하면 똑같습니다.
-      </div>
-      <div class="callout">
-        <div class="t">파일 이름은 반드시 <span class="ui-key">index.html</span></div>
-        다른 이름이면 주소로 열리지 않습니다. 이것 하나만 지키면 됩니다.
-      </div>
-    </li>
+      <h3>공과 내용을 넣어 달라고 부탁합니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">본문과 질문은 우리 반 것으로 바꾸세요.</p>
 
-    <li>
-      <h3>GitHub에 가입합니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> —
-        이메일과 비밀번호, 사용자 이름만 정하면 됩니다. 무료입니다.
-      </p>
-      <div class="callout tip">
-        <div class="t">사용자 이름이 곧 주소가 됩니다</div>
-        <span class="ui-key">hansem</span>으로 정하면 주소가 <span class="ui-key">hansem.github.io/…</span>가 됩니다.
-        영문 소문자로 짧게 정하세요. 나중에 바꾸기 번거롭습니다.
-      </div>
-    </li>
-
-    <li>
-      <h3>저장소(Repository)를 하나 만듭니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        오른쪽 위 <span class="ui-key">＋</span> → <span class="ui-key">New repository</span>
-      </p>
-
-      <div class="mock">
-        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">GitHub · New repository</span></div>
-        <div class="mock-body solo">
-          <div class="mock-panel">
-            <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="저장소 이름을 sunday-class 로 적고 Public 을 고른 뒤 Create repository 를 누르는 화면">
-              <rect width="320" height="150" rx="6" class="box"/>
-              <text x="16" y="24" font-size="9" font-weight="700" class="dim">Repository name</text>
-              <rect x="16" y="30" width="150" height="18" rx="4" fill="var(--bg-soft)" stroke="var(--border-strong)"/>
-              <foreignObject x="20" y="33" width="142" height="14">
-                <div xmlns="http://www.w3.org/1999/xhtml" class="clip" style="font:700 10px var(--ff-mono);color:var(--text);white-space:nowrap">
-                  <span class="s-type" style="display:block;overflow:hidden;white-space:nowrap">sunday-class</span>
-                </div>
-              </foreignObject>
-
-              <g class="s-in2">
-                <circle cx="24" cy="72" r="6" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-                <circle cx="24" cy="72" r="2.5" class="acc"/>
-                <text x="36" y="76" font-size="10" font-weight="700" class="ink">Public</text>
-                <text x="80" y="76" font-size="8" class="dim">누구나 볼 수 있습니다 — 무료 계정은 이것만 됩니다</text>
-                <circle cx="24" cy="93" r="6" fill="none" stroke="var(--border-strong)" stroke-width="2"/>
-                <text x="36" y="97" font-size="10" class="dim">Private</text>
-                <text x="80" y="97" font-size="8" class="dim">유료 계정에서만 페이지가 열립니다</text>
-              </g>
-
-              <g class="s-in3">
-                <rect x="16" y="114" width="112" height="22" rx="5" class="acc"/>
-                <text x="30" y="129" font-size="10" font-weight="700" fill="#16202A">Create repository</text>
-              </g>
-              <g class="s-ring">
-                <circle cx="24" cy="72" r="14" fill="none" stroke="var(--accent)" stroke-width="2" opacity=".75"/>
-              </g>
-            </svg>
-          </div>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기</span>
+          <button class="copy" type="button">복사</button>
         </div>
-      </div>
-      <p class="mock-cap">이름은 영문 소문자로, 공개 범위는 <b>Public</b></p>
+<pre>공과 탭 안을 채워 줘.
+이 화면은 아이들에게 보여 주는 것이니 크고 예쁘게 만들어 줘.
 
-      <div class="callout warn">
-        <div class="t">Public을 꼭 고르세요</div>
-        무료 계정은 <b>공개 저장소에서만</b> 페이지가 열립니다. Private으로 만들면 주소가 작동하지 않습니다.
-        <br><br>
-        공개라는 말은 <b>주소를 아는 사람은 누구나 볼 수 있다</b>는 뜻입니다.
-        그래서 이 과정에서는 아이 <b>실명과 사진을 넣지 않습니다.</b> 동물이나 성경 인물 가명을 씁니다.
-      </div>
-    </li>
+1) 맨 위 표지 카드 — 가운데 정렬, 따뜻한 파스텔 그라데이션 배경
+   제목: 다윗과 골리앗
+   부제: 하나님이 함께하시면
+   여는 질문: 키가 크고 힘이 센 사람이 이기는 걸까요?
+   성경 구절: 사무엘상 17장 45절 (구절 내용도 같이, 크게)
 
-    <li>
-      <h3>파일을 올립니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        저장소 화면에서 <span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span> →
-        아까 받은 <span class="ui-key">index.html</span>을 끌어다 놓습니다.
-      </p>
+2) 그 아래 "함께 생각해 볼까요?" 카드 — 발견형 질문 4개를
+   색이 다른 큰 카드로. 누르면 전체 화면으로 크게 펼쳐지고
+   앞뒤로 넘길 수 있게. ESC 로 닫히게
+   - 사울 왕이 갑옷을 입혔는데 다윗은 왜 벗었을까요?
+   - 다윗이 시냇가에서 고른 것은 무엇이었나요? 왜 그것이었을까요?
+   - 골리앗이 다윗을 보고 웃었어요. 그때 다윗의 마음은 어땠을까요?
+   - 여러분 앞에 있는 골리앗은 무엇인가요?
+
+3) 맨 아래 "수업 흐름" — 교사가 흘깃 보는 것이라 작게
+   도입 마음 열기 5분 / 말씀 그림으로 이야기 12분 /
+   활동 퀴즈 10분 / 적용 나의 골리앗 8분 / 기도 함께 5분</pre>
+      </div>
 
       <div class="mock">
-        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">Upload files</span></div>
-        <div class="mock-body solo">
-          <div class="mock-panel">
-            <svg class="scene" viewBox="0 0 320 140" role="img" aria-label="index.html 파일을 점선 상자 안으로 끌어다 놓고 Commit changes 를 누르는 화면">
-              <rect width="320" height="140" rx="6" class="box"/>
-              <rect x="16" y="14" width="288" height="72" rx="8" fill="var(--bg-soft)"
-                    stroke="var(--accent-line)" stroke-width="2" stroke-dasharray="7 5"/>
-              <text x="160" y="34" font-size="9" text-anchor="middle" class="dim">파일을 여기로 끌어다 놓으세요</text>
-              <g class="s-drop">
-                <rect x="128" y="44" width="64" height="30" rx="4" fill="var(--bg-card)" stroke="var(--border-strong)"/>
-                <path d="M136 50h14l6 6v14h-20z" class="dim"/>
-                <text x="162" y="65" font-size="8" font-weight="700" class="ink">index.html</text>
-              </g>
-              <g class="s-in3">
-                <rect x="16" y="100" width="106" height="22" rx="5" class="acc"/>
-                <text x="30" y="115" font-size="10" font-weight="700" fill="#16202A">Commit changes</text>
-              </g>
-            </svg>
+        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">Claude</span></div>
+        <div class="mock-body">
+          <div class="mock-chat">
+            <div class="mock-msg me"><span class="mock-type">공과 탭 안을 채워 줘…</span></div>
+            <div class="mock-msg">공과 탭에 카드 3개를 넣었습니다.</div>
           </div>
-        </div>
-      </div>
-      <p class="mock-cap">끌어다 놓고 아래 <b>Commit changes</b> 누르면 끝</p>
-    </li>
-
-    <li>
-      <h3>페이지 기능을 켭니다 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 이건 처음 한 번만</span></h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        저장소 위쪽 <span class="ui-key">Settings</span> → 왼쪽 목록에서 <span class="ui-key">Pages</span>
-      </p>
-
-      <div class="mock">
-        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">Settings · Pages</span></div>
-        <div class="mock-body solo">
           <div class="mock-panel">
-            <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="Source 를 Deploy from a branch 로, 브랜치를 main 과 루트로 고른 뒤 Save 를 누르는 화면">
-              <rect width="320" height="150" rx="6" class="box"/>
-              <text x="16" y="22" font-size="10" font-weight="700" class="ink">Build and deployment</text>
-
-              <text x="16" y="44" font-size="8" font-weight="700" class="dim">Source</text>
+            <div class="cap"><span>공과 탭</span><span class="mock-pill">Artifact</span></div>
+            <svg class="scene" viewBox="0 0 200 130" role="img" aria-label="공과 탭에 제목 카드, 수업 흐름 카드, 발견형 질문 카드가 차례로 나타나는 화면">
+              <rect width="200" height="130" rx="6" class="box"/>
               <g class="s-in">
-                <rect x="16" y="50" width="150" height="20" rx="4" fill="var(--bg-soft)" stroke="var(--accent-line)" stroke-width="1.5"/>
-                <text x="26" y="64" font-size="9" font-weight="700" class="ink">Deploy from a branch</text>
+                <rect x="10" y="8" width="180" height="34" rx="5" class="sky"/>
+                <rect x="18" y="15" width="96" height="7" rx="3" class="ink"/>
+                <rect x="18" y="28" width="140" height="5" rx="2.5" class="dim"/>
+                <rect x="18" y="36" width="60" height="3" rx="1.5" class="acc"/>
               </g>
-
-              <text x="16" y="88" font-size="8" font-weight="700" class="dim">Branch</text>
               <g class="s-in2">
-                <rect x="16" y="94" width="70" height="20" rx="4" fill="var(--bg-soft)" stroke="var(--accent-line)" stroke-width="1.5"/>
-                <text x="30" y="108" font-size="9" font-weight="700" class="ink">main</text>
-                <rect x="92" y="94" width="60" height="20" rx="4" fill="var(--bg-soft)" stroke="var(--accent-line)" stroke-width="1.5"/>
-                <text x="108" y="108" font-size="9" font-weight="700" class="ink">/ (root)</text>
+                <rect x="10" y="48" width="180" height="36" rx="5" fill="var(--bg-soft)"/>
+                <circle cx="22" cy="58" r="4" class="acc"/><rect x="31" y="55" width="70" height="5" rx="2.5" class="ink"/>
+                <circle cx="22" cy="70" r="4" class="acc"/><rect x="31" y="67" width="86" height="5" rx="2.5" class="ink"/>
+                <circle cx="22" cy="80" r="4" class="acc"/><rect x="31" y="77" width="56" height="5" rx="2.5" class="ink"/>
+                <rect x="168" y="55" width="14" height="4" rx="2" class="dim"/>
+                <rect x="164" y="67" width="18" height="4" rx="2" class="dim"/>
+                <rect x="168" y="77" width="14" height="4" rx="2" class="dim"/>
               </g>
-
               <g class="s-in3">
-                <rect x="162" y="94" width="52" height="20" rx="4" class="acc"/>
-                <text x="180" y="108" font-size="9" font-weight="700" fill="#16202A">Save</text>
+                <rect x="10" y="90" width="180" height="32" rx="5" fill="var(--bg-soft)"/>
+                <rect x="18" y="96" width="164" height="10" rx="4" fill="var(--bg-card)"/>
+                <rect x="24" y="99" width="4" height="4" rx="2" class="acc"/>
+                <rect x="33" y="99" width="120" height="4" rx="2" class="ink"/>
+                <rect x="18" y="108" width="164" height="10" rx="4" fill="var(--bg-card)"/>
+                <rect x="24" y="111" width="4" height="4" rx="2" class="acc"/>
+                <rect x="33" y="111" width="96" height="4" rx="2" class="ink"/>
               </g>
-              <g class="s-ring">
-                <rect x="158" y="90" width="60" height="28" rx="7" fill="none" stroke="var(--accent)" stroke-width="2" opacity=".75"/>
-              </g>
-              <text x="16" y="136" font-size="8" class="dim">저장하면 1~2분 뒤 주소가 나타납니다</text>
             </svg>
+          </div>
+          <div class="mock-cursor" style="--cx1:24%;--cy1:74%;--cx2:70%;--cy2:44%">
+            <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 1l11 6-5 1.4L5.6 14z" fill="#fff" stroke="#2C3E50" stroke-width="1.3" stroke-linejoin="round"/></svg>
           </div>
         </div>
       </div>
-      <p class="mock-cap">Source는 <b>Deploy from a branch</b>, 브랜치는 <b>main</b> + <b>/ (root)</b></p>
+      <p class="mock-cap">제목 카드 → 수업 흐름 → 발견형 질문 순으로 쌓입니다</p>
     </li>
 
     <li>
-      <h3>1~2분 기다렸다가 주소를 엽니다</h3>
+      <h3>수업하듯 소리 내어 읽어 봅니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        같은 Pages 화면 위쪽에 주소가 나타납니다. 이런 모양입니다.
+        화면을 보며 실제로 읽어 보세요. 걸리는 곳이 바로 고칠 곳입니다.
       </p>
       <div class="prompt">
-        <div class="prompt-head"><span class="lbl">내 페이지 주소</span></div>
-<pre>https://내아이디.github.io/sunday-class/</pre>
-      </div>
-      <div class="callout tip">
-        <div class="t">이 주소를 즐겨찾기에 넣으세요</div>
-        학기 내내 이 주소 하나만 씁니다. 태블릿 홈 화면에 추가해 두면 앱처럼 열립니다.
-      </div>
-      <div class="callout warn">
-        <div class="t">바로 안 열려도 정상입니다</div>
-        첫 배포는 1~2분 걸립니다. <b>404</b>가 뜨면 조금 기다렸다 새로고침하세요.
+        <div class="prompt-head">
+          <span class="lbl">자주 쓰는 수정 요청</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>질문 글씨가 작아. 한 단계 더 크게 해 줘.
+성경 구절 카드를 눈에 더 잘 띄게 해 줘.
+수업 흐름에서 지금 하는 단계를 눌러 표시할 수 있게 해 줘.</pre>
       </div>
     </li>
 
     <li>
-      <h3>고친 뒤 다시 올리기 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 다음 주부터 매주 이것만</span></h3>
+      <h3>링크로 만들어 남깁니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        Claude에서 고친다 → 내려받는다 → 같은 저장소에 <b>같은 이름으로</b> 다시 올린다. 덮어써집니다.
+        Artifact 칸 위쪽의 공유(Share) 단추를 누르면 <b>링크</b>가 생깁니다.
+        이 링크는 Claude 계정이 없는 사람도 열 수 있어서, 그대로 과제 제출에 씁니다.
       </p>
-      <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem">
-        <li><span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span></li>
-        <li>새 <span class="ui-key">index.html</span>을 끌어다 놓는다</li>
-        <li><span class="ui-key">Commit changes</span></li>
-        <li>1분 뒤 내 주소를 새로고침</li>
-      </ol>
-      <div class="callout">
-        <div class="t">바뀐 게 안 보이면</div>
-        브라우저가 옛 화면을 기억하고 있는 것입니다. <b>강력 새로고침</b>을 하세요 —
-        윈도우는 <span class="ui-key">Ctrl</span>+<span class="ui-key">Shift</span>+<span class="ui-key">R</span>,
-        맥은 <span class="ui-key">⌘</span>+<span class="ui-key">Shift</span>+<span class="ui-key">R</span>.
+      <div class="callout warn">
+        <div class="t">이것만은 꼭</div>
+        Artifact 칸의 내려받기로 <span class="ui-key">index.html</span> 파일을 <b>내 컴퓨터에도 저장</b>해 두세요.
+        7주에 인터넷에 올릴 때 이 파일을 씁니다. 대화가 사라져도 파일만 있으면 다시 시작할 수 있습니다.
       </div>
     </li>
 
@@ -1130,14 +1081,15 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="hw">
     <div class="hw-title">
       <span class="badge">과제</span>
-      <h2>내 페이지 주소 만들기</h2>
+      <h2>우리 반 첫 화면</h2>
     </div>
 
     <dl>
       <dt>제출물</dt>
-      <dd>내 GitHub Pages 주소 1개 (<span class="ui-key">https://…github.io/…</span>)</dd>
+      <dd>공과 탭이 채워진 <b>Artifact 공유 링크</b> 1개</dd>
       <dt>제출 방법</dt>
-      <dd>수업 게시판에 주소를 답글로 올립니다. 서로 눌러 보고 열리는지 확인해 주세요.</dd>
+      <dd>게시판에 링크와 함께 <b>이번 달에 실제로 가르칠 본문</b>을 한 줄 적어 주세요.
+          서로 눌러 보고 열리는지 확인해 주세요.</dd>
       <dt>마감</dt>
       <dd>다음 수업 전까지</dd>
     </dl>
@@ -1145,18 +1097,19 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <div>
       <h3>스스로 점검</h3>
       <ul class="checklist">
-        <li><label><input type="checkbox" id="w4c1"><span>다른 기기(휴대폰)에서 주소를 열어 봤다</span></label></li>
-        <li><label><input type="checkbox" id="w4c2"><span>탭 6개가 다 보이고 눌러서 바뀐다</span></label></li>
-        <li><label><input type="checkbox" id="w4c3"><span>저장소가 <b>Public</b>인 것을 확인했다</span></label></li>
-        <li><label><input type="checkbox" id="w4c4"><span>아이 실명이나 사진을 넣지 않았다 (가명을 썼다)</span></label></li>
-        <li><label><input type="checkbox" id="w4c5"><span>Claude 대화창을 즐겨찾기 해 두었다</span></label></li>
-        <li><label><input type="checkbox" id="w4c6"><span><span class="ui-key">index.html</span> 파일을 내 컴퓨터에도 보관했다</span></label></li>
+        <li><label><input type="checkbox" id="w4c1"><span>탭 여섯 개가 다 보이고 눌러서 바뀐다</span></label></li>
+        <li><label><input type="checkbox" id="w4c2"><span>공과 탭에 제목·구절·질문·흐름이 다 있다</span></label></li>
+        <li><label><input type="checkbox" id="w4c3"><span>질문이 <b>답이 하나로 정해지지 않는</b> 질문이다</span></label></li>
+        <li><label><input type="checkbox" id="w4c4"><span>성경 구절을 성경책과 대조해 확인했다</span></label></li>
+        <li><label><input type="checkbox" id="w4c5"><span>아이 실명이나 사진을 넣지 않았다 (가명을 썼다)</span></label></li>
+        <li><label><input type="checkbox" id="w4c6"><span><span class="ui-key">index.html</span> 파일을 내 컴퓨터에 저장했다</span></label></li>
       </ul>
     </div>
 
     <div class="callout tip">
       <div class="t">평가에서 보는 것</div>
-      화면이 예쁜지가 아니라 <b>주소가 열리는지</b>를 봅니다. 뼈대만 있어도 괜찮습니다.
+      화면이 예쁜지가 아니라 <b>링크가 열리는지</b>와 <b>질문의 질</b>을 봅니다.
+      아이가 스스로 말하게 하는 질문인가요?
     </div>
   </div>
 </section>
@@ -1167,27 +1120,20 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <div class="faq">
     <details>
-      <summary>주소를 열었는데 404가 뜹니다</summary>
+      <summary>공과를 고쳤더니 다른 탭이 사라졌습니다</summary>
       <div class="a">
-        <p>세 가지 중 하나입니다.</p>
-        <p><b>①</b> 아직 배포 중입니다. 1~2분 기다렸다 새로고침하세요.<br>
-           <b>②</b> 파일 이름이 <span class="ui-key">index.html</span>이 아닙니다. 저장소에서 파일 이름을 확인하세요.<br>
-           <b>③</b> 저장소가 Private입니다. Settings 맨 아래에서 Public으로 바꾸세요.</p>
+        <p>Claude가 코드를 다시 쓰면서 빠뜨린 것입니다. 이렇게 말하세요 —
+        <b>“다른 탭은 그대로 두고 공과 탭 안만 바꿔 줘”</b>.</p>
+        <p>그래도 안 되면 보관해 둔 지난주 파일을 붙여넣고 다시 시작하면 됩니다.
+        <b>매주 파일을 저장해 두는 이유가 이것입니다.</b></p>
       </div>
     </details>
     <details>
-      <summary>Settings에 Pages 항목이 안 보입니다</summary>
+      <summary>성경 구절이 실제 성경과 다릅니다</summary>
       <div class="a">
-        <p>저장소 <b>안</b>의 Settings가 아니라 내 계정 Settings에 들어간 것입니다.
-        저장소 이름이 보이는 화면에서 위쪽 탭의 Settings를 누르세요.</p>
-      </div>
-    </details>
-    <details>
-      <summary>파일을 올렸는데 화면이 그대로입니다</summary>
-      <div class="a">
-        <p>브라우저가 옛 화면을 기억하고 있습니다. 강력 새로고침
-        (<span class="ui-key">Ctrl</span>/<span class="ui-key">⌘</span> + <span class="ui-key">Shift</span> + <span class="ui-key">R</span>)을 하세요.
-        그래도 안 되면 1분 더 기다렸다 다시 해 보세요.</p>
+        <p>AI는 구절을 <b>비슷하게 지어낼 수 있습니다.</b> 화면에 올리기 전에 반드시 성경을 펴서 대조하세요.</p>
+        <p>이건 사소한 문제가 아닙니다. 아이들에게 가르치는 내용입니다.
+        구절·인명·숫자는 <b>매번 사람이 확인</b>합니다.</p>
       </div>
     </details>
     <details>
@@ -1195,6 +1141,13 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <div class="a">
         <p>“<b>파일 하나짜리 HTML로 합쳐 줘. 외부 라이브러리는 쓰지 마</b>”라고 다시 부탁하세요.
         조각난 코드는 그대로 올리면 열리지 않습니다.</p>
+      </div>
+    </details>
+    <details>
+      <summary>다른 본문으로 만들고 싶습니다</summary>
+      <div class="a">
+        <p>괜찮습니다. 프롬프트의 제목·구절·질문만 우리 반 본문으로 바꾸면 구조는 그대로 작동합니다.</p>
+        <p>다만 6~9주 예시는 다윗과 골리앗으로 이어집니다. 그림 이야기의 그림을 만들 때 본문에 맞게 바꿔 달라고 하면 됩니다.</p>
       </div>
     </details>
     <details>
@@ -1216,11 +1169,10 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
-
 <nav class="block wrap">
   <div class="pager">
     <a class="prev" href="3.html"><span class="k">이전</span><span class="v">3주 · AI 제대로 쓰는 법</span></a>
-    <a class="next" href="5.html"><span class="k">다음</span><span class="v">5주 · 공과 블록</span></a>
+    <a class="next" href="5.html"><span class="k">다음</span><span class="v">5주 · 그림 성경 이야기</span></a>
   </div>
 </nav>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5주 · 공과 블록 — 오늘의 공과를 화면에 — AI 시대와 교회교육</title>
-<meta name="description" content="본문과 수업 흐름, 발견형 질문을 공과 탭에 채웁니다.">
+<title>5주 · 그림 성경 이야기 — 끌어 옮기는 융판 — AI 시대와 교회교육</title>
+<meta name="description" content="손가락으로 인물을 옮기며 이야기를 들려주는 디지털 융판을 만듭니다.">
 <meta name="theme-color" content="#F9F9F6">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -765,20 +781,20 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <main id="main">
 <section class="hero wrap">
   <span class="badge">5주 · 따라하기</span>
-  <h1>공과 블록 — 오늘의 공과를 화면에</h1>
-  <p class="lede">빈 서랍 첫 칸을 채웁니다. 성경 본문과 수업 흐름, 그리고 <b>아이가 스스로 말하게 하는 질문</b>을 넣습니다.</p>
+  <h1>그림 성경 이야기 — 끌어 옮기는 융판</h1>
+  <p class="lede">화면 위 인물을 손가락으로 옮기며 이야기를 들려줍니다. 종이 융판이 하던 일을 태블릿이 합니다.</p>
 
   <div class="meta-row">
-    <span><b>소요</b> 40~60분</span>
-    <span><b>지난주 필요</b> 내 GitHub Pages 주소</span>
-    <span><b>채우는 탭</b> 공과</span>
+    <span><b>소요</b> 50~70분</span>
+    <span><b>지난주 필요</b> 공과가 채워진 Artifact</span>
+    <span><b>채우는 탭</b> 그림 성경 이야기</span>
   </div>
 
   <ul class="goals">
     <li class="h">이번 주에 할 수 있게 되는 것</li>
-    <li>지난주 대화에 이어서 탭 하나를 채운다</li>
-    <li>수업 흐름을 시간까지 정해 화면에 올린다</li>
-    <li>고친 파일을 다시 올려 내 주소에 반영한다</li>
+    <li>배경과 인물을 그림으로 만든다 (그림 실력 필요 없음)</li>
+    <li>손가락으로 끌어 옮기는 화면을 만든다</li>
+    <li>아이가 직접 만져 보게 하는 수업 방법을 안다</li>
   </ul>
 </section>
 
@@ -786,16 +802,16 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="aim">
     <div class="txt">
       <div class="k">오늘 만들 모습</div>
-      <div class="v">완성품의 <b>공과 탭</b>을 열어 보세요. 오늘 이 화면까지 갑니다.</div>
+      <div class="v">완성품의 <b>그림 성경 이야기 탭</b>에서 다윗을 끌어 보세요. 오늘 이 화면까지 갑니다.</div>
     </div>
     <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
 
   <div class="blocks" style="margin-top:1rem">
-    <span class="done">4주 뼈대와 탭</span>
-    <span class="now">5주 공과</span>
-    <span>6주 융판</span>
-    <span>7주 퀴즈</span>
+    <span class="done">4주 틀과 공과</span>
+    <span class="now">5주 그림 이야기</span>
+    <span>6주 퀴즈·게임</span>
+    <span>7주 인터넷에 올리기</span>
     <span>8주 출석</span>
     <span>9주 달란트</span>
   </div>
@@ -803,157 +819,156 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <section class="block wrap prose">
   <span class="h-eyebrow">강의안</span>
-  <h2>왜 「질문」이 화면에 있어야 하나요</h2>
-  <p>공과 화면에 본문과 흐름만 있으면 결국 교사가 말하고 아이는 듣습니다. 예수님은 반대로 하셨습니다 — <b>물으셨습니다.</b></p>
+  <h2>그림은 AI가 그립니다. 다만 방식이 중요합니다</h2>
 
-  <blockquote>
-    “네 남편을 불러 오라”
-    <cite>요한복음 4장 16절 — 답을 주지 않고, 스스로 말하게 하신 질문</cite>
-  </blockquote>
-
-  <p>그래서 이 화면에는 <b>교사가 읽을 질문</b>을 눈에 잘 띄게 넣습니다. 수업 중에 흘깃 보고 그대로 물으면 됩니다.</p>
+  <p>인물 그림을 만드는 방법은 두 가지입니다. <b>둘째를 씁니다.</b></p>
 
   <div class="vs">
     <div class="bad">
-      <span class="tag">닫힌 질문</span>
-      “다윗은 누구를 이겼나요?”<br>
-      <span style="font-size:.85rem;color:var(--text-faint)">→ 답이 하나. 아는 아이만 말합니다.</span>
+      <span class="tag">그림 파일로 만들기</span>
+      AI 그림 생성기로 png를 만들어 붙입니다.<br>
+      <span style="font-size:.85rem;color:var(--text-faint)">→ 파일이 여러 개가 되고, 화질이 깨지고, 올리기도 번거롭습니다.</span>
     </div>
     <div class="good">
-      <span class="tag">발견형 질문</span>
-      “사울 왕이 갑옷을 입혔는데 다윗은 왜 벗었을까요?”<br>
-      <span style="font-size:.85rem;color:var(--text-dim)">→ 답이 여럿. 모두가 말할 수 있습니다.</span>
+      <span class="tag">코드로 그리기 (SVG)</span>
+      Claude가 도형으로 그림을 그려 <b>파일 안에 넣습니다.</b><br>
+      <span style="font-size:.85rem;color:var(--text-dim)">→ 파일은 계속 하나. 아무리 확대해도 안 깨집니다. 색도 말로 바꿉니다.</span>
     </div>
   </div>
 
   <div class="callout tip">
-    <div class="t">순서가 중요합니다</div>
-    <b>질문을 수업 흐름 위에</b> 둡니다. 수업을 여는 것이 질문이기 때문입니다.
-    흐름표는 교사가 보는 것이라 맨 아래로 내립니다.
+    <div class="t">그래서 프롬프트에 이 한 줄을 꼭 넣습니다</div>
+    <b>“그림은 SVG 도형으로 코드 안에 직접 그려 줘. 이미지 파일은 쓰지 마.”</b>
   </div>
+
+  <h2>이 화면을 아이에게 넘기세요</h2>
+  <p>교사가 옮기며 설명하는 것도 좋지만, 더 좋은 것은 <b>아이가 직접 옮기게</b> 하는 것입니다.</p>
+  <p>“누가 다윗을 골리앗 앞으로 데려다 줄래요?” — 한 아이가 나와서 손가락으로 옮깁니다. 그 순간 이야기는 그 아이의 것이 됩니다.</p>
 </section>
 
 <section class="block wrap">
   <span class="h-eyebrow">따라하기</span>
-  <h2 style="margin-bottom:1.5rem">공과 탭 채우기</h2>
+  <h2 style="margin-bottom:1.5rem">「그림 성경 이야기」 탭 만들기</h2>
 
   <ol class="steps">
 
     <li>
-      <h3>지난주 대화를 다시 엽니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        Claude에서 「우리 반 수업 도구」 대화를 찾아 엽니다. <b>새 대화를 만들지 마세요</b> — 지난주 것 위에 쌓아야 합니다.
-      </p>
+      <h3>배경과 인물을 만들어 달라고 합니다</h3>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 1단계</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>「그림 성경 이야기」 탭을 만들어 줘.
+
+- 배경: 엘라 골짜기. 위는 하늘, 가운데 언덕, 아래 풀밭
+- 인물과 사물: 다윗(작은 소년), 골리앗(다윗보다 훨씬 큰 거인),
+  양, 물맷돌, 나무, 장막
+- 골리앗은 다윗보다 확실히 크게 그려 줘. 크기 차이가 이 이야기의 핵심이야
+- 그림은 전부 SVG 도형으로 코드 안에 직접 그려 줘.
+  이미지 파일이나 인터넷 주소는 쓰지 마
+- 아이들이 보는 것이니 따뜻하고 부드러운 색으로</pre>
+      </div>
       <div class="callout warn">
-        <div class="t">대화를 못 찾겠으면</div>
-        새 대화를 열고, 지난주에 저장해 둔 <span class="ui-key">index.html</span>을 메모장으로 열어
-        <b>전체 코드를 붙여넣은 뒤</b> “이 코드에 이어서 작업해 줘”라고 하면 됩니다.
+        <div class="t">얼굴은 단순하게</div>
+        사람 얼굴을 자세히 그리라고 하면 어색해집니다. <b>“얼굴은 단순하게, 표정은 넣지 마”</b>라고 하면 오히려 보기 좋습니다.
       </div>
     </li>
 
     <li>
-      <h3>공과 내용을 넣어 달라고 부탁합니다</h3>
-      <p style="color:var(--text-dim);font-size:.92rem">본문과 질문은 우리 반 것으로 바꾸세요.</p>
-
+      <h3>손가락으로 끌 수 있게 합니다</h3>
       <div class="prompt">
         <div class="prompt-head">
-          <span class="lbl">Claude에 붙여넣기</span>
+          <span class="lbl">Claude에 붙여넣기 · 2단계</span>
           <button class="copy" type="button">복사</button>
         </div>
-<pre>공과 탭 안을 채워 줘.
-이 화면은 아이들에게 보여 주는 것이니 크고 예쁘게 만들어 줘.
+<pre>이제 인물과 사물을 손가락으로 끌어 옮길 수 있게 해 줘.
 
-1) 맨 위 표지 카드 — 가운데 정렬, 따뜻한 파스텔 그라데이션 배경
-   제목: 다윗과 골리앗
-   부제: 하나님이 함께하시면
-   여는 질문: 키가 크고 힘이 센 사람이 이기는 걸까요?
-   성경 구절: 사무엘상 17장 45절 (구절 내용도 같이, 크게)
-
-2) 그 아래 "함께 생각해 볼까요?" 카드 — 발견형 질문 4개를
-   색이 다른 큰 카드로. 누르면 전체 화면으로 크게 펼쳐지고
-   앞뒤로 넘길 수 있게. ESC 로 닫히게
-   - 사울 왕이 갑옷을 입혔는데 다윗은 왜 벗었을까요?
-   - 다윗이 시냇가에서 고른 것은 무엇이었나요? 왜 그것이었을까요?
-   - 골리앗이 다윗을 보고 웃었어요. 그때 다윗의 마음은 어땠을까요?
-   - 여러분 앞에 있는 골리앗은 무엇인가요?
-
-3) 맨 아래 "수업 흐름" — 교사가 흘깃 보는 것이라 작게
-   도입 마음 열기 5분 / 말씀 융판으로 이야기 12분 /
-   활동 퀴즈 10분 / 적용 나의 골리앗 8분 / 기도 함께 5분</pre>
+- 태블릿 터치와 마우스 둘 다 되게 (포인터 이벤트로)
+- 끌고 있는 것이 다른 것 위로 올라오게
+- 화면 밖으로는 나가지 않게
+- 배경(하늘, 언덕, 풀밭)은 고정 — 인물만 움직이게
+- 아래에 "처음으로" 버튼을 넣어 원래 자리로 되돌릴 수 있게</pre>
       </div>
 
       <div class="mock">
-        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">Claude</span></div>
-        <div class="mock-body">
-          <div class="mock-chat">
-            <div class="mock-msg me"><span class="mock-type">공과 탭 안을 채워 줘…</span></div>
-            <div class="mock-msg">공과 탭에 카드 3개를 넣었습니다.</div>
-          </div>
+        <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">「그림 성경 이야기」 탭</span></div>
+        <div class="mock-body solo">
           <div class="mock-panel">
-            <div class="cap"><span>공과 탭</span><span class="mock-pill">Artifact</span></div>
-            <svg class="scene" viewBox="0 0 200 130" role="img" aria-label="공과 탭에 제목 카드, 수업 흐름 카드, 발견형 질문 카드가 차례로 나타나는 화면">
-              <rect width="200" height="130" rx="6" class="box"/>
-              <g class="s-in">
-                <rect x="10" y="8" width="180" height="34" rx="5" class="sky"/>
-                <rect x="18" y="15" width="96" height="7" rx="3" class="ink"/>
-                <rect x="18" y="28" width="140" height="5" rx="2.5" class="dim"/>
-                <rect x="18" y="36" width="60" height="3" rx="1.5" class="acc"/>
+            <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="엘라 골짜기 배경 위에서 작은 다윗을 손가락으로 끌어 큰 골리앗 앞으로 옮기는 모습">
+              <defs>
+                <linearGradient id="w6sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#CFE3F5"/><stop offset="1" stop-color="#EAF2FA"/>
+                </linearGradient>
+              </defs>
+              <rect width="320" height="150" rx="6" fill="url(#w6sky)"/>
+              <circle cx="278" cy="28" r="13" fill="#F7E3A8"/>
+              <path d="M0 76 Q60 52 120 70 T240 66 T320 72 V150 H0Z" fill="#C3B98E"/>
+              <path d="M0 104 Q90 92 180 102 T320 98 V150 H0Z" fill="#8E9A5E"/>
+
+              <!-- 장막 · 나무 -->
+              <path d="M44 62 L60 100 L28 100 Z" fill="#C7A57A"/>
+              <g><rect x="272" y="82" width="5" height="18" rx="2" fill="#7A5C3A"/><circle cx="274" cy="78" r="12" fill="#5E7F43"/></g>
+
+              <!-- 골리앗 (큼) -->
+              <g transform="translate(210,60)">
+                <ellipse cx="0" cy="46" rx="17" ry="4" fill="rgba(0,0,0,.16)"/>
+                <path d="M-12 45 L-7 16 L7 16 L12 45 Z" fill="#6E6257"/>
+                <rect x="-10" y="6" width="20" height="16" rx="5" fill="#8A7C6D"/>
+                <circle cx="0" cy="-2" r="9" fill="#D9B48F"/>
+                <path d="M-9 -5 Q0 -14 9 -5 L9 -8 Q0 -13 -9 -8Z" fill="#4A4038"/>
+                <path d="M11 14 L20 -6" stroke="#7A6A55" stroke-width="3" stroke-linecap="round"/>
               </g>
-              <g class="s-in2">
-                <rect x="10" y="48" width="180" height="36" rx="5" fill="var(--bg-soft)"/>
-                <circle cx="22" cy="58" r="4" class="acc"/><rect x="31" y="55" width="70" height="5" rx="2.5" class="ink"/>
-                <circle cx="22" cy="70" r="4" class="acc"/><rect x="31" y="67" width="86" height="5" rx="2.5" class="ink"/>
-                <circle cx="22" cy="80" r="4" class="acc"/><rect x="31" y="77" width="56" height="5" rx="2.5" class="ink"/>
-                <rect x="168" y="55" width="14" height="4" rx="2" class="dim"/>
-                <rect x="164" y="67" width="18" height="4" rx="2" class="dim"/>
-                <rect x="168" y="77" width="14" height="4" rx="2" class="dim"/>
+
+              <!-- 다윗 (작음) — 끌려서 이동 -->
+              <g class="s5-figure" transform="translate(96,80)">
+                <ellipse cx="0" cy="26" rx="10" ry="3" fill="rgba(0,0,0,.16)"/>
+                <path d="M-6 25 L-3 10 L3 10 L6 25 Z" fill="#5B7FA8"/>
+                <rect x="-5" y="4" width="10" height="9" rx="3.5" fill="#7A9CC4"/>
+                <circle cx="0" cy="-1" r="5" fill="#E8C39A"/>
+                <path d="M-5 -3 Q0 -9 5 -3 Q3 -6 0 -6.5 Q-3 -6 -5 -3Z" fill="#6B4A2A"/>
               </g>
-              <g class="s-in3">
-                <rect x="10" y="90" width="180" height="32" rx="5" fill="var(--bg-soft)"/>
-                <rect x="18" y="96" width="164" height="10" rx="4" fill="var(--bg-card)"/>
-                <rect x="24" y="99" width="4" height="4" rx="2" class="acc"/>
-                <rect x="33" y="99" width="120" height="4" rx="2" class="ink"/>
-                <rect x="18" y="108" width="164" height="10" rx="4" fill="var(--bg-card)"/>
-                <rect x="24" y="111" width="4" height="4" rx="2" class="acc"/>
-                <rect x="33" y="111" width="96" height="4" rx="2" class="ink"/>
+
+              <!-- 손가락 -->
+              <g class="s5-hand" transform="translate(96,80)">
+                <circle cx="10" cy="12" r="11" fill="var(--accent)" opacity=".22"/>
+                <circle cx="10" cy="12" r="5" fill="var(--accent)" opacity=".55"/>
               </g>
+
+              <!-- 양 · 물맷돌 -->
+              <g transform="translate(56,118)">
+                <ellipse cx="0" cy="2" rx="10" ry="7" fill="#F4F1EA"/>
+                <circle cx="-8" cy="-2" r="4" fill="#4A4238"/>
+              </g>
+              <ellipse cx="140" cy="124" rx="5" ry="4" fill="#9AA0A6"/>
             </svg>
           </div>
-          <div class="mock-cursor" style="--cx1:24%;--cy1:74%;--cx2:70%;--cy2:44%">
-            <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 1l11 6-5 1.4L5.6 14z" fill="#fff" stroke="#2C3E50" stroke-width="1.3" stroke-linejoin="round"/></svg>
-          </div>
         </div>
       </div>
-      <p class="mock-cap">제목 카드 → 수업 흐름 → 발견형 질문 순으로 쌓입니다</p>
+      <p class="mock-cap">작은 다윗을 큰 골리앗 앞으로 — 크기 차이가 그대로 메시지가 됩니다</p>
     </li>
 
     <li>
-      <h3>수업하듯 소리 내어 읽어 봅니다</h3>
+      <h3>태블릿에서 직접 만져 봅니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        화면을 보며 실제로 읽어 보세요. 걸리는 곳이 바로 고칠 곳입니다.
+        마우스로는 잘 되는데 손가락으로는 안 되는 경우가 있습니다. <b>반드시 실제 태블릿에서</b> 확인하세요.
       </p>
-      <div class="prompt">
-        <div class="prompt-head">
-          <span class="lbl">자주 쓰는 수정 요청</span>
-          <button class="copy" type="button">복사</button>
-        </div>
-<pre>질문 글씨가 작아. 한 단계 더 크게 해 줘.
-성경 구절 카드를 눈에 더 잘 띄게 해 줘.
-수업 흐름에서 지금 하는 단계를 눌러 표시할 수 있게 해 줘.</pre>
+      <div class="callout warn">
+        <div class="t">손가락으로 끌면 화면이 같이 스크롤되면</div>
+        이렇게 말하세요 — <b>“융판 위에서는 손가락으로 끌 때 화면이 스크롤되지 않게 해 줘 (touch-action: none)”</b>
       </div>
     </li>
 
     <li>
-      <h3>내려받아 다시 올립니다</h3>
-      <div class="where">Artifact 내려받기 → GitHub 저장소 → <span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span> → <span class="ui-key">Commit changes</span></div>
-      <p style="color:var(--text-dim);font-size:.92rem;margin-top:.6rem">
-        파일 이름은 지난주와 <b>똑같이</b> <span class="ui-key">index.html</span>. 덮어써집니다.
-        1분 뒤 내 주소를 새로고침하면 바뀌어 있습니다.
+      <h3>링크로 남기고 파일도 보관합니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        Artifact 칸 위쪽의 공유(Share)로 <b>링크</b>를 만들어 과제로 냅니다.
+        그리고 내려받기로 <span class="ui-key">index.html</span>을 <b>내 컴퓨터에도</b> 저장하세요 — 7주에 이 파일을 씁니다.
       </p>
-      <div class="callout">
-        <div class="t">매주 이 네 단계</div>
-        고친다 → 내려받는다 → 올린다 → 새로고침. 9주까지 계속 반복합니다.
-      </div>
+      <div class="where">Artifact → 공유(Share) → 링크 복사 &nbsp;·&nbsp; Artifact → 내려받기 → <span class="ui-key">index.html</span> 보관</div>
+      <p style="color:var(--text-dim);font-size:.92rem;margin-top:.6rem">
+        만든 링크를 <b>태블릿에서</b> 열어 손가락으로 직접 끌어 보세요.
+      </p>
     </li>
 
   </ol>
@@ -963,14 +978,14 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="hw">
     <div class="hw-title">
       <span class="badge">과제</span>
-      <h2>우리 반 공과 한 편</h2>
+      <h2>우리 반 융판</h2>
     </div>
 
     <dl>
       <dt>제출물</dt>
-      <dd>공과 탭이 채워진 내 페이지 주소 (지난주와 같은 주소)</dd>
+      <dd>「그림 성경 이야기」 탭이 작동하는 <b>Artifact 공유 링크</b></dd>
       <dt>제출 방법</dt>
-      <dd>게시판에 주소와 함께 <b>이번 달에 실제로 가르칠 본문</b>을 한 줄 적어 주세요.</dd>
+      <dd>게시판에 링크와 함께 <b>“이 융판으로 어느 장면을 보여 줄 것인지”</b> 한 줄 적어 주세요.</dd>
       <dt>마감</dt>
       <dd>다음 수업 전까지</dd>
     </dl>
@@ -978,17 +993,13 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <div>
       <h3>스스로 점검</h3>
       <ul class="checklist">
-        <li><label><input type="checkbox" id="w5c1"><span>공과 탭에 제목·본문·흐름·질문이 다 있다</span></label></li>
-        <li><label><input type="checkbox" id="w5c2"><span>질문이 <b>답이 하나로 정해지지 않는</b> 질문이다</span></label></li>
-        <li><label><input type="checkbox" id="w5c3"><span>태블릿에서 글씨가 읽을 만큼 크다</span></label></li>
-        <li><label><input type="checkbox" id="w5c4"><span>다시 올려서 내 주소에 반영됐다</span></label></li>
-        <li><label><input type="checkbox" id="w5c5"><span>이번 <span class="ui-key">index.html</span>도 내 컴퓨터에 보관했다</span></label></li>
+        <li><label><input type="checkbox" id="w5c1"><span><b>태블릿에서</b> 손가락으로 끌어 옮겨진다</span></label></li>
+        <li><label><input type="checkbox" id="w5c2"><span>끌 때 화면이 같이 밀리지 않는다</span></label></li>
+        <li><label><input type="checkbox" id="w5c3"><span>골리앗이 다윗보다 확실히 크다</span></label></li>
+        <li><label><input type="checkbox" id="w5c4"><span>「처음으로」를 누르면 제자리로 돌아온다</span></label></li>
+        <li><label><input type="checkbox" id="w5c5"><span>공과 탭이 그대로 남아 있다</span></label></li>
+        <li><label><input type="checkbox" id="w5c6"><span>이번 <span class="ui-key">index.html</span>도 보관했다</span></label></li>
       </ul>
-    </div>
-
-    <div class="callout tip">
-      <div class="t">평가에서 보는 것</div>
-      화면 완성도보다 <b>질문의 질</b>을 봅니다. 아이가 스스로 말하게 하는 질문인가요?
     </div>
   </div>
 </section>
@@ -999,34 +1010,32 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
   <div class="faq">
     <details>
-      <summary>공과를 고쳤더니 다른 탭이 사라졌습니다</summary>
+      <summary>그림이 이상하게 나옵니다</summary>
       <div class="a">
-        <p>Claude가 코드를 다시 쓰면서 빠뜨린 것입니다. 이렇게 말하세요 —
-        <b>“다른 탭은 그대로 두고 공과 탭 안만 바꿔 줘”</b>.</p>
-        <p>그래도 안 되면 보관해 둔 지난주 파일을 붙여넣고 다시 시작하면 됩니다.
-        <b>매주 파일을 저장해 두는 이유가 이것입니다.</b></p>
+        <p>한 번에 완벽하게 나오지 않습니다. 하나씩 짚어 말하면 됩니다 —
+        <b>“골리앗을 1.5배 크게”</b>, <b>“다윗 옷을 파란색으로”</b>, <b>“나무를 오른쪽으로 옮겨”</b>.</p>
+        <p>사람보다 <b>도형에 가깝게</b> 부탁하면 훨씬 안정적입니다.</p>
       </div>
     </details>
     <details>
-      <summary>성경 구절이 실제 성경과 다릅니다</summary>
+      <summary>마우스로는 되는데 태블릿에서는 안 끌립니다</summary>
       <div class="a">
-        <p>AI는 구절을 <b>비슷하게 지어낼 수 있습니다.</b> 화면에 올리기 전에 반드시 성경을 펴서 대조하세요.</p>
-        <p>이건 사소한 문제가 아닙니다. 아이들에게 가르치는 내용입니다.
-        구절·인명·숫자는 <b>매번 사람이 확인</b>합니다.</p>
+        <p>터치 처리가 빠진 것입니다. <b>“마우스와 터치 둘 다 되도록 포인터 이벤트로 다시 만들어 줘”</b>라고 하세요.</p>
       </div>
     </details>
     <details>
-      <summary>다른 본문으로 만들고 싶습니다</summary>
+      <summary>인물이 화면 밖으로 나가 사라집니다</summary>
       <div class="a">
-        <p>괜찮습니다. 프롬프트의 제목·구절·질문만 우리 반 본문으로 바꾸면 구조는 그대로 작동합니다.</p>
-        <p>다만 6~9주 예시는 다윗과 골리앗으로 이어집니다. 융판 그림을 만들 때 본문에 맞게 바꿔 달라고 하면 됩니다.</p>
+        <p><b>“인물이 화면 밖으로 나가지 않도록 가장자리에서 멈추게 해 줘”</b>라고 하면 됩니다.
+        급하면 「처음으로」를 눌러 되돌리세요.</p>
       </div>
     </details>
     <details>
-      <summary>대화가 길어져서 Claude가 느립니다</summary>
+      <summary>수업 중에 아이가 다 흐트러뜨렸습니다</summary>
       <div class="a">
-        <p>대화가 쌓이면 그렇습니다. 새 대화를 열고 보관해 둔 <span class="ui-key">index.html</span> 코드를 붙여넣은 뒤
-        “이 코드에 이어서 작업해 줘”로 시작하세요. 무료 사용량도 아낄 수 있습니다.</p>
+        <p>그게 좋은 수업입니다. 「처음으로」를 누르면 3초 만에 정리됩니다.</p>
+        <p>참고로 <b>융판 배치는 저장되지 않습니다.</b> 매 시간 새로 꾸미는 것이 정상입니다 —
+        출석·달란트와 달리 남길 이유가 없는 정보이기 때문입니다.</p>
       </div>
     </details>
   </div>
@@ -1035,8 +1044,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <nav class="block wrap">
   <div class="pager">
-    <a class="prev" href="4.html"><span class="k">이전</span><span class="v">4주 · 첫 페이지 만들고 인터넷에 올리기</span></a>
-    <a class="next" href="6.html"><span class="k">다음</span><span class="v">6주 · 융판 블록</span></a>
+    <a class="prev" href="4.html"><span class="k">이전</span><span class="v">4주 · 첫 페이지 만들기</span></a>
+    <a class="next" href="6.html"><span class="k">다음</span><span class="v">6주 · 활동 블록</span></a>
   </div>
 </nav>
 

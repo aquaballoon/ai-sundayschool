@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -1034,7 +1050,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <div class="callout tip">
       <div class="t">②번을 넣은 이유</div>
       일부러 성경 구절이나 숫자를 물어보고 <b>성경으로 확인해 보세요.</b>
-      AI가 틀리는 것을 직접 한 번 보고 나면, 7주에 퀴즈를 검증하라는 말이 다르게 들립니다.
+      AI가 틀리는 것을 직접 한 번 보고 나면, 6주에 퀴즈를 검증하라는 말이 다르게 들립니다.
     </div>
 
     <div>
@@ -1106,7 +1122,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <nav class="block wrap">
   <div class="pager">
     <a class="prev" href="2.html"><span class="k">이전</span><span class="v">2주 · 디지털 예방 교육</span></a>
-    <a class="next" href="4.html"><span class="k">다음</span><span class="v">4주 · 첫 페이지 만들고 인터넷에 올리기</span></a>
+    <a class="next" href="4.html"><span class="k">다음</span><span class="v">4주 · 첫 페이지 만들기</span></a>
   </div>
 </nav>
 

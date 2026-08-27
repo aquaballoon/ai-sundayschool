@@ -464,6 +464,22 @@ td.num, th.num { font-family: var(--ff-mono); white-space: nowrap; }
 @keyframes s7spark { 0%, 50% { opacity: 0; transform: scale(.3); } 62% { opacity: 1; transform: scale(1); }
                      85%, 100% { opacity: 0; transform: scale(1.5); } }
 
+/* 6주 — 카드 두 장이 뒤집히고 짝이 맞는다.
+   멈춰 있을 때가 곧 마지막 프레임이라, 안 움직여도 그림이 읽힌다 */
+.scene .sm-back { opacity: 0; }
+.is-playing .sm-back { animation: smback 5s ease-out infinite; }
+.is-playing .sm-face { animation: smface 5s ease-out infinite; }
+.is-playing .sm-ok   { animation: smok 5s ease-out infinite;
+                       transform-box: fill-box; transform-origin: center; }
+.is-playing .sm-late { animation-delay: .55s; }
+@keyframes smback { 0%, 16% { opacity: 1; } 28%, 100% { opacity: 0; } }
+@keyframes smface { 0%, 16% { opacity: 0; } 28%, 100% { opacity: 1; } }
+@keyframes smok {
+  0%, 54% { opacity: 0; transform: scale(.5); }
+  66% { opacity: 1; transform: scale(1.12); }
+  74%, 100% { opacity: 1; transform: scale(1); }
+}
+
 /* 8주 — 출석 도장 쾅, 달란트 코인 적립 */
 .is-playing .s8-stamp { animation: s8stamp 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 .is-playing .s8-coin  { animation: s8coin 5s ease-out infinite; }
@@ -780,7 +796,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="aim" style="margin-top:2rem">
     <div class="txt">
       <div class="k">10주 뒤 완성품</div>
-      <div class="v">공과 · 융판 · 퀴즈 · 출석 · 달란트가 한 화면에 들어간 수업 도구. 지금 열어서 만져 보세요.</div>
+      <div class="v">공과 · 그림 이야기 · 퀴즈 · 출석 · 달란트가 한 화면에 들어간 수업 도구. 지금 열어서 만져 보세요.</div>
     </div>
     <a class="go" href="demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
@@ -790,7 +806,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <span class="h-eyebrow">10주 일정</span>
   <h2 style="margin-bottom:.4rem">한 주에 한 칸씩</h2>
   <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.3rem">
-    1~3주는 읽고 토론합니다. 4주에 인터넷에 올리고, 5~9주에 매주 기능을 하나씩 더합니다.
+    1~3주는 읽고 토론합니다. 4~6주에 Claude로 만들고, 7주에 인터넷에 올린 뒤, 8~9주에 기록이 남는 기능을 더합니다.
   </p>
 
   <div class="wk-grid">
@@ -817,31 +833,31 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     </a>
 
     <a class="wk-card" href="week/4.html" style="--wk:#5EAFFF">
-      <span class="n">4주 <span class="kind">따라하기</span></span>
-      <span class="t">첫 페이지 만들고 인터넷에 올리기</span>
-      <span class="d">이 과정의 고비입니다. 뼈대를 만들고 GitHub Pages에 올려 내 주소를 받습니다.</span>
-      <span class="hwline"><b>과제</b> 내 페이지 주소</span>
+      <span class="n">4주 <span class="kind">＋ 틀과 공과</span></span>
+      <span class="t">첫 페이지 만들기 — 탭 틀과 오늘의 공과</span>
+      <span class="d">처음으로 화면이 나옵니다. 탭 여섯 개를 세우고 첫 칸에 이번 주 공과를 채웁니다.</span>
+      <span class="hwline"><b>과제</b> 공과가 채워진 Artifact 링크</span>
     </a>
 
     <a class="wk-card" href="week/5.html" style="--wk:#3FBF7F">
-      <span class="n">5주 <span class="kind">＋ 공과</span></span>
-      <span class="t">공과 블록 — 오늘의 공과를 화면에</span>
-      <span class="d">본문과 수업 흐름, 그리고 아이가 스스로 말하게 하는 질문을 넣습니다.</span>
-      <span class="hwline"><b>과제</b> 공과 탭이 채워진 주소</span>
+      <span class="n">5주 <span class="kind">＋ 그림 이야기</span></span>
+      <span class="t">그림 성경 이야기 — 끌어 옮기는 융판</span>
+      <span class="d">종이 융판이 하던 일을 태블릿이 합니다. 아이가 직접 인물을 옮깁니다.</span>
+      <span class="hwline"><b>과제</b> 그림 이야기가 되는 링크</span>
     </a>
 
     <a class="wk-card" href="week/6.html" style="--wk:#E09419">
-      <span class="n">6주 <span class="kind">＋ 융판</span></span>
-      <span class="t">융판 블록 — 끌어 옮기는 성경 이야기</span>
-      <span class="d">손가락으로 인물을 옮기며 이야기합니다. 그림은 AI가 도형으로 그립니다.</span>
-      <span class="hwline"><b>과제</b> 융판이 작동하는 주소</span>
+      <span class="n">6주 <span class="kind">＋ 퀴즈·게임</span></span>
+      <span class="t">활동 블록 — 퀴즈와 짝 맞추기</span>
+      <span class="d">눌러서 푸는 성경 퀴즈와, 카드를 뒤집는 짝 맞추기. 이기는 아이가 매주 달라집니다.</span>
+      <span class="hwline"><b>과제</b> 게임 두 개 링크 + 근거 절 목록</span>
     </a>
 
     <a class="wk-card" href="week/7.html" style="--wk:#E85BA0">
-      <span class="n">7주 <span class="kind">＋ 퀴즈</span></span>
-      <span class="t">퀴즈 블록 — 눌러서 푸는 성경 퀴즈</span>
-      <span class="d">정답·오답 표시와 해설이 나옵니다. AI가 만든 문제를 성경으로 검증합니다.</span>
-      <span class="hwline"><b>과제</b> 퀴즈 + 근거 절 목록</span>
+      <span class="n">7주 <span class="kind">인터넷에 올리기</span></span>
+      <span class="t">인터넷에 올리기 — 나만의 주소 만들기</span>
+      <span class="d">이 과정의 고비입니다. GitHub Pages에 올려 학기 내내 쓸 내 주소를 받습니다.</span>
+      <span class="hwline"><b>과제</b> 내 GitHub Pages 주소</span>
     </a>
 
     <a class="wk-card" href="week/8.html" style="--wk:#8A6BE0">
@@ -890,7 +906,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <div class="card">
       <h3>GitHub 계정 <span style="font-weight:500;color:var(--text-faint);font-size:.8rem">무료</span></h3>
       <p style="font-size:.89rem;color:var(--text-dim)">
-        만든 페이지를 인터넷에 올리는 곳입니다. 4주에 함께 가입합니다.
+        만든 페이지를 인터넷에 올리는 곳입니다. 7주에 함께 가입합니다.
       </p>
     </div>
   </div>
