@@ -765,6 +765,31 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 }
 .skip:focus { left: 0; }
 
+/* ── 함께 나누기 — 매 주차를 닫는 토론 칸 ── */
+.talk {
+  background: var(--accent-tint); border: 1px solid var(--accent-line);
+  border-radius: 16px; padding: 1.15rem 1.25rem;
+}
+.talk-lede { font-size: 0.95rem; color: var(--text-dim); margin: 0 0 0.9rem; line-height: 1.6; }
+.talk-q { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; counter-reset: tq; }
+.talk-q li {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  font-size: 1rem; line-height: 1.6; color: var(--text);
+}
+.talk-q li > span { flex: 1; min-width: 0; }   /* <b> 가 flex 항목이 되지 않게 */
+.talk-q li::before {
+  counter-increment: tq; content: counter(tq);
+  flex: none; width: 1.65rem; height: 1.65rem; border-radius: 50%;
+  background: var(--accent-ink); color: #fff;
+  font-weight: 700; font-size: 0.82rem; font-family: var(--ff-num, inherit);
+  display: grid; place-items: center; margin-top: 0.12rem;
+}
+.talk-note {
+  margin: 1rem 0 0; padding-top: 0.85rem; border-top: 1px solid var(--accent-line);
+  font-size: 0.86rem; color: var(--text-dim); line-height: 1.6;
+}
+@media print { .talk { break-inside: avoid; } }
+
 </style>
 </head>
 <body>
@@ -824,6 +849,11 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   실습 중 질문은 언제든 수업 게시판에 올려 주시면 바로 답변합니다.</p>
 
   <p>온라인 줌 미팅은 강의로 진행되지 않고, <b>토론과 실습 과제물 발표</b>의 시간이 됩니다.</p>
+
+  <p>주차별 페이지는 모두 같은 순서로 되어 있습니다 —
+  <b>문제 제기 → 강의안 → 따라하기 → 과제 → 막히면 → 함께 나누기.</b>
+  맨 끝의 <b>「함께 나누기」</b>에 그 주의 토론 질문이 있습니다.
+  게시판에 답을 올리고 다른 분 글에 댓글을 달아 주시면, 줌 모임에서 그 이야기로 시작합니다.</p>
 
   <div class="table-wrap">
     <table>

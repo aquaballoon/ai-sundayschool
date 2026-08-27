@@ -765,6 +765,31 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 }
 .skip:focus { left: 0; }
 
+/* ── 함께 나누기 — 매 주차를 닫는 토론 칸 ── */
+.talk {
+  background: var(--accent-tint); border: 1px solid var(--accent-line);
+  border-radius: 16px; padding: 1.15rem 1.25rem;
+}
+.talk-lede { font-size: 0.95rem; color: var(--text-dim); margin: 0 0 0.9rem; line-height: 1.6; }
+.talk-q { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; counter-reset: tq; }
+.talk-q li {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  font-size: 1rem; line-height: 1.6; color: var(--text);
+}
+.talk-q li > span { flex: 1; min-width: 0; }   /* <b> 가 flex 항목이 되지 않게 */
+.talk-q li::before {
+  counter-increment: tq; content: counter(tq);
+  flex: none; width: 1.65rem; height: 1.65rem; border-radius: 50%;
+  background: var(--accent-ink); color: #fff;
+  font-weight: 700; font-size: 0.82rem; font-family: var(--ff-num, inherit);
+  display: grid; place-items: center; margin-top: 0.12rem;
+}
+.talk-note {
+  margin: 1rem 0 0; padding-top: 0.85rem; border-top: 1px solid var(--accent-line);
+  font-size: 0.86rem; color: var(--text-dim); line-height: 1.6;
+}
+@media print { .talk { break-inside: avoid; } }
+
 </style>
 </head>
 <body>
@@ -1152,6 +1177,20 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
+<section class="block wrap">
+  <span class="h-eyebrow">함께 나누기</span>
+  <h2 style="margin-bottom:.4rem">반에서 나눌 이야기</h2>
+  <div class="talk">
+    <p class="talk-lede">오늘이 이 과정에서 가장 IT다운 주였습니다. 막힌 자리를 숨기지 말고 나눠 주세요 — 대개 같은 데서 막힙니다.</p>
+    <ol class="talk-q">
+      <li><span>어느 단계에서 가장 막히셨나요? 그 단계를 <b>옆 사람에게 한 문장으로</b> 설명한다면?</span></li>
+      <li><span>내 페이지가 인터넷에 공개되었습니다. 우리 교회에서 「올려도 되는 것 / 올리면 안 되는 것」의 <b>경계를 어디에</b> 그으시겠습니까?</span></li>
+      <li><span>이 주소를 부모님께 알려 드릴까요? 알려 드린다면 <b>무엇이라고 설명</b>하시겠습니까?</span></li>
+    </ol>
+    <p class="talk-note">정답이 있는 질문이 아닙니다. 게시판에 답을 올리고,
+      <b>다른 분 글에 한 개 이상 댓글</b>을 달아 주세요. 줌 모임에서 이어서 이야기합니다.</p>
+  </div>
+</section>
 
 <nav class="block wrap">
   <div class="pager">

@@ -765,6 +765,31 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 }
 .skip:focus { left: 0; }
 
+/* ── 함께 나누기 — 매 주차를 닫는 토론 칸 ── */
+.talk {
+  background: var(--accent-tint); border: 1px solid var(--accent-line);
+  border-radius: 16px; padding: 1.15rem 1.25rem;
+}
+.talk-lede { font-size: 0.95rem; color: var(--text-dim); margin: 0 0 0.9rem; line-height: 1.6; }
+.talk-q { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; counter-reset: tq; }
+.talk-q li {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  font-size: 1rem; line-height: 1.6; color: var(--text);
+}
+.talk-q li > span { flex: 1; min-width: 0; }   /* <b> 가 flex 항목이 되지 않게 */
+.talk-q li::before {
+  counter-increment: tq; content: counter(tq);
+  flex: none; width: 1.65rem; height: 1.65rem; border-radius: 50%;
+  background: var(--accent-ink); color: #fff;
+  font-weight: 700; font-size: 0.82rem; font-family: var(--ff-num, inherit);
+  display: grid; place-items: center; margin-top: 0.12rem;
+}
+.talk-note {
+  margin: 1rem 0 0; padding-top: 0.85rem; border-top: 1px solid var(--accent-line);
+  font-size: 0.86rem; color: var(--text-dim); line-height: 1.6;
+}
+@media print { .talk { break-inside: avoid; } }
+
 </style>
 </head>
 <body>
@@ -818,7 +843,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 </section>
 
 <section class="block wrap prose">
-  <span class="h-eyebrow">강의안</span>
+  <span class="h-eyebrow">강의안 ①</span>
   <h2>그림은 AI가 그립니다. 다만 방식이 중요합니다</h2>
 
   <p>인물 그림을 만드는 방법은 두 가지입니다. <b>둘째를 씁니다.</b></p>
@@ -847,7 +872,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 </section>
 
 <section class="block wrap prose">
-  <span class="h-eyebrow">강의안</span>
+  <span class="h-eyebrow">강의안 ②</span>
   <h2>왜 「질문」이 화면에 있어야 하나요</h2>
   <p>공과 화면에 본문과 흐름만 있으면 결국 교사가 말하고 아이는 듣습니다. 예수님은 반대로 하셨습니다 — <b>물으셨습니다.</b></p>
 
@@ -1099,6 +1124,20 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
 </section>
 
+<section class="block wrap">
+  <span class="h-eyebrow">함께 나누기</span>
+  <h2 style="margin-bottom:.4rem">반에서 나눌 이야기</h2>
+  <div class="talk">
+    <p class="talk-lede">융판은 <b>누가 만지느냐</b>에 따라 완전히 다른 수업이 됩니다.</p>
+    <ol class="talk-q">
+      <li><span>인물을 <b>교사가 옮길 때</b>와 <b>아이가 옮길 때</b>, 수업은 어떻게 달라질까요?</span></li>
+      <li><span>이야기를 마친 뒤에 질문을 여는 순서로 만들었습니다. 우리 반은 <b>질문을 먼저</b> 여는 편이 나을까요?</span></li>
+      <li><span>화면으로 보여 주면 아이가 스스로 <b>상상하지 않게</b> 되지는 않을까요? 어디까지 보여 주고 어디부터 상상하게 둘까요?</span></li>
+    </ol>
+    <p class="talk-note">정답이 있는 질문이 아닙니다. 게시판에 답을 올리고,
+      <b>다른 분 글에 한 개 이상 댓글</b>을 달아 주세요. 줌 모임에서 이어서 이야기합니다.</p>
+  </div>
+</section>
 
 <nav class="block wrap">
   <div class="pager">
