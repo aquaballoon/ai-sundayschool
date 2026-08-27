@@ -100,17 +100,116 @@ input[type=text],input[type=number],textarea{
 }
 textarea{min-height:5rem; line-height:1.5; resize:vertical}
 
-/* ── ① 공과 ── */
+/* ── ① 공과 — 아이들에게 보여 주는 화면이라 크고 따뜻하게 ── */
 .lesson-head{
-  background:linear-gradient(140deg,var(--acc-soft),var(--card));
-  border:1px solid #CFE1F3; border-radius:var(--r); padding:1.15rem 1.2rem;
+  position:relative; overflow:hidden;
+  background:linear-gradient(150deg,#FDF0DC 0%,#F6E3EF 55%,#E4EEF9 100%);
+  border:1px solid #EBDCCB; border-radius:22px;
+  padding:clamp(1.4rem,4vw,2.4rem) clamp(1.2rem,4vw,2.2rem);
+  text-align:center;
 }
-.lesson-head h2{font-size:1.3rem; letter-spacing:-.02em}
+.lesson-head::before,.lesson-head::after{
+  content:""; position:absolute; border-radius:50%; opacity:.5;
+}
+.lesson-head::before{width:170px;height:170px;background:#FBD9A8;top:-70px;right:-50px}
+.lesson-head::after{width:130px;height:130px;background:#CFE3F5;bottom:-60px;left:-40px}
+.lesson-head > *{position:relative}
+.lesson-head .eyebrow{color:#B5763A}
+.lesson-head h2{
+  font-size:clamp(1.75rem,6vw,2.6rem); letter-spacing:-.03em; line-height:1.2;
+  margin-top:.5rem;
+}
+.lesson-head .sub{
+  font-size:clamp(1rem,3vw,1.3rem); font-weight:700; color:#B5763A; margin-top:.25rem;
+}
+.lesson-head .hook{
+  font-size:clamp(.95rem,2.6vw,1.1rem); color:var(--dim); margin-top:.9rem;
+}
 .verse{
-  margin-top:.7rem; padding:.7rem .9rem; background:var(--card);
-  border-left:3px solid var(--acc); border-radius:0 8px 8px 0; font-size:.92rem;
+  margin:1.4rem auto 0; max-width:34rem;
+  padding:1.1rem 1.3rem; background:rgba(255,255,255,.72);
+  border-radius:16px; font-size:clamp(.95rem,2.7vw,1.15rem);
+  line-height:1.8; font-weight:500;
 }
-.verse cite{display:block; margin-top:.35rem; font-style:normal; font-size:.8rem; color:var(--faint)}
+.verse .q-mark{color:#D9A45E; font-weight:700}
+.verse cite{
+  display:block; margin-top:.6rem; font-style:normal;
+  font-size:.82rem; color:var(--faint); font-weight:600;
+}
+
+/* 발견형 질문 — 수업을 여는 자리라 맨 위에 둔다 */
+.ask{background:var(--card)}
+.ask-head{margin-bottom:.9rem}
+.ask-head h2{font-size:1.15rem}
+.qcards{display:grid; gap:.6rem; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.qc{
+  --qc:#3E7BC4;
+  display:flex; gap:.8rem; align-items:flex-start; text-align:left;
+  background:var(--card); border:2px solid var(--line);
+  border-radius:16px; padding:1rem 1.1rem; width:100%;
+  font-family:inherit; color:var(--ink); line-height:1.55;
+  transition:border-color .15s, transform .12s, box-shadow .15s;
+}
+.qc:hover{border-color:var(--qc); transform:translateY(-2px);
+  box-shadow:0 8px 20px -12px color-mix(in oklab,var(--qc) 70%,transparent)}
+.qc .qn{
+  flex:none; width:2rem; height:2rem; border-radius:50%;
+  background:var(--qc); color:#fff; font-weight:700; font-size:.95rem;
+  display:grid; place-items:center;
+}
+.qc .qt{font-size:1rem; font-weight:600}
+@media (prefers-reduced-motion:reduce){.qc:hover{transform:none}}
+
+/* 접히는 교사용 칸 — 아이들 앞에서는 닫아 둔다 */
+.fold{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  margin-top:.85rem; overflow:hidden;
+}
+.fold > summary{
+  cursor:pointer; list-style:none; display:flex; align-items:center; gap:.6rem;
+  padding:.95rem 1.15rem; min-height:3rem;
+}
+.fold > summary::-webkit-details-marker{display:none}
+.fold > summary::before{
+  content:"▸"; color:var(--faint); font-size:.9rem; transition:transform .15s;
+}
+.fold[open] > summary::before{transform:rotate(90deg)}
+.fold-t{font-weight:700; font-size:.95rem}
+.fold-m{font-size:.78rem; color:var(--faint); margin-left:auto}
+.fold[open] > summary{border-bottom:1px solid var(--line)}
+.fold .flow{padding:.4rem 1.15rem 1rem}
+@media (prefers-reduced-motion:reduce){.fold > summary::before{transition:none}}
+
+/* 질문 크게 보기 */
+.stage{
+  position:fixed; inset:0; z-index:60;
+  background:linear-gradient(150deg,#FDF3E5 0%,#F7E6F1 55%,#E6F0FA 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:clamp(1.5rem,6vw,4rem); gap:2rem;
+  animation:stageIn .22s ease-out;
+}
+.stage[hidden]{display:none}
+@keyframes stageIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.stage{animation:none}}
+.stage-in{text-align:center; max-width:44rem}
+.stage-n{
+  display:inline-grid; place-items:center;
+  width:3.4rem; height:3.4rem; border-radius:50%;
+  background:var(--qc,#3E7BC4); color:#fff;
+  font-size:1.5rem; font-weight:700;
+}
+.stage-q{
+  margin-top:1.6rem; font-size:clamp(1.5rem,5.5vw,2.8rem);
+  font-weight:700; line-height:1.45; letter-spacing:-.02em; color:var(--ink);
+}
+.stage-close{
+  position:absolute; top:1rem; right:1rem;
+  width:3rem; height:3rem; border-radius:50%;
+  border:1px solid var(--line2); background:rgba(255,255,255,.8);
+  font-size:1.1rem; color:var(--dim);
+}
+.stage-nav{display:flex; gap:.6rem}
+.stage-nav .btn{background:rgba(255,255,255,.85); min-width:7rem}
 .flow{list-style:none; padding:0; counter-reset:f}
 .flow li{
   counter-increment:f; display:flex; gap:.8rem; padding:.65rem 0;
@@ -146,34 +245,73 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 }
 .tray .btn.sm{background:var(--card)}
 
-/* ── ③ 퀴즈 ── */
-.q-num{font-size:.78rem; font-weight:700; color:var(--faint); letter-spacing:.08em}
-.q-text{font-size:1.08rem; font-weight:700; margin:.35rem 0 .9rem; line-height:1.5}
-.choices{display:grid; gap:.5rem}
+/* ── ③ 퀴즈 — 아이들이 보는 화면이라 크고 게임처럼 ── */
+.quiz-card{background:linear-gradient(160deg,#EEF4FB,var(--card) 55%); padding:clamp(1.1rem,3vw,1.7rem)}
+.q-top{display:flex; align-items:center; gap:.9rem; margin-bottom:1.1rem}
+.q-bar{display:flex; gap:.3rem; flex:1}
+.q-bar i{flex:1; height:8px; border-radius:100px; background:var(--sunk); transition:background .3s}
+.q-bar i.done{background:var(--ok)}
+.q-bar i.now{background:var(--acc)}
+.q-score{
+  flex:none; display:flex; align-items:center; gap:.3rem;
+  background:#FBF1D8; border:1px solid #EBD9A5; border-radius:100px;
+  padding:.28rem .8rem; font-weight:700; color:#A5761E;
+  font-variant-numeric:tabular-nums;
+}
+.q-score .star{color:#E8B93C}
+.q-score.up{animation:scorePop .4s ease-out}
+@keyframes scorePop{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+
+.q-num{font-size:.8rem; font-weight:700; color:var(--faint); letter-spacing:.08em}
+.q-text{
+  font-size:clamp(1.2rem,3.6vw,1.7rem); font-weight:700;
+  margin:.5rem 0 1.2rem; line-height:1.5; letter-spacing:-.02em;
+}
+.choices{display:grid; gap:.7rem}
 .choice{
-  text-align:left; border:1px solid var(--line2); background:var(--card);
-  border-radius:12px; padding:.8rem .95rem; font-size:.95rem; font-weight:500;
-  min-height:3rem; display:flex; align-items:center; gap:.7rem; width:100%;
+  text-align:left; border:2px solid var(--line2); background:var(--card);
+  border-radius:16px; padding:1rem 1.15rem;
+  font-size:clamp(1rem,2.8vw,1.2rem); font-weight:600;
+  min-height:3.6rem; display:flex; align-items:center; gap:.9rem; width:100%;
+  transition:transform .12s, border-color .15s, background .15s;
 }
-.choice:hover:not(:disabled){border-color:var(--acc); background:var(--acc-soft)}
+.choice:hover:not(:disabled){border-color:var(--acc); background:var(--acc-soft); transform:translateY(-2px)}
+.choice:active:not(:disabled){transform:scale(.98)}
 .choice .mk{
-  flex:none; width:1.75rem; height:1.75rem; border-radius:50%; display:grid; place-items:center;
-  background:var(--soft); color:var(--dim); font-weight:700; font-size:.95rem;
-  font-variant-numeric:tabular-nums; line-height:1;
+  flex:none; width:2.2rem; height:2.2rem; border-radius:50%; display:grid; place-items:center;
+  background:var(--soft); color:var(--dim); font-weight:700; font-size:1.05rem;
+  font-variant-numeric:tabular-nums; line-height:1; transition:background .2s;
 }
-.choice.right{background:var(--ok-soft); border-color:var(--ok); color:#1E6B48; font-weight:700}
+.choice.right{background:var(--ok-soft); border-color:var(--ok); color:#1E6B48; animation:rightPop .45s ease-out}
 .choice.right .mk{background:var(--ok); color:#fff}
-.choice.wrong{background:var(--no-soft); border-color:var(--no); color:#8E3B27}
+.choice.wrong{background:var(--no-soft); border-color:var(--no); color:#8E3B27; animation:shake .4s}
 .choice.wrong .mk{background:var(--no); color:#fff}
-.q-feed{
-  margin-top:.8rem; padding:.75rem .9rem; border-radius:10px;
-  background:var(--soft); font-size:.9rem; color:var(--dim);
+.choice.dim{opacity:.45}
+@keyframes rightPop{0%{transform:scale(1)}35%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}
+  40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){
+  .choice,.choice.right,.choice.wrong,.q-score.up{animation:none;transition:none}
+  .choice:hover:not(:disabled){transform:none}
 }
+.q-feed{
+  margin-top:1rem; padding:.95rem 1.1rem; border-radius:14px;
+  background:var(--soft); font-size:1rem; color:var(--ink); line-height:1.65;
+  animation:fadeUp .3s ease-out;
+}
+.q-feed b{color:var(--ok)}
 .q-feed[hidden]{display:none}
-.q-bar{display:flex; gap:.3rem; margin-bottom:.9rem}
-.q-bar i{flex:1; height:5px; border-radius:100px; background:var(--sunk)}
-.q-bar i.done{background:var(--acc)}
-.q-bar i.now{background:var(--ink)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.btn.big{font-size:1rem; padding:.75rem 1.4rem; min-height:3.1rem; border-radius:14px}
+
+/* 다 풀었을 때 */
+.q-done{text-align:center; padding:1.5rem 0}
+.q-done .medal{font-size:3.4rem; line-height:1; animation:rightPop .5s ease-out}
+.q-done h3{font-size:clamp(1.3rem,4vw,1.8rem); color:var(--ink); margin-top:.7rem}
+.q-done p{color:var(--dim); margin-top:.5rem; font-size:1rem}
+.q-done .tally{
+  display:inline-flex; gap:.3rem; margin-top:1rem; font-size:1.6rem;
+}
 
 /* ── ④⑤ 명단 공용 ── */
 .roster{list-style:none; padding:0}
@@ -194,6 +332,72 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 .seg button[aria-pressed="true"][data-v="present"]{background:var(--ok); border-color:var(--ok); color:#fff}
 .seg button[aria-pressed="true"][data-v="late"]{background:var(--warn); border-color:var(--warn); color:#fff}
 .seg button[aria-pressed="true"][data-v="absent"]{background:var(--no); border-color:var(--no); color:#fff}
+
+/* 출석 나무 — 아이가 자기 성장을 보는 화면 */
+.grow-card{background:linear-gradient(160deg,#F3F8EE,var(--card) 60%)}
+.grow{list-style:none; padding:0; display:grid; gap:.7rem}
+.grow li{
+  display:flex; align-items:center; gap:.8rem;
+  background:var(--card); border:1px solid var(--line);
+  border-radius:14px; padding:.7rem .9rem;
+}
+.grow .nm{font-size:1rem}
+.grow .bar{
+  flex:1; min-width:4rem; height:.85rem; border-radius:100px;
+  background:var(--sunk); overflow:hidden;
+}
+.grow .bar i{
+  display:block; height:100%; border-radius:100px;
+  background:linear-gradient(90deg,#8FC98F,#4E9E63);
+  transition:width .5s ease-out;
+}
+@media (prefers-reduced-motion:reduce){.grow .bar i{transition:none}}
+.grow .leaves{
+  flex:none; display:flex; gap:.15rem; font-size:1rem; line-height:1;
+  max-width:9rem; flex-wrap:wrap; justify-content:flex-end;
+}
+.grow .cnt{
+  flex:none; font-weight:700; font-size:.9rem; color:#3F7A46;
+  min-width:3.4rem; text-align:right; font-variant-numeric:tabular-nums;
+}
+.grow .none{font-size:.82rem; color:var(--faint); font-weight:500}
+@media (max-width:34rem){
+  .grow li{flex-wrap:wrap}
+  .grow .bar{order:3; flex-basis:100%; margin-top:.15rem}
+  .grow .leaves{max-width:none}
+}
+
+/* 달란트 — 메달이 쌓이는 것을 아이가 본다 */
+.tal-card{background:linear-gradient(160deg,#FBF3DE,var(--card) 60%)}
+.tal-row{
+  display:flex; align-items:center; gap:.8rem; flex-wrap:wrap;
+  background:var(--card); border:1px solid var(--line);
+  border-radius:14px; padding:.7rem .9rem;
+}
+.tal-row + .tal-row{margin-top:.6rem}
+.tal-row .nm{font-size:1rem; flex:none}
+.medals{
+  flex:1; min-width:6rem; display:flex; gap:.2rem; flex-wrap:wrap; align-items:center;
+}
+.medals .m{
+  width:1.35rem; height:1.35rem; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#FBE08A,#D9A32B 70%);
+  box-shadow:inset 0 -1px 2px rgba(0,0,0,.18);
+  animation:pop .28s ease-out;
+}
+.medals .m.big{
+  width:1.6rem; height:1.6rem;
+  background:radial-gradient(circle at 35% 30%,#FBF0C0,#C98F1E 70%);
+}
+.medals .more{font-size:.82rem; font-weight:700; color:#A5761E; margin-left:.2rem}
+.medals .zero{font-size:.82rem; color:var(--faint)}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.medals .m{animation:none}}
+.tal-count{
+  flex:none; font-weight:700; font-size:1.05rem; color:#A5761E;
+  min-width:3rem; text-align:right; font-variant-numeric:tabular-nums;
+}
+.tal-count small{font-size:.72rem; color:var(--faint); font-weight:600; margin-left:.1rem}
 
 .tal{display:flex; align-items:center; gap:.35rem; flex:none}
 .tal button{
@@ -268,17 +472,43 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
   <section class="panel" id="p-lesson">
     <div class="lesson-head">
       <span class="eyebrow">오늘의 공과</span>
-      <h2>다윗과 골리앗 — 하나님이 함께하시면</h2>
-      <p class="muted" style="margin-top:.4rem">키가 크고 힘이 센 사람이 이기는 걸까요? 다윗은 무엇을 믿고 나갔을까요?</p>
+      <h2>다윗과 골리앗</h2>
+      <p class="sub">하나님이 함께하시면</p>
+      <p class="hook">키가 크고 힘이 센 사람이 이기는 걸까요?</p>
       <div class="verse">
-        “너는 칼과 창과 단창으로 내게 나아오거니와 나는 만군의 여호와의 이름으로 네게 나아가노라”
+        <span class="q-mark">“</span>너는 칼과 창과 단창으로 내게 나아오거니와<br>
+        나는 <b>만군의 여호와의 이름으로</b> 네게 나아가노라<span class="q-mark">”</span>
         <cite>사무엘상 17장 45절</cite>
       </div>
     </div>
 
-    <div class="card">
-      <h2>수업 흐름</h2>
-      <p class="tiny" style="margin-bottom:.5rem">40분 기준</p>
+    <div class="card ask">
+      <div class="ask-head">
+        <h2>함께 생각해 볼까요?</h2>
+        <p class="tiny">질문을 누르면 <b>크게 펼쳐집니다.</b> 답을 알려 주지 말고 아이가 스스로 말하게 두세요.</p>
+      </div>
+      <div class="qcards" id="qCards">
+        <button class="qc" style="--qc:#E8853C">
+          <span class="qn">1</span>
+          <span class="qt">사울 왕은 다윗에게 갑옷을 입혔어요.<br>다윗은 왜 벗었을까요?</span>
+        </button>
+        <button class="qc" style="--qc:#3E9BC4">
+          <span class="qn">2</span>
+          <span class="qt">다윗이 시냇가에서 고른 것은 무엇이었나요?<br>왜 하필 그것이었을까요?</span>
+        </button>
+        <button class="qc" style="--qc:#7B5EA7">
+          <span class="qn">3</span>
+          <span class="qt">골리앗은 다윗을 보고 웃었어요.<br>그때 다윗의 마음은 어땠을까요?</span>
+        </button>
+        <button class="qc" style="--qc:#2E9E6B">
+          <span class="qn">4</span>
+          <span class="qt">여러분 앞에 있는<br>「골리앗」은 무엇인가요?</span>
+        </button>
+      </div>
+    </div>
+
+    <details class="fold">
+      <summary><span class="fold-t">수업 흐름</span><span class="fold-m">40분 · 교사용</span></summary>
       <ol class="flow">
         <li><div><b>도입 — 마음 열기</b><span>가장 무서웠던 순간을 이야기해 봅니다</span></div><span class="min">5분</span></li>
         <li><div><b>말씀 — 융판으로 이야기</b><span>융판 탭에서 인물을 옮기며 이야기를 들려줍니다</span></div><span class="min">12분</span></li>
@@ -286,19 +516,21 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
         <li><div><b>적용 — 나의 골리앗</b><span>내가 지금 무서워하는 것을 하나씩 말해 봅니다</span></div><span class="min">8분</span></li>
         <li><div><b>기도 — 함께</b><span>“하나님이 함께하십니다”를 고백하며 마칩니다</span></div><span class="min">5분</span></li>
       </ol>
-    </div>
-
-    <div class="card">
-      <h2>발견형 질문</h2>
-      <p class="tiny" style="margin-bottom:.6rem">답을 알려 주지 말고, 아이가 스스로 말하게 두세요</p>
-      <ul class="qlist">
-        <li><b>1</b>사울 왕은 다윗에게 갑옷을 입혔어요. 다윗은 왜 벗었을까요?</li>
-        <li><b>2</b>다윗이 시냇가에서 고른 것은 무엇이었나요? 왜 하필 그것이었을까요?</li>
-        <li><b>3</b>골리앗은 다윗을 보고 웃었어요. 그때 다윗의 마음은 어땠을까요?</li>
-        <li><b>4</b>여러분 앞에 있는 「골리앗」은 무엇인가요?</li>
-      </ul>
-    </div>
+    </details>
   </section>
+
+  <!-- 질문 크게 보기 — 아이들에게 보여 주는 화면 -->
+  <div class="stage" id="stage" hidden>
+    <button class="stage-close" id="stageClose" aria-label="닫기">✕</button>
+    <div class="stage-in">
+      <span class="stage-n" id="stageN">1</span>
+      <p class="stage-q" id="stageQ"></p>
+    </div>
+    <div class="stage-nav">
+      <button class="btn" id="stagePrev">← 이전</button>
+      <button class="btn" id="stageNext">다음 →</button>
+    </div>
+  </div>
 
   <!-- ② 융판 -->
   <section class="panel" id="p-board" hidden>
@@ -340,21 +572,21 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 
   <!-- ③ 퀴즈 -->
   <section class="panel" id="p-quiz" hidden>
-    <div class="card">
-      <div class="q-bar" id="qBar" aria-hidden="true"></div>
+    <div class="card quiz-card">
+      <div class="q-top">
+        <div class="q-bar" id="qBar" aria-hidden="true"></div>
+        <div class="q-score" id="qScore"><span class="star">★</span><b>0</b></div>
+      </div>
       <div id="qBox">
         <div class="q-num" id="qNum"></div>
         <div class="q-text" id="qText"></div>
         <div class="choices" id="qChoices"></div>
         <div class="q-feed" id="qFeed" hidden></div>
-        <div class="btn-row" style="margin-top:.9rem">
-          <button class="btn primary" id="qNext" hidden>다음 문제</button>
+        <div class="btn-row" style="margin-top:1rem">
+          <button class="btn primary big" id="qNext" hidden>다음 문제 →</button>
           <button class="btn ghost" id="qRestart" hidden>처음부터</button>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <p class="muted">맞힌 어린이에게 <b>달란트</b> 탭에서 바로 달란트를 줄 수 있습니다.</p>
     </div>
   </section>
 
@@ -376,15 +608,16 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
       </div>
     </div>
 
-    <div class="card">
-      <h3>누적 출석</h3>
-      <ul class="roster" id="attHist"></ul>
+    <div class="card grow-card">
+      <h2>우리 반 출석 나무</h2>
+      <p class="tiny" style="margin-bottom:1rem">올 때마다 잎이 하나씩 자랍니다. 아이들과 함께 보세요.</p>
+      <ul class="grow" id="attHist"></ul>
     </div>
   </section>
 
   <!-- ⑤ 달란트 -->
   <section class="panel" id="p-talent" hidden>
-    <div class="card">
+    <div class="card tal-card">
       <h2>달란트</h2>
       <p class="tiny" style="margin-bottom:.7rem">잘한 일에 달란트를 주세요. 숫자를 눌러 한 번에 여러 개 줄 수도 있습니다.</p>
       <div class="sum">
@@ -548,6 +781,49 @@ tabs.forEach(function(t){
     });
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   });
+});
+
+/* ══════════════════════════════════════════════════════════
+   ① 질문 크게 보기 — 아이들에게 보여 주는 화면
+   교사가 질문을 누르면 전체 화면으로 펼쳐진다. 앞뒤로 넘길 수 있고
+   ESC 나 ✕ 로 닫는다.
+   ══════════════════════════════════════════════════════════ */
+var qCards = Array.prototype.slice.call(document.querySelectorAll('.qc'));
+var stage = document.getElementById('stage');
+var stageQ = document.getElementById('stageQ');
+var stageN = document.getElementById('stageN');
+var stageAt = 0;
+
+function showQ(i) {
+  if (i < 0 || i >= qCards.length) return;
+  stageAt = i;
+  var c = qCards[i];
+  stageQ.innerHTML = c.querySelector('.qt').innerHTML;
+  stageN.textContent = c.querySelector('.qn').textContent;
+  stage.style.setProperty('--qc', c.style.getPropertyValue('--qc'));
+  stage.hidden = false;
+  document.body.style.overflow = 'hidden';
+  document.getElementById('stagePrev').disabled = (i === 0);
+  document.getElementById('stageNext').disabled = (i === qCards.length - 1);
+}
+function hideQ() {
+  stage.hidden = true;
+  document.body.style.overflow = '';
+  if (qCards[stageAt]) qCards[stageAt].focus();
+}
+
+qCards.forEach(function (c, i) {
+  c.addEventListener('click', function () { showQ(i); });
+});
+document.getElementById('stageClose').addEventListener('click', hideQ);
+document.getElementById('stagePrev').addEventListener('click', function () { showQ(stageAt - 1); });
+document.getElementById('stageNext').addEventListener('click', function () { showQ(stageAt + 1); });
+
+document.addEventListener('keydown', function (e) {
+  if (stage.hidden) return;
+  if (e.key === 'Escape') hideQ();
+  else if (e.key === 'ArrowLeft') showQ(stageAt - 1);
+  else if (e.key === 'ArrowRight') showQ(stageAt + 1);
 });
 
 /* ══════════════════════════════════════════════════════════
@@ -731,7 +1007,7 @@ var QUIZ = [
     why: '크기나 힘이 아니라, 하나님이 함께하시는 것이 이깁니다.' }
 ];
 
-var qi = 0, qAnswered = false;
+var qi = 0, qAnswered = false, qScore = 0, qMarks = [];
 var elQNum = document.getElementById('qNum'), elQText = document.getElementById('qText'),
     elQCh = document.getElementById('qChoices'), elQFeed = document.getElementById('qFeed'),
     elQNext = document.getElementById('qNext'), elQRe = document.getElementById('qRestart'),
@@ -748,13 +1024,24 @@ function drawBar(){
 }
 function renderQuiz(){
   if (qi >= QUIZ.length) {
+    var all = QUIZ.length;
+    var medal = qScore === all ? '🏆' : (qScore >= all - 1 ? '🥇' : (qScore >= all / 2 ? '🎉' : '🌱'));
+    var word  = qScore === all ? '다 맞혔어요!'
+              : qScore >= all - 1 ? '정말 잘했어요!'
+              : qScore >= all / 2 ? '잘했어요!' : '다음에 또 해 봐요';
     elQNum.textContent = '';
-    elQText.textContent = '다 풀었어요! 잘했습니다 👏';
-    elQCh.innerHTML = '';
-    elQFeed.hidden = false;
-    elQFeed.textContent = '맞힌 어린이에게 달란트 탭에서 달란트를 주세요.';
+    elQText.textContent = '';
+    elQFeed.hidden = true;
+    elQCh.innerHTML =
+      '<div class="q-done">' +
+      '<div class="medal">' + medal + '</div>' +
+      '<h3>' + word + '</h3>' +
+      '<p>' + all + '문제 중 <b>' + qScore + '개</b>를 맞혔어요</p>' +
+      '<div class="tally">' + qMarks.map(function(ok){ return ok ? '⭐' : '·'; }).join('') + '</div>' +
+      '</div>';
     elQNext.hidden = true; elQRe.hidden = false;
     drawBar();
+    if (qScore >= all / 2) celebrate();
     return;
   }
   var item = QUIZ[qi];
@@ -780,21 +1067,52 @@ function answer(idx, btn){
   qAnswered = true;
   var item = QUIZ[qi];
   var all = elQCh.querySelectorAll('.choice');
-  for (var i = 0; i < all.length; i++) all[i].disabled = true;
-  if (idx === item.a) {
+  var i;
+  for (i = 0; i < all.length; i++) all[i].disabled = true;
+
+  var ok = (idx === item.a);
+  qMarks[qi] = ok;
+  if (ok) {
     btn.classList.add('right');
+    qScore += 1;
+    bumpScore();
     celebrate();
   } else {
     btn.classList.add('wrong');
     all[item.a].classList.add('right');
   }
+  /* 고르지 않은 나머지는 흐리게 — 정답에 눈이 가게 */
+  for (i = 0; i < all.length; i++) {
+    if (!all[i].classList.contains('right') && !all[i].classList.contains('wrong')) {
+      all[i].classList.add('dim');
+    }
+  }
+
   elQFeed.hidden = false;
-  elQFeed.textContent = item.why;
+  elQFeed.textContent = '';
+  if (ok) {
+    var hit = document.createElement('b');
+    hit.textContent = '맞았어요! ';
+    elQFeed.appendChild(hit);
+  }
+  elQFeed.appendChild(document.createTextNode(item.why));
   elQNext.hidden = false;
-  elQNext.textContent = (qi === QUIZ.length - 1) ? '결과 보기' : '다음 문제';
+  elQNext.textContent = (qi === QUIZ.length - 1) ? '결과 보기 →' : '다음 문제 →';
+  elQNext.focus();
+}
+function bumpScore(){
+  var s = document.getElementById('qScore');
+  s.querySelector('b').textContent = qScore;
+  s.classList.remove('up');
+  void s.offsetWidth;          /* 애니메이션을 다시 태우기 위해 */
+  s.classList.add('up');
 }
 elQNext.addEventListener('click', function(){ qi += 1; renderQuiz(); });
-elQRe.addEventListener('click', function(){ qi = 0; renderQuiz(); });
+elQRe.addEventListener('click', function(){
+  qi = 0; qScore = 0; qMarks = [];
+  document.getElementById('qScore').querySelector('b').textContent = '0';
+  renderQuiz();
+});
 renderQuiz();
 
 /* ══════════════════════════════════════════════════════════
@@ -923,27 +1241,88 @@ var ANIMALS = {
     '<path d="M13 25q7 5 14 0" stroke="#3F7A36" stroke-width="1.8" fill="none" stroke-linecap="round"/>')
 };
 
-function esc(t){ return String(t).replace(/[&<>"]/g, function(c){
-  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+/* 성경 인물 — 그 사람을 기억하게 하는 물건으로 */
+var BIBLE = {
+  '요셉': face('#FBEEDC',   /* 채색옷 */
+    '<path d="M20 9l-9 5v17h18V14z" fill="#E8853C"/>' +
+    '<path d="M11 14h18v4H11z" fill="#3E9BC4"/><path d="M11 22h18v4H11z" fill="#2E9E6B"/>' +
+    '<path d="M11 30h18v2H11z" fill="#7B5EA7"/>' +
+    '<path d="M20 9l-4 3 4 4 4-4z" fill="#FBF6EC"/>'),
+  '한나': face('#EFE7F7',   /* 기도하는 손 */
+    '<path d="M20 8q-5 6-5 13 0 6 5 8 5-2 5-8 0-7-5-13z" fill="#C9B4E0"/>' +
+    '<path d="M20 12v16" stroke="#7B5EA7" stroke-width="1.6"/>' +
+    '<path d="M13 30h14" stroke="#7B5EA7" stroke-width="2.4" stroke-linecap="round"/>'),
+  '룻': face('#FBF2D8',    /* 밀 이삭 */
+    '<path d="M20 32V12" stroke="#B5872F" stroke-width="2.2" stroke-linecap="round"/>' +
+    '<path d="M20 13q5 1 5 5-5 0-5-5zM20 13q-5 1-5 5 5 0 5-5z" fill="#E8B93C"/>' +
+    '<path d="M20 20q5 1 5 5-5 0-5-5zM20 20q-5 1-5 5 5 0 5-5z" fill="#E8B93C"/>' +
+    '<path d="M20 9q2 2 0 4-2-2 0-4z" fill="#D9A32B"/>'),
+  '사무엘': face('#FBF0D5', /* 밤에 부르심을 들은 등불 */
+    '<path d="M20 8q6 5 6 11 0 6-6 6t-6-6q0-6 6-11z" fill="#F7D24C"/>' +
+    '<path d="M20 14q3 3 3 6t-3 4q-3-1-3-4t3-6z" fill="#FBF6EC"/>' +
+    '<rect x="14" y="26" width="12" height="6" rx="2" fill="#A5763C"/>'),
+  '미리암': face('#FBE4F0', /* 소고 */
+    '<circle cx="20" cy="21" r="11" fill="#F0A7CE"/>' +
+    '<circle cx="20" cy="21" r="7.5" fill="#FBF3F7"/>' +
+    '<circle cx="20" cy="10" r="2.4" fill="#E07BB0"/><circle cx="31" cy="21" r="2.4" fill="#E07BB0"/>' +
+    '<circle cx="20" cy="32" r="2.4" fill="#E07BB0"/><circle cx="9" cy="21" r="2.4" fill="#E07BB0"/>'),
+  '디모데': face('#E6EEF7', /* 편지 두루마리 */
+    '<rect x="10" y="13" width="20" height="15" rx="2" fill="#FBF8F2"/>' +
+    '<path d="M10 13v15M30 13v15" stroke="#8A96A8" stroke-width="2.6" stroke-linecap="round"/>' +
+    '<path d="M14 18h12M14 22h9" stroke="#5A6B7B" stroke-width="1.6" stroke-linecap="round"/>'),
+  '다윗': face('#E6F0F7',  /* 하프 */
+    '<path d="M14 30V13q10 1 12 12" stroke="#B5872F" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<path d="M17 28V16M20 29v-9M23 30v-6" stroke="#E8C060" stroke-width="1.6" stroke-linecap="round"/>' +
+    '<circle cx="14" cy="31" r="2.4" fill="#B5872F"/>'),
+  '노아': face('#DCEDF7',  /* 방주와 무지개 */
+    '<path d="M7 15q13-9 26 0" stroke="#E8853C" stroke-width="2.4" fill="none"/>' +
+    '<path d="M10 19q10-7 20 0" stroke="#F7D24C" stroke-width="2.2" fill="none"/>' +
+    '<path d="M9 25h22l-3 7H12z" fill="#A5763C"/>' +
+    '<rect x="17" y="20" width="7" height="5" rx="1" fill="#C9955A"/>'),
+  '모세': face('#EAE7E0',  /* 두 돌판 */
+    '<path d="M11 14q0-3 3-3h4q3 0 3 3v18H11z" fill="#B9B2A4"/>' +
+    '<path d="M22 14q0-3 3-3h3q3 0 3 3v18H22z" fill="#CFC8B9"/>' +
+    '<path d="M14 18h5M14 22h5M25 18h4M25 22h4" stroke="#6B655A" stroke-width="1.4" stroke-linecap="round"/>'),
+  '에스더': face('#F7E9DC', /* 왕관 */
+    '<path d="M9 27l2-13 5 6 4-8 4 8 5-6 2 13z" fill="#E8B93C"/>' +
+    '<rect x="9" y="27" width="22" height="4" rx="1.5" fill="#C99429"/>' +
+    '<circle cx="20" cy="20" r="2" fill="#E0567B"/>'),
+  '베드로': face('#DCEAF2', /* 열쇠 */
+    '<circle cx="15" cy="16" r="6" fill="none" stroke="#C9A23C" stroke-width="3"/>' +
+    '<path d="M19 20l10 11" stroke="#C9A23C" stroke-width="3" stroke-linecap="round"/>' +
+    '<path d="M25 25l4-3M28 29l4-3" stroke="#C9A23C" stroke-width="2.6" stroke-linecap="round"/>'),
+  '다니엘': face('#F2E7DC', /* 사자굴의 사자 발자국 */
+    '<ellipse cx="20" cy="25" rx="7" ry="6" fill="#C9955A"/>' +
+    '<circle cx="12" cy="16" r="3.2" fill="#C9955A"/><circle cx="17" cy="13" r="3.2" fill="#C9955A"/>' +
+    '<circle cx="23" cy="13" r="3.2" fill="#C9955A"/><circle cx="28" cy="16" r="3.2" fill="#C9955A"/>')
+};
+
+/* 어느 목록에도 없는 이름 — 숫자나 글자 대신 산뜻한 그림을 준다 */
+var SPARE = [
+  face('#FBF0D5','<path d="M20 8l3.6 7.6 8.4 1.1-6.1 5.8 1.5 8.3L20 26.8 12.6 30.8l1.5-8.3L8 16.7l8.4-1.1z" fill="#F0B93C"/>'),
+  face('#FBE3EC','<path d="M20 31S9 24 9 17.5A5.5 5.5 0 0 1 20 15a5.5 5.5 0 0 1 11 2.5C31 24 20 31 20 31z" fill="#EE7B9E"/>'),
+  face('#E4F3E2','<path d="M20 32V18" stroke="#5E9E63" stroke-width="2.4" stroke-linecap="round"/><path d="M20 20q-9-1-9-9 9-1 9 9zM20 22q9-1 9-8-9-1-9 8z" fill="#7CC061"/>'),
+  face('#E6EEF9','<circle cx="20" cy="20" r="7" fill="#F7D24C"/><path d="M20 6v4M20 30v4M6 20h4M30 20h4M10 10l3 3M27 27l3 3M30 10l-3 3M13 27l-3 3" stroke="#E8A93C" stroke-width="2.2" stroke-linecap="round"/>'),
+  face('#F3E9F7','<path d="M8 26q13-13 24 0" stroke="#EE7BB8" stroke-width="3" fill="none"/><path d="M12 28q8-8 16 0" stroke="#7B9EE0" stroke-width="3" fill="none"/>'),
+  face('#E9F2F7','<ellipse cx="20" cy="22" rx="12" ry="7" fill="#FBFBF8"/><ellipse cx="14" cy="19" rx="6" ry="5" fill="#FBFBF8"/><ellipse cx="26" cy="19" rx="7" ry="6" fill="#FBFBF8"/>')
+];
+
+/* 「1번 다람쥐」처럼 앞에 번호가 붙어 있어도 알아보게 한다 */
+function baseName(n) {
+  return String(n || '').replace(/^\s*\d+\s*번?[\s.·-]*/, '').trim();
+}
 
 function avatar(name) {
   var el = document.createElement('span');
   el.className = 'av';
   el.setAttribute('aria-hidden', 'true');
-  var n = String(name || '');
-  for (var k in ANIMALS) {
-    if (n.indexOf(k) > -1) { el.innerHTML = ANIMALS[k]; return el; }
-  }
-  /* 목록에 없는 이름 — 이름에서 뽑은 색으로 첫 글자 배지 */
+  var n = baseName(name) || String(name || '');
+  var k;
+  for (k in ANIMALS) if (n.indexOf(k) > -1) { el.innerHTML = ANIMALS[k]; return el; }
+  for (k in BIBLE)   if (n.indexOf(k) > -1) { el.innerHTML = BIBLE[k];   return el; }
   var h = 0;
-  for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % 360;
-  var ch = esc(n.trim().charAt(0) || '?');
-  el.innerHTML =
-    '<svg viewBox="0 0 40 40" role="img">' +
-    '<circle cx="20" cy="20" r="19" fill="hsl(' + h + ' 58% 87%)"/>' +
-    '<text x="20" y="26.5" text-anchor="middle" font-size="17" font-weight="700" ' +
-    'font-family="' + "'Noto Sans KR',sans-serif" + '" fill="hsl(' + h + ' 48% 33%)">' + ch + '</text>' +
-    '</svg>';
+  for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % 9973;
+  el.innerHTML = SPARE[h % SPARE.length];
   return el;
 }
 
@@ -992,22 +1371,52 @@ function renderAtt(){
   document.getElementById('sumW').textContent = Object.keys(weeks).length;
   document.getElementById('attDate').textContent = todayLabel() + ' 오늘';
 
+  /* 출석 나무 — 온 날마다 잎이 하나씩 자란다 */
   var hist = document.getElementById('attHist');
   hist.innerHTML = '';
   var total = Object.keys(weeks).length;
+
   state.students.forEach(function(st){
     var came = 0;
     for (var d in st.att) if (st.att[d] === 'present' || st.att[d] === 'late') came += 1;
+
     var li = document.createElement('li');
     li.appendChild(avatar(st.name));
-    var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = st.name;
-    var v = document.createElement('span');
-    v.className = 'tiny';
-    v.style.fontWeight = '700';
-    v.style.fontSize = '.88rem';
-    v.style.color = 'var(--dim)';
-    v.textContent = total ? (came + ' / ' + total + '주') : '기록 없음';
-    li.appendChild(nm); li.appendChild(v);
+
+    var nm = document.createElement('span');
+    nm.className = 'nm'; nm.textContent = st.name;
+    li.appendChild(nm);
+
+    if (!total) {
+      var none = document.createElement('span');
+      none.className = 'none'; none.textContent = '첫 출석을 기다려요';
+      li.appendChild(none);
+      hist.appendChild(li);
+      return;
+    }
+
+    /* 잎 — 너무 많아지면 줄이고 숫자로 보완한다 */
+    var leaves = document.createElement('span');
+    leaves.className = 'leaves';
+    leaves.setAttribute('aria-hidden', 'true');
+    var show = Math.min(came, 12);
+    for (var i = 0; i < show; i++) leaves.appendChild(document.createTextNode('🌿'));
+    if (came > 12) leaves.appendChild(document.createTextNode('…'));
+    li.appendChild(leaves);
+
+    var bar = document.createElement('span');
+    bar.className = 'bar';
+    var fill = document.createElement('i');
+    fill.style.width = Math.round(came / total * 100) + '%';
+    bar.appendChild(fill);
+    li.appendChild(bar);
+
+    var cnt = document.createElement('span');
+    cnt.className = 'cnt';
+    cnt.textContent = came + ' / ' + total;
+    li.appendChild(cnt);
+
+    li.setAttribute('aria-label', st.name + ' ' + total + '주 중 ' + came + '번 출석');
     hist.appendChild(li);
   });
 }
@@ -1035,19 +1444,45 @@ function renderTalent(){
     if (!top || (st.talents || 0) > (top.talents || 0)) top = st;
 
     var li = document.createElement('li');
+    li.className = 'tal-row';
     li.appendChild(avatar(st.name));
     var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = st.name;
+
+    /* 메달 — 10개까지는 하나씩, 그 뒤로는 큰 메달 하나가 10개를 뜻한다 */
+    var med = document.createElement('span');
+    med.className = 'medals';
+    med.setAttribute('aria-hidden', 'true');
+    var t = st.talents || 0;
+    if (!t) {
+      var z = document.createElement('span');
+      z.className = 'zero'; z.textContent = '아직 없어요';
+      med.appendChild(z);
+    } else {
+      var big = Math.floor(t / 10), rest = t % 10, made = 0;
+      for (var b = 0; b < big && made < 12; b++, made++) {
+        var mb = document.createElement('span'); mb.className = 'm big'; med.appendChild(mb);
+      }
+      for (var r = 0; r < rest && made < 12; r++, made++) {
+        var mm = document.createElement('span'); mm.className = 'm'; med.appendChild(mm);
+      }
+      if (big + rest > made) {
+        var more = document.createElement('span');
+        more.className = 'more'; more.textContent = '+' + (big + rest - made);
+        med.appendChild(more);
+      }
+    }
+
+    var cnt = document.createElement('span');
+    cnt.className = 'tal-count';
+    cnt.innerHTML = '<b></b><small>개</small>';
+    cnt.firstChild.textContent = t;
+
     var box = document.createElement('span'); box.className = 'tal';
 
     var minus = document.createElement('button');
     minus.textContent = '−';
     minus.setAttribute('aria-label', st.name + ' 달란트 하나 빼기');
     minus.addEventListener('click', function(){ giveTalent(st, -1); });
-
-    var amt = document.createElement('span');
-    amt.className = 'amt';
-    amt.innerHTML = '<b></b><small>개</small>';
-    amt.firstChild.textContent = (st.talents || 0);
 
     var plus = document.createElement('button');
     plus.className = 'plus'; plus.textContent = '+';
@@ -1060,8 +1495,9 @@ function renderTalent(){
     plus5.setAttribute('aria-label', st.name + ' 달란트 다섯 개 주기');
     plus5.addEventListener('click', function(){ giveTalent(st, 5); });
 
-    box.appendChild(minus); box.appendChild(amt); box.appendChild(plus); box.appendChild(plus5);
-    li.appendChild(nm); li.appendChild(box);
+    box.appendChild(minus); box.appendChild(plus); box.appendChild(plus5);
+    li.appendChild(nm); li.appendChild(med); li.appendChild(cnt); li.appendChild(box);
+    li.setAttribute('aria-label', st.name + ' 달란트 ' + t + '개');
     ul.appendChild(li);
   });
 
