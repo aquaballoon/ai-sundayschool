@@ -827,7 +827,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="aim">
     <div class="txt">
       <div class="k">오늘 완성됩니다</div>
-      <div class="v">완성품의 <b>달란트 탭</b>이 오늘의 목표입니다. 다섯 서랍이 다 차면 끝입니다.</div>
+      <div class="v">완성품의 <b>달란트 탭</b>이 오늘의 목표입니다. 마지막 서랍이 차면 끝입니다.</div>
     </div>
     <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
@@ -895,7 +895,9 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   · −는 1개 빼기, 0 아래로는 안 내려가게
 - 맨 위에 "반 전체 합계"와 "최다 받은 아이"
 - 달란트를 줄 때 화면 아래에 "다람쥐 +5 달란트" 같은 알림이 잠깐 뜨게
-- 출석과 똑같이 기록이 남게, 그리고 "달란트 처음부터" 버튼도 (두 번 눌러야 지워지게) (껐다 켜도 유지)
+- 출석과 똑같이 기록이 남게 (껐다 켜도 유지)
+- 맨 아래에 "달란트 처음부터" 버튼.
+  한 번 누르면 "정말 지울까요?"로 바뀌고 한 번 더 눌러야 지워지게
 - 버튼은 손가락으로 누르기 쉽게 크게</pre>
       </div>
 
@@ -1002,11 +1004,14 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 - 누르면 화면 안에 텍스트 상자가 열리고 이런 내용이 들어가게
 
   [우리 반 기록] 초등 3부 햇살반
-  · 다람쥐 — 출석 8/10주, 달란트 24개
-  · 사슴 — 출석 9/10주, 달란트 18개
+  · 다람쥐 — 출석 8번, 달란트 24개
+  · 사슴 — 출석 9번, 달란트 18개
   ...
 
-- 그 아래에 "이 기록 다시 불러오기" 버튼과 붙여넣는 칸도 만들어 줘
+- 사람이 읽는 줄 아래에, 되살릴 때 쓸 수 있게
+  기계가 읽는 한 줄(JSON)도 같이 넣어 줘
+- 그 아래에 "이 기록 다시 불러오기" 버튼과 붙여넣는 칸도 만들어 줘.
+  붙여넣은 것에서 그 한 줄을 찾아 기록을 되살리게
 - 클립보드 복사는 안 될 수도 있으니, 텍스트 상자에 그대로 보여 주고
   교사가 직접 복사할 수 있게 해 줘</pre>
       </div>
@@ -1021,7 +1026,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <h3>마지막으로 올리고, 일곱 탭을 모두 확인합니다</h3>
       <div class="where">Artifact 내려받기 → GitHub → <span class="ui-key">Upload files</span> → <span class="ui-key">Commit changes</span></div>
       <p style="color:var(--text-dim);font-size:.92rem;margin-top:.7rem">
-        내 주소를 열고 <b>공과 · 성경 이야기 · 퀴즈 · 짝 맞추기 · 출석 · 달란트 · 반 관리</b>를 차례로 눌러 봅니다. 여섯 개가 다 돌면 완성입니다.
+        내 주소를 열고 <b>공과 · 성경 이야기 · 퀴즈 · 짝 맞추기 · 출석 · 달란트 · 반 관리</b>를 차례로 눌러 봅니다. 일곱 개가 다 돌면 완성입니다.
       </p>
       <div class="callout">
         <div class="t">다음 단원에 다시 쓰려면</div>
@@ -1066,7 +1071,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
     <div class="callout tip">
       <div class="t">완벽하지 않아도 됩니다</div>
-      탭 중 넷만 되어도 발표하세요. <b>실제로 쓸 수 있는가</b>가 기준이지 완성도가 기준이 아닙니다.
+      일곱 탭 중 넷만 되어도 발표하세요. <b>실제로 쓸 수 있는가</b>가 기준이지 완성도가 기준이 아닙니다.
     </div>
   </div>
 </section>
@@ -1112,7 +1117,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <div class="a">
         <p>지금 구조로는 안 됩니다. 기록이 <b>교사 기기 안에만</b> 있어서, 부모가 같은 주소를 열어도 빈 화면이 보입니다.</p>
         <p>대신 <b>백업 텍스트를 카톡으로 보내는 것</b>이 가장 간단합니다 —
-        “다람쥐 출석 8/10주, 달란트 24개”처럼 사람이 읽는 부분만 잘라 보내면 됩니다.</p>
+        “다람쥐 출석 8번, 달란트 24개”처럼 사람이 읽는 부분만 잘라 보내면 됩니다.</p>
         <p>부모가 직접 들어와 보는 화면은 서버가 필요해서 이 과정의 범위를 넘습니다.
         아이 정보를 인터넷에 올리는 일이라 신중해야 할 부분이기도 합니다.</p>
       </div>
