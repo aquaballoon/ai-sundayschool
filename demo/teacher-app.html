@@ -355,6 +355,7 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 .mem-f{
   background:linear-gradient(150deg,#6E93D2,#3E63A8); color:#fff;
   font-size:clamp(1.8rem,8vw,3rem); font-weight:700;
+  font-variant-numeric:tabular-nums;
   box-shadow:inset 0 0 0 3px rgba(255,255,255,.22);
 }
 .mem-b{
@@ -365,7 +366,12 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 .mem-b .w{font-size:clamp(.82rem,3vw,1.2rem); font-weight:700; color:var(--ink)}
 .mem-c.done .mem-b{box-shadow:inset 0 0 0 2px var(--ok); background:var(--ok-soft); animation:memPop .42s ease-out}
 .mem-c.done{cursor:default}
-@keyframes memPop{0%{transform:scale(1)}45%{transform:scale(1.09)}100%{transform:scale(1)}}
+/* 뒤집힌 면이라 회전을 유지해야 한다 — scale 만 주면 카드가 잠깐 사라진다 */
+@keyframes memPop{
+  0%{transform:rotateY(180deg) scale(1)}
+  45%{transform:rotateY(180deg) scale(1.09)}
+  100%{transform:rotateY(180deg) scale(1)}
+}
 
 .mem-win{text-align:center; padding:1rem .5rem .3rem}
 .mem-win .m{font-size:2.6rem; line-height:1}
@@ -664,7 +670,8 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
   <section class="panel" id="p-match" hidden>
     <div class="card mem-card">
       <h2>짝 맞추기</h2>
-      <p class="muted">같은 그림 두 장을 찾아 뒤집으세요. 오늘 이야기에 나온 것들입니다.</p>
+      <p class="muted">같은 그림 두 장을 찾아 뒤집으세요. 카드마다 번호가 있으니
+        <b>“7번 뒤집어 주세요”</b>처럼 아이가 말하게 하면 좋습니다.</p>
 
       <div class="mem-top">
         <div class="mem-lv" id="memLv" role="group" aria-label="난이도 고르기">
@@ -1265,14 +1272,16 @@ function memDeal() {
   var grid = document.getElementById('memGrid');
   grid.innerHTML = '';
 
-  deck.forEach(function (c) {
+  /* 카드마다 자리 번호를 붙인다 — 아이가 「7번 뒤집어 주세요」라고 말할 수 있게 */
+  deck.forEach(function (c, idx) {
+    var no = idx + 1;
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'mem-c';
     b.setAttribute('aria-pressed', 'false');
-    b.setAttribute('aria-label', '카드 뒤집기');
+    b.setAttribute('aria-label', no + '번 카드 뒤집기');
 
     var inn = document.createElement('span'); inn.className = 'mem-in';
-    var f = document.createElement('span'); f.className = 'mem-f'; f.textContent = '?';
+    var f = document.createElement('span'); f.className = 'mem-f'; f.textContent = no;
     var bk = document.createElement('span'); bk.className = 'mem-b';
     var e = document.createElement('span'); e.className = 'e'; e.textContent = c.e;
     var w = document.createElement('span'); w.className = 'w'; w.textContent = c.w;

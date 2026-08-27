@@ -1018,6 +1018,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <h3>무엇으로 짝을 지을지 먼저 정합니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
         오늘 이야기에 <b>실제로 나온 것</b>만 고릅니다. 여섯 개면 충분합니다.
+        엎어진 카드에는 <b>자리 번호</b>를 써서, 아이가 손이 아니라 <b>말로</b> 고르게 합니다 —
+        “7번 뒤집어 주세요.” 한 명씩 차례가 오고, 반 전체가 함께 봅니다.
       </p>
       <div class="callout">
         <div class="t">다윗과 골리앗이라면</div>
@@ -1053,6 +1055,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
    - 위에 "쉬움 4쌍 / 보통 6쌍" 고르는 단추 (둘이면 충분하다)
    - 위에 "맞춘 짝"과 "뒤집기" 횟수 표시
    - "다시 섞기" 단추
+   - 엎어진 카드에는 물음표 대신 1, 2, 3… 자리 번호를 크게 써 줘
+     (아이가 "7번 뒤집어 주세요" 라고 말할 수 있게)
    - 카드가 뒤집힐 때 넘어가는 느낌이 나게
 
 4) 이 게임은 저장하지 않아도 돼. 매번 새로 시작하는 게 낫다</pre>
@@ -1063,22 +1067,22 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <div class="mock-body solo">
           <div class="mock-panel">
             <div class="cap"><span>짝 맞추기</span><span class="mock-pill">Artifact</span></div>
-            <svg class="scene" viewBox="0 0 200 130" role="img" aria-label="엎어진 카드 여덟 장 가운데 두 장이 뒤집혀 같은 그림이 나오고 초록 테두리로 짝이 맞았다고 표시되는 화면">
+            <svg class="scene" viewBox="0 0 200 130" role="img" aria-label="번호가 적힌 카드 여덟 장 가운데 두 장이 뒤집혀 같은 그림이 나오고 초록 테두리로 짝이 맞았다고 표시되는 화면">
               <rect width="200" height="130" rx="6" class="box"/>
 
               <rect x="14" y="14" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="31" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="31" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">1</text>
 
               <rect x="102" y="14" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="119" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="119" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">3</text>
               <rect x="146" y="14" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="163" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="163" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">4</text>
               <rect x="14" y="66" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="31" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="31" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">5</text>
               <rect x="58" y="66" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="75" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="75" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">6</text>
               <rect x="146" y="66" width="34" height="44" rx="5" fill="#5E86C9"/>
-              <text x="163" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">?</text>
+              <text x="163" y="93" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">8</text>
 
               <!-- 뒤집히는 두 장 -->
               <g class="sm-face">
@@ -1087,7 +1091,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
                 <rect x="65" y="46" width="20" height="4" rx="2" class="dim"/>
               </g>
               <rect x="58" y="14" width="34" height="44" rx="5" fill="#5E86C9" class="sm-back"/>
-              <text x="75" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700" class="sm-back">?</text>
+              <text x="75" y="41" font-size="12" fill="#fff" text-anchor="middle" font-weight="700" class="sm-back">2</text>
 
               <g class="sm-face sm-late">
                 <rect x="102" y="66" width="34" height="44" rx="5" class="box"/>
@@ -1105,7 +1109,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
           </div>
         </div>
       </div>
-      <p class="mock-cap">두 장을 뒤집어 같으면 초록 테두리가 켜지고 그대로 남습니다</p>
+      <p class="mock-cap">「2번」과 「7번」처럼 번호로 부르고, 같으면 초록 테두리가 켜진 채 남습니다</p>
     </li>
 
     <li>
