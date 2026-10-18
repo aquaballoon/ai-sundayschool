@@ -521,6 +521,27 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 .home-btn{flex:none; padding:.45rem .85rem}
 .home-btn[aria-current="page"]{background:var(--ink); color:#fff; border-color:var(--ink)}
 
+/* ── 홈 맨 위 생일 축하 ── */
+.bday{
+  display:flex; align-items:center; gap:.9rem; flex-wrap:wrap;
+  background:linear-gradient(135deg,#FFF1E0 0%,#FDE6EC 100%);
+  border:1px solid #F1CBB8; border-radius:22px; margin-bottom:.85rem;
+  padding:clamp(1rem,3.2vw,1.5rem);
+}
+.bday .cake{font-size:2.6rem; line-height:1; flex:none}
+.bday .txt{flex:1; min-width:12rem}
+.bday .eyebrow{color:#B5523A}
+.bday h3{font-size:clamp(1.25rem,4vw,1.7rem); letter-spacing:-.03em; line-height:1.3; margin:.15rem 0 .2rem}
+.bday p{color:var(--dim); font-size:.95rem; line-height:1.6}
+.bday .week{font-size:.86rem; margin-top:.35rem}
+.bday .btn{flex:none}
+#manageList li input.nm{width:auto; flex:1 1 8rem}
+.bd-pick{display:flex; gap:.3rem; flex:none}
+.bd-pick select{
+  font-family:inherit; font-size:.9rem; color:var(--ink); background:var(--card);
+  border:1px solid var(--line2); border-radius:10px; min-height:2.75rem; padding:0 .4rem;
+}
+
 /* ── 커리큘럼 홈 — 주소를 열면 처음 보이는 화면 ── */
 .home-head{
   background:linear-gradient(150deg,#EEF4FB 0%,#FBF4E6 100%);
@@ -622,6 +643,7 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 
   <!-- 커리큘럼 홈 — 탭이 아니다. 주소를 열면 처음 보이는 화면 -->
   <section class="panel" id="p-home">
+    <div class="bday" id="bdayBox" hidden></div>
     <div class="home-head">
       <span class="eyebrow">커리큘럼</span>
       <h2 id="homeName">우리 반 주일학교</h2>
@@ -861,7 +883,8 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
   <section class="panel" id="p-class" hidden>
     <div class="card">
       <h2>명단</h2>
-      <p class="tiny" style="margin-bottom:.7rem">아이 실명 대신 <b>가명</b>을 쓰세요 — 동물(다람쥐·사슴) 이나 성경 인물(요셉·한나) 이 좋습니다. <b>사진은 올리지 않습니다.</b></p>
+      <p class="tiny" style="margin-bottom:.7rem">아이 실명 대신 <b>가명</b>을 쓰세요 — 동물(다람쥐·사슴) 이나 성경 인물(요셉·한나) 이 좋습니다. <b>사진은 올리지 않습니다.</b>
+        생일은 <b>월·일만</b> 넣습니다 — 생일인 친구는 홈 맨 위에 축하 인사가 나옵니다.</p>
       <div class="btn-row" style="margin-bottom:.6rem">
         <input type="text" id="newName" placeholder="예: 다람쥐, 요셉" style="flex:1; min-width:9rem">
         <button class="btn primary" id="addStudent">추가</button>
@@ -960,6 +983,13 @@ state.students.forEach(function(st){
   }
   delete st.att;
 });
+
+/* 생일 예시 — 데모를 처음 열면 첫 친구의 생일을 오늘로 넣어 둔다 (한 번만) */
+function mmdd(d){ return String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+if (!state.bdaySample) {
+  if (!state.students.some(function(st){ return st.bday; })) state.students[0].bday = mmdd(new Date());
+  state.bdaySample = true;
+}
 
 var saveTimer = null;
 function persist(){
@@ -1162,6 +1192,7 @@ function scrollToToday(){
   var c = elHomeList.querySelector('.lc.today');
   if (!c) return;
   requestAnimationFrame(function(){
+    if (!document.getElementById('bdayBox').hidden) return;   // 생일 축하가 먼저 보이게
     try { c.scrollIntoView({ block: 'center' }); } catch (e) { c.scrollIntoView(); }
   });
 }
@@ -1963,10 +1994,77 @@ function renderManage(){
       state.students = state.students.filter(function(o){ return o !== st; });
       persist(); renderAll(); toast('명단에서 뺐습니다');
     });
-    li.appendChild(inp); li.appendChild(del);
+    li.appendChild(inp); li.appendChild(bdayPicker(st)); li.appendChild(del);
     ul.appendChild(li);
   });
 }
+/* 생일 — 월·일만. 연도는 받지 않는다 */
+function bdayPicker(st){
+  var box = document.createElement('span'); box.className = 'bd-pick';
+  var cur = (st.bday || '').split('-');
+  function sel(label, max, val, unit){
+    var el = document.createElement('select');
+    el.setAttribute('aria-label', st.name + ' 생일 ' + label);
+    var o = document.createElement('option'); o.value = ''; o.textContent = label; el.appendChild(o);
+    for (var i = 1; i <= max; i++) {
+      o = document.createElement('option');
+      o.value = String(i).padStart(2,'0'); o.textContent = i + unit;
+      if (o.value === val) o.selected = true;
+      el.appendChild(o);
+    }
+    return el;
+  }
+  var m = sel('월', 12, cur[0], '월'), d = sel('일', 31, cur[1], '일');
+  function save(){
+    st.bday = (m.value && d.value) ? m.value + '-' + d.value : '';
+    persist(); renderBday();
+    if (st.bday) toast(st.name + ' 생일을 저장했습니다');
+  }
+  m.addEventListener('change', save); d.addEventListener('change', save);
+  box.appendChild(m); box.appendChild(d);
+  return box;
+}
+
+/* 홈 맨 위 — 오늘 생일인 친구, 이번 주(주일~토요일) 생일인 친구 */
+function josa(w, a, b){
+  var c = w.charCodeAt(w.length - 1);
+  if (c < 0xAC00 || c > 0xD7A3) return w + b;
+  return w + (((c - 0xAC00) % 28) ? a : b);
+}
+function renderBday(){
+  var box = document.getElementById('bdayBox');
+  var now = new Date(), today = mmdd(now);
+  var sun = new Date(now); sun.setDate(now.getDate() - now.getDay());
+  var week = [];
+  for (var i = 0; i < 7; i++) { var x = new Date(sun); x.setDate(sun.getDate() + i); week.push(mmdd(x)); }
+  var todays = state.students.filter(function(st){ return st.bday === today; });
+  var weeks  = state.students.filter(function(st){ return st.bday && st.bday !== today && week.indexOf(st.bday) > -1; });
+  if (!todays.length && !weeks.length) { box.hidden = true; box.innerHTML = ''; return; }
+  function nm(st){ return avatarChar(st) + ' ' + st.name; }
+  var html = '<span class="cake" aria-hidden="true">🎂</span><div class="txt">';
+  if (todays.length) {
+    var names = todays.map(function(st){ return st.name; }).join(', ');
+    html += '<span class="eyebrow">오늘의 친구</span>' +
+            '<h3>' + escapeHtml(todays.map(nm).join(' · ')) + ', 생일 축하해요!</h3>' +
+            '<p>하나님이 ' + escapeHtml(josa(names, '을', '를')) + ' 이 세상에 보내 주셔서 정말 기뻐요. 우리 모두 축하해 줘요!</p>';
+  } else {
+    html += '<span class="eyebrow">이번 주 생일</span><h3>이번 주에 생일인 친구가 있어요</h3>';
+  }
+  if (weeks.length) {
+    html += '<p class="week">이번 주 생일 · ' + escapeHtml(weeks.map(function(st){
+      var p = st.bday.split('-'); return st.name + ' (' + (+p[0]) + '월 ' + (+p[1]) + '일)';
+    }).join(', ')) + '</p>';
+  }
+  html += '</div>';
+  if (todays.length) html += '<button type="button" class="btn primary" id="bdayCheer">함께 축하하기 🎉</button>';
+  box.innerHTML = html;
+  box.hidden = false;
+  var b = document.getElementById('bdayCheer');
+  if (b) b.addEventListener('click', function(){ celebrate(); toast('생일 축하해요! 🎂'); });
+}
+function escapeHtml(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function avatarChar(st){ var a = avatar(st); return a.textContent || ''; }
+
 document.getElementById('addStudent').addEventListener('click', addNew);
 document.getElementById('newName').addEventListener('keydown', function(e){
   if (e.key === 'Enter') addNew();
@@ -1992,7 +2090,7 @@ function renderHeader(){
   document.getElementById('className').value = state.className;
   document.getElementById('homeName').textContent = state.className;
 }
-function renderAll(){ renderHeader(); renderAtt(); renderTalent(); renderManage(); }
+function renderAll(){ renderHeader(); renderAtt(); renderTalent(); renderManage(); renderBday(); }
 renderAll();
 
 })();

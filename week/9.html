@@ -823,7 +823,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <li>기록을 백업하고 되살릴 수 있다</li>
     <li>다음 단원으로 이 도구를 재사용한다</li>
   </ul>
-  <p style="margin-top:.8rem;font-size:.88rem;color:var(--text-dim)">더 해 보고 싶은 분은 맨 아래 <a href="#extra">엑스트라</a>를 보세요 — 선택입니다.</p>
+  <p style="margin-top:.8rem;font-size:.88rem;color:var(--text-dim)">더 해 보고 싶은 분은 맨 아래 엑스트라를 보세요 — <a href="#extra">① 달란트·명단을 Supabase로</a> · <a href="#extra-bday">② 생일 넣고 홈에서 축하하기</a>. 둘 다 선택입니다.</p>
 </section>
 
 <section class="block wrap">
@@ -1131,7 +1131,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 <section class="block wrap extra" id="extra">
   <span class="h-eyebrow">더 해 보기 · 선택</span>
-  <h2 style="margin-bottom:.6rem">엑스트라 — 달란트와 반 명단도 Supabase로</h2>
+  <h2 style="margin-bottom:.6rem">엑스트라 1 — 달란트와 반 명단도 Supabase로</h2>
   <div class="extra-note">
     <b>안 해도 됩니다.</b> 수료와 상관없고, 과제 점검에도 들어가지 않습니다.
     이번 주 기본 과제를 마치고 <b>여유가 있고 더 해 보고 싶을 때만</b> 해 보세요.
@@ -1243,6 +1243,113 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <li><label><input type="checkbox" id="w9x1"><span>Table Editor에 달란트 표와 반 명단 표가 생겼다</span></label></li>
       <li><label><input type="checkbox" id="w9x2"><span>한 기기에서 바꾼 이름과 달란트가 다른 기기에도 보였다</span></label></li>
       <li><label><input type="checkbox" id="w9x3"><span>학기 기록 꺼내기로 백업도 한 번 해 두었다</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block wrap extra" id="extra-bday">
+  <span class="h-eyebrow">더 해 보기 · 선택</span>
+  <h2 style="margin-bottom:.6rem">엑스트라 2 — 생일을 넣고, 홈에서 축하하기</h2>
+  <div class="extra-note">
+    <b>안 해도 됩니다.</b> 수료와 상관없고, 과제 점검에도 들어가지 않습니다.
+    이번 주 기본 과제를 마치고 <b>여유가 있고 더 해 보고 싶을 때만</b> 해 보세요.
+    MCP도 Supabase도 <b>필요 없습니다</b> — 무료 계정으로 됩니다.
+  </div>
+
+  <div class="prose">
+    <p>반 관리에 <b>생일</b> 칸을 더합니다. 그러면 생일인 친구가 있는 주일에 화면 맨 위에
+      <b>「오늘의 친구 — 생일 축하해요!」</b>가 크게 나옵니다. 아이 이름을 한 번 더 불러 줄 기회입니다.</p>
+    <p>주일학교는 일주일에 한 번 모이니, 오늘이 생일인 친구뿐 아니라 <b>이번 주(주일~토요일)에 생일인 친구</b>도 함께 보여 줍니다.
+      10주에 커리큘럼 홈을 만들면 이 축하 인사는 <b>홈 맨 위</b>에 나옵니다.</p>
+    <p><a href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 예시</a>를 열면 홈 맨 위에서 볼 수 있습니다 —
+      예시로 첫 친구의 생일을 오늘로 넣어 두었습니다.</p>
+  </div>
+
+  <div class="callout warn" style="margin-top:1rem">
+    <div class="t">생일도 아이 정보입니다 — 두 가지만 지키세요</div>
+    ① <b>월·일만</b> 넣습니다. 태어난 해는 넣지 않습니다.<br>
+    ② 생일은 <b>프롬프트에 적지 말고</b>, 다 만든 뒤 <b>반 관리 화면에서</b> 고릅니다.
+    프롬프트에 적은 것은 코드에 그대로 들어가 주소를 아는 누구나 볼 수 있지만, 화면에서 고른 것은 그 기기(또는 Supabase)에만 저장됩니다.
+  </div>
+
+  <ol class="steps" style="margin-top:1.8rem">
+
+    <li>
+      <h3>반 관리에 생일 칸을 더합니다</h3>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 1단계</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>"반 관리" 탭의 명단에 생일 칸을 더해 줘.
+- 이름 옆에 생일을 고르는 칸: "월"과 "일" 두 개 (태어난 해는 받지 마)
+- 손가락으로 고르기 쉽게 크게
+- 고르면 바로 저장되게. 출석·달란트 기록처럼 껐다 켜도 남게
+- 저장할 때 쓰는 키 이름과 지금 있는 기록은 절대 바꾸지 마
+- 다른 탭은 건드리지 마</pre>
+      </div>
+    </li>
+
+    <li>
+      <h3>생일인 친구가 맨 위에 나오게 합니다</h3>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 2단계</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>생일 축하 칸을 만들어 줘.
+- 화면 맨 위(탭 위)에 크게. 커리큘럼 홈이 있으면 홈 맨 위에
+- 오늘이 생일인 친구가 있으면:
+  🎂 그림, "오늘의 친구", 가명과 그 친구 그림,
+  "다람쥐, 생일 축하해요!" 처럼 큰 글씨,
+  그 아래 "하나님이 다람쥐를 이 세상에 보내 주셔서 정말 기뻐요.
+  우리 모두 축하해 줘요!" 같은 따뜻한 한 줄
+  (이름 뒤의 을/를은 받침에 맞게)
+- "함께 축하하기" 단추를 누르면 색종이 축하 효과
+- 이번 주(주일~토요일)에 생일인 친구는 아래에 작게
+  "이번 주 생일 · 사슴 (10월 21일)" 처럼
+- 생일인 친구가 없으면 이 칸은 아예 보이지 않게
+- 따뜻한 살구색·분홍색 바탕, 화면 글자는 전부 한국어로</pre>
+      </div>
+    </li>
+
+    <li>
+      <h3>오늘 날짜로 시험해 봅니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        내려받아 GitHub에 올린 뒤(7주와 같습니다), 반 관리에서 한 친구의 생일을 <b>오늘 날짜</b>로 골라 보세요.
+        맨 위에 축하 인사가 나오면 성공입니다. 확인했으면 <b>진짜 생일로 다시</b> 바꿔 둡니다.</p>
+    </li>
+
+    <li>
+      <h3>Supabase 엑스트라를 했다면 — 생일도 함께 옮깁니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">위 엑스트라 1을 마쳤다면, 같은 대화에서 이렇게 부탁하면 모든 기기에서 같은 생일이 보입니다.
+        하지 않았다면 이 단계는 건너뛰세요.</p>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 선택</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>Supabase의 반 명단 표에 생일 칸을 하나 더해 줘 (월-일만, 예: 10-18).
+반 관리에서 고른 생일이 Supabase에 저장되고, 다른 기기에서도 보이게 해 줘.
+Supabase가 안 될 때는 지금처럼 기기에 저장하고, 다른 탭은 건드리지 마.
+무엇을 바꾸는지 먼저 쉬운 말로 설명하고 허락을 받아 줘.</pre>
+      </div>
+    </li>
+
+  </ol>
+
+  <div class="callout tip" style="margin-top:1.4rem">
+    <div class="t">수업에서 이렇게 써 보세요</div>
+    예배를 마치고 분반공부를 시작할 때 홈을 열어 두면, 생일인 친구가 있는 주일에는 저절로 축하 인사가 뜹니다.
+    「함께 축하하기」를 누르고 반 전체가 생일 축하 노래를 불러 주세요. 그 친구를 위해 한 문장 기도해 주면 더 좋습니다.
+  </div>
+
+  <div style="margin-top:1.6rem">
+    <h3 style="margin-bottom:.6rem">해 봤다면 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 선택</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" id="w9x4"><span>반 관리에서 생일(월·일)을 고를 수 있다</span></label></li>
+      <li><label><input type="checkbox" id="w9x5"><span>오늘 날짜로 바꿔 보니 맨 위에 축하 인사가 나왔다</span></label></li>
+      <li><label><input type="checkbox" id="w9x6"><span>생일을 프롬프트가 아니라 화면에서 넣었다</span></label></li>
     </ul>
   </div>
 </section>
