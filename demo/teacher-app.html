@@ -516,21 +516,106 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
   .roster li{flex-wrap:wrap}
   .nm{flex-basis:100%}
 }
+
+/* ── 머리의 「홈」 단추 ── */
+.home-btn{flex:none; padding:.45rem .85rem}
+.home-btn[aria-current="page"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+/* ── 커리큘럼 홈 — 주소를 열면 처음 보이는 화면 ── */
+.home-head{
+  background:linear-gradient(150deg,#EEF4FB 0%,#FBF4E6 100%);
+  border:1px solid var(--line); border-radius:22px;
+  padding:clamp(1.1rem,3.5vw,1.8rem);
+}
+.home-head h2{font-size:clamp(1.4rem,4.5vw,2rem); letter-spacing:-.03em; line-height:1.25; margin-top:.25rem}
+.home-head .muted{margin-top:.3rem}
+.view-btns{display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.9rem}
+.view-btns button{
+  border:1px solid var(--line2); background:var(--card); color:var(--dim);
+  border-radius:999px; padding:.5rem 1.15rem; min-height:2.75rem;
+  font-size:.92rem; font-weight:700;
+}
+.view-btns button[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:#fff}
+.home-note{margin:.9rem .2rem .2rem}
+.th-group + .th-group{margin-top:1.3rem}
+.th-title{display:flex; align-items:center; gap:.5rem; font-size:1rem; font-weight:700; margin:1.1rem .2rem .6rem}
+.th-title .cnt{font-size:.78rem; color:var(--faint); font-weight:600}
+.lcards{display:grid; gap:.65rem; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); margin-top:.9rem}
+.th-group .lcards{margin-top:0}
+.lc{
+  --th:var(--acc);
+  position:relative; text-align:left; width:100%;
+  background:var(--card); border:1px solid var(--line); border-left:5px solid var(--th);
+  border-radius:14px; padding:.85rem 1rem .9rem; min-height:6.4rem;
+  font-family:inherit; color:var(--ink); line-height:1.45;
+  display:flex; flex-direction:column; gap:.2rem;
+  transition:transform .12s, box-shadow .15s;
+}
+.lc:hover{transform:translateY(-2px); box-shadow:0 8px 20px -14px rgba(44,62,80,.5)}
+.lc.past{opacity:.72}
+.lc.today{border-color:var(--th); border-left-width:5px; box-shadow:0 0 0 3px var(--acc-soft)}
+.lc .d{font-size:.78rem; font-weight:700; color:var(--faint); font-variant-numeric:tabular-nums}
+.lc .t{font-size:1.08rem; font-weight:700; letter-spacing:-.02em}
+.lc .r{font-size:.84rem; color:var(--dim)}
+.lc .tag{
+  align-self:flex-start; margin-top:.35rem;
+  font-size:.74rem; font-weight:700; padding:.18rem .6rem; border-radius:999px;
+}
+.lc .now{
+  position:absolute; top:.7rem; right:.8rem;
+  background:var(--no); color:#fff; font-size:.74rem; font-weight:700;
+  padding:.16rem .6rem; border-radius:999px;
+}
+.th-promise{--th:var(--warn)} .th-promise .tag{background:var(--warn-soft); color:#8A5A12}
+.th-courage{--th:var(--acc)}  .th-courage .tag{background:var(--acc-soft);  color:#2A5E9C}
+.th-love{--th:var(--no)}      .th-love .tag{background:var(--no-soft);      color:#8E3B27}
+.th-feast{--th:var(--ok)}     .th-feast .tag{background:var(--ok-soft);     color:#1E6B48}
+.th-dot{width:.75rem; height:.75rem; border-radius:50%; background:var(--th); flex:none}
+@media (prefers-reduced-motion:reduce){.lc{transition:none} .lc:hover{transform:none}}
+
+/* 공과 — 아직 수업 흐름을 채우지 않은 과 */
+.lesson-later{
+  margin-top:.85rem; padding:.9rem 1.1rem; border-radius:var(--r);
+  border:1.5px dashed var(--line2); background:var(--soft);
+  color:var(--dim); font-size:.92rem; text-align:center;
+}
+
+/* ── 찬양 ── */
+.song-intro{margin-bottom:.85rem}
+.songs{display:grid; gap:.85rem; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
+.song{
+  background:linear-gradient(160deg,#F6EEFA,var(--card) 60%);
+  border:1px solid var(--line); border-radius:20px;
+  padding:clamp(1.1rem,3vw,1.5rem); display:flex; flex-direction:column; gap:.7rem;
+}
+.song:nth-child(2){background:linear-gradient(160deg,#EAF4EE,var(--card) 60%)}
+.song h2{font-size:clamp(1.3rem,4vw,1.65rem); letter-spacing:-.03em; line-height:1.3}
+.song .vs{font-size:.98rem; line-height:1.7}
+.song .vs cite{display:block; font-style:normal; font-size:.8rem; color:var(--faint); font-weight:600; margin-top:.15rem}
+.song-ph{
+  aspect-ratio:16/9; border-radius:14px; border:1.5px dashed var(--line2);
+  background:rgba(255,255,255,.7); display:grid; place-items:center; align-content:center; gap:.3rem;
+  color:var(--faint); font-size:.85rem; text-align:center; padding:.8rem;
+}
+.song-ph .ic{font-size:2.2rem; line-height:1}
+.song .btn.big{width:100%; text-decoration:none}
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="top-row">
+    <button class="btn home-btn" id="goHome" type="button" aria-current="page">홈</button>
     <h1 id="hdrName">우리 반 주일학교<span id="hdrDate"></span></h1>
     <div class="grow"></div>
     <span class="save-state" id="saveState"><i></i><b>확인 중</b></span>
   </div>
   <div class="tabs" role="tablist">
-    <button class="tab" role="tab" data-p="lesson"  aria-selected="true">공과</button>
+    <button class="tab" role="tab" data-p="lesson"  aria-selected="false">공과</button>
     <button class="tab" role="tab" data-p="board"   aria-selected="false">성경 이야기</button>
     <button class="tab" role="tab" data-p="quiz"    aria-selected="false">퀴즈</button>
     <button class="tab" role="tab" data-p="match"   aria-selected="false">짝 맞추기</button>
+    <button class="tab" role="tab" data-p="song"    aria-selected="false">찬양</button>
     <button class="tab" role="tab" data-p="att"     aria-selected="false">출석</button>
     <button class="tab" role="tab" data-p="talent"  aria-selected="false">달란트</button>
     <button class="tab" role="tab" data-p="class"   aria-selected="false">반 관리</button>
@@ -539,9 +624,25 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
 
 <main>
 
+  <!-- 커리큘럼 홈 — 탭이 아니다. 주소를 열면 처음 보이는 화면 -->
+  <section class="panel" id="p-home">
+    <div class="home-head">
+      <span class="eyebrow">커리큘럼</span>
+      <h2 id="homeName">우리 반 주일학교</h2>
+      <p class="muted">공과 카드를 누르면 그 주 공과가 열립니다.</p>
+      <div class="view-btns" id="viewBtns" role="group" aria-label="보기 고르기">
+        <button type="button" data-v="year"  aria-pressed="true">1년</button>
+        <button type="button" data-v="half"  aria-pressed="false">6개월</button>
+        <button type="button" data-v="theme" aria-pressed="false">주제별</button>
+      </div>
+    </div>
+    <div id="homeList"></div>
+    <p class="tiny home-note">예시로 일부만 넣었습니다. 실제 수업 도구에서는 우리 반 1년 공과가 모두 들어갑니다.</p>
+  </section>
+
   <!-- ① 공과 -->
-  <section class="panel" id="p-lesson">
-    <div class="lesson-head">
+  <section class="panel" id="p-lesson" hidden>
+    <div class="lesson-head" id="lessonHead">
       <span class="eyebrow">오늘의 공과</span>
       <h2>다윗과 골리앗</h2>
       <p class="sub">하나님이 함께하시면</p>
@@ -553,7 +654,9 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
       </div>
     </div>
 
-    <details class="fold">
+    <p class="lesson-later" id="lessonLater" hidden>이 과의 수업 흐름은 그 주에 채웁니다.</p>
+
+    <details class="fold" id="lessonFlow">
       <summary><span class="fold-t">수업 흐름</span><span class="fold-m">40분 · 교사용</span></summary>
       <ol class="flow">
         <li><div><b>도입 — 마음 열기</b><span>가장 무서웠던 순간을 이야기해 봅니다</span></div><span class="min">5분</span></li>
@@ -691,6 +794,31 @@ textarea{min-height:5rem; line-height:1.5; resize:vertical}
       <div class="btn-row" style="margin-top:.9rem">
         <button class="btn" id="memNew">다시 섞기</button>
       </div>
+    </div>
+  </section>
+
+  <!-- ④-2 찬양 -->
+  <section class="panel" id="p-song" hidden>
+    <div class="card song-intro">
+      <h2>찬양</h2>
+      <p class="muted">오늘 이야기와 어울리는 찬양 두 곡입니다. 단추를 누르면 유튜브에서 찾아 줍니다.</p>
+      <p class="tiny" style="margin-top:.35rem">실제 수업 도구에서는 이 자리에 영상이 바로 나옵니다 (6주에 만듭니다).</p>
+    </div>
+    <div class="songs">
+      <article class="song">
+        <h2>강하고 담대하라</h2>
+        <p class="vs">“강하고 담대하라 두려워하지 말며 놀라지 말라”<cite>여호수아 1장 9절</cite></p>
+        <div class="song-ph" aria-hidden="true"><span class="ic">🎵</span>여기에 영상이 나옵니다</div>
+        <a class="btn primary big" target="_blank" rel="noopener"
+           href="https://www.youtube.com/results?search_query=%EA%B0%95%ED%95%98%EA%B3%A0%20%EB%8B%B4%EB%8C%80%ED%95%98%EB%9D%BC%20%EC%96%B4%EB%A6%B0%EC%9D%B4%20%EC%B0%AC%EC%96%91">유튜브에서 찾기</a>
+      </article>
+      <article class="song">
+        <h2>하나님은 너를 지키시는 자</h2>
+        <p class="vs">“여호와는 너를 지키시는 이시라”<cite>시편 121편 5절</cite></p>
+        <div class="song-ph" aria-hidden="true"><span class="ic">🎶</span>여기에 영상이 나옵니다</div>
+        <a class="btn primary big" target="_blank" rel="noopener"
+           href="https://www.youtube.com/results?search_query=%ED%95%98%EB%82%98%EB%8B%98%EC%9D%80%20%EB%84%88%EB%A5%BC%20%EC%A7%80%ED%82%A4%EC%8B%9C%EB%8A%94%20%EC%9E%90%20%EC%96%B4%EB%A6%B0%EC%9D%B4%20%EC%B0%AC%EC%96%91">유튜브에서 찾기</a>
+      </article>
     </div>
   </section>
 
@@ -882,17 +1010,204 @@ function celebrate(){
 }
 
 /* ── 탭 ──────────────────────────────────────────────── */
+/* 커리큘럼 홈(p-home)은 탭이 아니다 — 머리의 「홈」 단추로 돌아온다 */
 var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-tabs.forEach(function(t){
-  t.addEventListener('click', function(){
-    tabs.forEach(function(o){
-      var on = (o === t);
-      o.setAttribute('aria-selected', on ? 'true' : 'false');
-      document.getElementById('p-' + o.dataset.p).hidden = !on;
-    });
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+var PANELS = ['home'].concat(tabs.map(function(t){ return t.dataset.p; }));
+var elHomeBtn = document.getElementById('goHome');
+
+function showPanel(name){
+  tabs.forEach(function(o){
+    o.setAttribute('aria-selected', o.dataset.p === name ? 'true' : 'false');
   });
+  PANELS.forEach(function(p){
+    document.getElementById('p-' + p).hidden = (p !== name);
+  });
+  elHomeBtn.setAttribute('aria-current', name === 'home' ? 'page' : 'false');
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  if (name === 'home') scrollToToday();
+}
+tabs.forEach(function(t){
+  t.addEventListener('click', function(){ showPanel(t.dataset.p); });
 });
+elHomeBtn.addEventListener('click', function(){ showPanel('home'); });
+
+/* ══════════════════════════════════════════════════════════
+   커리큘럼 홈
+   예시 공과 몇 개만 넣었다. 날짜는 열 때마다 「이번 주일」을 기준으로
+   계산한다 — 다윗과 골리앗이 언제나 이번 주(0) 자리에 온다.
+   w = 이번 주일에서 몇 주 떨어졌는지 (음수는 지난 주일)
+   ══════════════════════════════════════════════════════════ */
+var THEMES = {
+  promise: '하나님의 약속',
+  courage: '용기와 믿음',
+  love:    '예수님의 사랑',
+  feast:   '절기'
+};
+var LESSONS = [
+  { id:'creation', w:-20, th:'promise', t:'천지 창조', ref:'창세기 1장',
+    sub:'하나님이 지으신 세상', hook:'세상에서 가장 좋아하는 것은 무엇인가요? 누가 만드셨을까요?',
+    sum:'하나님이 엿새 동안 세상을 지으시고, 보시기에 좋았다고 하셨습니다.' },
+  { id:'noah', w:-16, th:'promise', t:'노아의 방주', ref:'창세기 6–9장',
+    sub:'하나님 말씀대로', hook:'아무도 믿어 주지 않을 때도 해야 할 일이 있을까요?',
+    sum:'노아는 하나님 말씀대로 방주를 지었고, 하나님은 무지개로 약속하셨습니다.' },
+  { id:'abraham', w:-12, th:'promise', t:'아브라함의 떠남', ref:'창세기 12장 1–9절',
+    sub:'믿고 떠나는 길', hook:'어디로 가는지 모르는 길을 떠나 본 적이 있나요?',
+    sum:'하나님이 보여 주실 땅을 향해 아브라함은 고향을 떠났습니다.' },
+  { id:'joseph', w:-8, th:'promise', t:'요셉 이야기', ref:'창세기 37–45장',
+    sub:'하나님의 계획', hook:'억울한 일을 당하면 어떤 마음이 드나요?',
+    sum:'형들에게 팔려 간 요셉을 하나님이 이집트의 총리로 세우시고, 가족을 살리셨습니다.' },
+  { id:'moses', w:-4, th:'courage', t:'모세와 홍해', ref:'출애굽기 14장',
+    sub:'길이 없을 때 길을 내시는 하나님', hook:'앞은 바다, 뒤는 군대라면 어떻게 할까요?',
+    sum:'하나님이 바닷물을 가르시고, 이스라엘 백성이 마른 땅으로 건넜습니다.' },
+  { id:'jericho', w:-2, th:'courage', t:'여리고성', ref:'여호수아 6장',
+    sub:'말씀대로 했더니', hook:'이상해 보이는 방법도 하나님 말씀이면 따를 수 있을까요?',
+    sum:'이스라엘이 하나님 말씀대로 성을 돌고 외치자 여리고성이 무너졌습니다.' },
+  { id:'david', w:0, th:'courage', t:'다윗과 골리앗', ref:'사무엘상 17장', full:true },
+  { id:'daniel', w:2, th:'courage', t:'다니엘과 사자굴', ref:'다니엘 6장',
+    sub:'날마다 기도하는 용기', hook:'기도하면 안 된다는 법이 생기면 어떻게 할까요?',
+    sum:'하루 세 번 기도하던 다니엘을 하나님이 사자굴에서 지켜 주셨습니다.' },
+  { id:'jonah', w:4, th:'courage', t:'요나 이야기', ref:'요나 1–4장',
+    sub:'도망쳐도 찾아오시는 하나님', hook:'하기 싫은 일을 피해 도망친 적이 있나요?',
+    sum:'하나님을 피해 도망친 요나를 큰 물고기 배 속에서 건지시고, 니느웨로 다시 보내셨습니다.' },
+  { id:'christmas', w:9, th:'feast', t:'예수님 탄생', ref:'누가복음 2장 1–20절',
+    sub:'구유에 오신 아기 예수님', hook:'가장 기다렸던 선물은 무엇이었나요?',
+    sum:'베들레헴 구유에 예수님이 태어나시고, 목자들이 천사의 소식을 듣고 찾아왔습니다.' },
+  { id:'fish', w:13, th:'love', t:'오병이어', ref:'요한복음 6장 1–14절',
+    sub:'작은 것을 드렸더니', hook:'내가 가진 작은 것으로 무엇을 할 수 있을까요?',
+    sum:'한 아이의 보리떡 다섯 개와 물고기 두 마리로 예수님이 많은 사람을 먹이셨습니다.' },
+  { id:'samaritan', w:16, th:'love', t:'선한 사마리아인', ref:'누가복음 10장 25–37절',
+    sub:'누가 내 이웃일까요?', hook:'도움이 필요한 친구를 보면 어떻게 하나요?',
+    sum:'다친 사람을 모두 그냥 지나갔지만, 사마리아 사람은 멈춰 서서 돌보아 주었습니다.' },
+  { id:'sheep', w:19, th:'love', t:'잃은 양', ref:'누가복음 15장 1–7절',
+    sub:'한 마리도 소중해요', hook:'소중한 것을 잃어버렸다가 찾은 적이 있나요?',
+    sum:'목자는 아흔아홉 마리를 두고, 잃은 양 한 마리를 찾을 때까지 찾았습니다.' },
+  { id:'zacchaeus', w:21, th:'love', t:'삭개오', ref:'누가복음 19장 1–10절',
+    sub:'나를 부르시는 예수님', hook:'누군가 내 이름을 불러 줄 때 어떤 마음이 드나요?',
+    sum:'나무 위에 올라간 삭개오를 예수님이 이름으로 부르시고, 그 집에 머무셨습니다.' },
+  { id:'easter', w:23, th:'feast', t:'예수님의 부활', ref:'누가복음 24장 1–12절',
+    sub:'다시 살아나신 예수님', hook:'가장 기뻤던 소식은 무엇이었나요?',
+    sum:'안식 후 첫날 새벽, 여인들은 빈 무덤에서 예수님이 살아나셨다는 소식을 들었습니다.' },
+  { id:'pentecost', w:30, th:'feast', t:'성령이 오신 날', ref:'사도행전 2장 1–13절',
+    sub:'함께하시는 성령님', hook:'보이지 않아도 함께 계신다는 것을 어떻게 알 수 있을까요?',
+    sum:'오순절에 제자들이 모인 곳에 성령이 오시고, 제자들이 여러 나라 말로 하나님의 큰일을 전했습니다.' }
+];
+
+/* 이번 주일 — 오늘이 주일이면 오늘, 아니면 가장 최근 주일 */
+var THIS_SUNDAY = (function(){
+  var d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() - d.getDay());
+  return d;
+})();
+LESSONS.forEach(function(l){
+  var d = new Date(THIS_SUNDAY);
+  d.setDate(d.getDate() + l.w * 7);
+  l.date = d;
+});
+function sundayLabel(d){
+  var y = (d.getFullYear() !== THIS_SUNDAY.getFullYear()) ? d.getFullYear() + '년 ' : '';
+  return y + (d.getMonth() + 1) + '월 ' + d.getDate() + '일 (주일)';
+}
+
+var homeView = 'year';
+var elHomeList = document.getElementById('homeList');
+
+function lessonCard(l){
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'lc th-' + l.th + (l.w === 0 ? ' today' : (l.w < 0 ? ' past' : ''));
+  b.dataset.id = l.id;
+  var d = document.createElement('span'); d.className = 'd'; d.textContent = sundayLabel(l.date);
+  var t = document.createElement('span'); t.className = 't'; t.textContent = l.t;
+  var r = document.createElement('span'); r.className = 'r'; r.textContent = l.ref;
+  var g = document.createElement('span'); g.className = 'tag'; g.textContent = THEMES[l.th];
+  b.appendChild(d); b.appendChild(t); b.appendChild(r); b.appendChild(g);
+  if (l.w === 0) {
+    var n = document.createElement('span'); n.className = 'now'; n.textContent = '오늘';
+    b.appendChild(n);
+  }
+  b.setAttribute('aria-label', sundayLabel(l.date) + ' ' + l.t + ' ' + l.ref + (l.w === 0 ? ' 오늘 공과' : ''));
+  b.addEventListener('click', function(){ openLesson(l.id); });
+  return b;
+}
+
+function renderHome(){
+  elHomeList.innerHTML = '';
+  if (homeView === 'theme') {
+    Object.keys(THEMES).forEach(function(k){
+      var list = LESSONS.filter(function(l){ return l.th === k; });
+      var sec = document.createElement('div'); sec.className = 'th-group th-' + k;
+      var h = document.createElement('h3'); h.className = 'th-title';
+      var dot = document.createElement('span'); dot.className = 'th-dot';
+      var nm = document.createElement('span'); nm.textContent = THEMES[k];
+      var cnt = document.createElement('span'); cnt.className = 'cnt'; cnt.textContent = list.length + '과';
+      h.appendChild(dot); h.appendChild(nm); h.appendChild(cnt);
+      var grid = document.createElement('div'); grid.className = 'lcards';
+      list.forEach(function(l){ grid.appendChild(lessonCard(l)); });
+      sec.appendChild(h); sec.appendChild(grid);
+      elHomeList.appendChild(sec);
+    });
+    return;
+  }
+  /* 6개월 = 이번 주일 앞뒤로 석 달씩 */
+  var list = LESSONS.filter(function(l){
+    return homeView === 'year' || (l.w >= -12 && l.w <= 13);
+  });
+  var grid = document.createElement('div'); grid.className = 'lcards';
+  list.forEach(function(l){ grid.appendChild(lessonCard(l)); });
+  elHomeList.appendChild(grid);
+}
+
+function scrollToToday(){
+  var c = elHomeList.querySelector('.lc.today');
+  if (!c) return;
+  requestAnimationFrame(function(){
+    try { c.scrollIntoView({ block: 'center' }); } catch (e) { c.scrollIntoView(); }
+  });
+}
+
+document.getElementById('viewBtns').addEventListener('click', function(ev){
+  var b = ev.target.closest('button[data-v]');
+  if (!b) return;
+  homeView = b.dataset.v;
+  Array.prototype.forEach.call(this.querySelectorAll('button'), function(o){
+    o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
+  });
+  renderHome();
+  scrollToToday();
+});
+
+/* 공과 표지 채우기 — 다윗과 골리앗은 원래의 완성된 공과로 되돌린다 */
+var elLessonHead = document.getElementById('lessonHead');
+var LESSON_FULL = elLessonHead.innerHTML;
+
+function openLesson(id){
+  var l = LESSONS.filter(function(x){ return x.id === id; })[0];
+  if (!l) return;
+  var later = document.getElementById('lessonLater');
+  var flow = document.getElementById('lessonFlow');
+  if (l.full) {
+    elLessonHead.innerHTML = LESSON_FULL;
+    later.hidden = true; flow.hidden = false;
+  } else {
+    elLessonHead.innerHTML = '';
+    var eb = document.createElement('span'); eb.className = 'eyebrow';
+    eb.textContent = (l.w === 0 ? '오늘의 공과' : sundayLabel(l.date) + ' 공과');
+    var h = document.createElement('h2'); h.textContent = l.t;
+    var sub = document.createElement('p'); sub.className = 'sub'; sub.textContent = l.sub;
+    var hook = document.createElement('p'); hook.className = 'hook'; hook.textContent = l.hook;
+    var vs = document.createElement('div'); vs.className = 'verse';
+    vs.appendChild(document.createTextNode(l.sum));
+    var cite = document.createElement('cite'); cite.textContent = '본문 · ' + l.ref;
+    vs.appendChild(cite);
+    [eb, h, sub, hook, vs].forEach(function(n){ elLessonHead.appendChild(n); });
+    later.hidden = false; flow.hidden = true;
+  }
+  showPanel('lesson');
+}
+
+renderHome();
+showPanel('home');
 
 /* ══════════════════════════════════════════════════════════
    ① 질문 크게 보기 — 아이들에게 보여 주는 화면
@@ -1675,6 +1990,7 @@ function renderHeader(){
   document.getElementById('hdrName').firstChild.nodeValue = state.className;
   document.getElementById('hdrDate').textContent = todayLabel();
   document.getElementById('className').value = state.className;
+  document.getElementById('homeName').textContent = state.className;
 }
 function renderAll(){ renderHeader(); renderAtt(); renderTalent(); renderManage(); }
 renderAll();

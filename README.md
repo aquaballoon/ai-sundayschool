@@ -16,7 +16,7 @@
 ## 무엇을 만드나
 
 10주 뒤에 수강생 각자가 **우리 반에서 실제로 쓰는 웹페이지 하나**를 갖게 됩니다.
-탭 일곱 개가 한 화면에 들어갑니다.
+첫 화면은 1년치 커리큘럼 홈이고, 한 과를 누르면 탭 여덟 개짜리 수업 화면으로 넘어갑니다.
 
 | 탭 | 하는 일 | 배우는 주 |
 |---|---|---|
@@ -24,9 +24,11 @@
 | 성경 이야기 | 손가락으로 인물을 옮기는 디지털 융판 | 5주 |
 | 퀴즈 | 눌러서 푸는 성경 퀴즈 (해설과 근거 절) | 6주 |
 | 짝 맞추기 | 카드를 뒤집는 기억력 게임 | 6주 |
+| 찬양 | 함께 부를 찬양 영상 두 곡 | 6주 |
 | 출석 | 올 때마다 잎이 자라는 출석부 | 8주 |
 | 달란트 | 메달이 쌓이는 달란트 통장 | 9주 |
 | 반 관리 | 명단 추가·수정·삭제 · 백업 | 9주 |
+| (홈) 커리큘럼 | 1년·6개월·주제별 목록, 누르면 그 주 공과로 | 10주 |
 
 [완성품을 직접 열어 보세요 →](https://aquaballoon.github.io/ai-sundayschool/demo/teacher-app.html)
 
@@ -41,17 +43,20 @@
 | [3](https://aquaballoon.github.io/ai-sundayschool/week/3.html) | AI 제대로 쓰는 법 — 프롬프트와 95/5 원칙 | 실습 준비 |
 | [4](https://aquaballoon.github.io/ai-sundayschool/week/4.html) | 첫 페이지 만들기 — 탭 틀과 오늘의 공과 | 따라하기 |
 | [5](https://aquaballoon.github.io/ai-sundayschool/week/5.html) | 성경 이야기 — 끌어 옮기는 디지털 융판 | 따라하기 |
-| [6](https://aquaballoon.github.io/ai-sundayschool/week/6.html) | 활동 블록 — 퀴즈와 짝 맞추기 | 따라하기 |
+| [6](https://aquaballoon.github.io/ai-sundayschool/week/6.html) | 활동 블록 — 퀴즈, 짝 맞추기, 찬양 | 따라하기 |
 | [7](https://aquaballoon.github.io/ai-sundayschool/week/7.html) | 인터넷에 올리기 — 나만의 주소 만들기 | 따라하기 |
 | [8](https://aquaballoon.github.io/ai-sundayschool/week/8.html) | 출석 블록 — 기록이 남는 출석부 | 따라하기 |
 | [9](https://aquaballoon.github.io/ai-sundayschool/week/9.html) | 달란트 블록 — 달란트 통장과 학기 마무리 | 따라하기 |
-| [10](https://aquaballoon.github.io/ai-sundayschool/week/10.html) | 쇼케이스 — 발표와 나눔 | 발표 |
+| [10](https://aquaballoon.github.io/ai-sundayschool/week/10.html) | 커리큘럼 홈 만들기와 쇼케이스 | 따라하기 · 발표 |
 
 주차별 페이지는 모두 같은 순서입니다 —
 **문제 제기 → 강의안 → 따라하기 → 과제 → 막히면 → 함께 나누기.**
 
 1~3주는 읽고 나눕니다. 4~6주는 Claude 화면 안에서 만들고,
-7주에 인터넷에 올린 뒤, 8~9주에 기록이 남는 기능을 더합니다.
+7주에 인터넷에 올린 뒤, 8~9주에 기록이 남는 기능을 더하고, 10주에 커리큘럼 홈으로 묶습니다.
+
+5~9주 맨 아래에는 더 해 보고 싶은 분을 위한 **엑스트라**(선택)가 있습니다.
+그중 Vercel·Supabase를 MCP로 연결하는 부분(7·8·9주)은 **유료 Claude(Pro 이상)** 에서만 됩니다.
 
 ---
 

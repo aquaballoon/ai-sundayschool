@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6주 · 활동 블록 — 퀴즈와 짝 맞추기 — AI 시대와 교회교육</title>
-<meta name="description" content="눌러서 푸는 성경 퀴즈와, 카드를 뒤집는 짝 맞추기 게임을 탭 두 개로 만듭니다.">
+<title>6주 · 활동 블록 — 퀴즈, 짝 맞추기, 찬양 — AI 시대와 교회교육</title>
+<meta name="description" content="눌러서 푸는 성경 퀴즈, 카드를 뒤집는 짝 맞추기 게임, 함께 부를 찬양 두 곡을 탭 세 개로 만듭니다.">
 <meta name="theme-color" content="#F9F9F6">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -204,6 +204,8 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .callout.tip   { background: var(--accent-tint); border-color: var(--accent-line); }
 .callout.warn  { background: #FDF3E4; border-color: #E9CFA0; color: #6B4A16; }
 .callout.warn a { color: #8A5A12; }
+.extra-note { border:1.5px dashed var(--accent-line); background:var(--accent-tint); border-radius:12px; padding:.85rem 1.05rem; font-size:.92rem; margin:.4rem 0 1rem; line-height:1.7; }
+.extra-note.paid { border-color:#E9CFA0; background:#FDF3E4; color:#6B4A16; }
 
 .grid { display: grid; gap: 1rem; }
 .grid.two { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
@@ -806,14 +808,14 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 <main id="main">
 <section class="hero wrap">
   <span class="badge">6주 · 따라하기</span>
-  <h1>활동 블록 — 퀴즈와 짝 맞추기</h1>
-  <p class="lede">게임 두 개를 만듭니다. 눌러서 푸는 <b>퀴즈</b>와, 카드를 뒤집는 <b>짝 맞추기</b>.
-  아는 아이만 이기지 않게 하려는 것입니다.</p>
+  <h1>활동 블록 — 퀴즈, 짝 맞추기, 찬양</h1>
+  <p class="lede">게임 두 개와 찬양 탭을 만듭니다. 눌러서 푸는 <b>퀴즈</b>, 카드를 뒤집는 <b>짝 맞추기</b>,
+  그리고 함께 부를 <b>찬양</b> 두 곡. 아는 아이만 이기지 않게, 모두가 함께 부르게 하려는 것입니다.</p>
 
   <div class="meta-row">
     <span><b>소요</b> 40~60분</span>
     <span><b>지난주 필요</b> 성경 이야기까지 된 Artifact</span>
-    <span><b>채우는 탭</b> 퀴즈 · 짝 맞추기</span>
+    <span><b>채우는 탭</b> 퀴즈 · 짝 맞추기 · 찬양</span>
   </div>
 
   <ul class="goals">
@@ -822,14 +824,16 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <li>AI가 만든 성경 문제를 <b>검증하는 습관</b>을 갖는다</li>
     <li>카드를 뒤집는 짝 맞추기 게임을 더한다</li>
     <li>아이마다 이길 자리가 있는 활동을 고른다</li>
+    <li>함께 부를 찬양 두 곡을 한 화면에 모은다</li>
   </ul>
+  <p style="margin-top:.7rem;font-size:.86rem;color:var(--text-faint)">더 해 보고 싶은 분은 맨 아래 <a href="#extra">엑스트라</a>를 보세요 — 선택입니다.</p>
 </section>
 
 <section class="block wrap">
   <div class="aim">
     <div class="txt">
       <div class="k">오늘 만들 모습</div>
-      <div class="v">완성품의 <b>퀴즈</b>와 <b>짝 맞추기</b> 탭을 열어 보세요. 오늘 이 화면까지 갑니다.</div>
+      <div class="v">완성품의 <b>퀴즈</b>와 <b>짝 맞추기</b>, <b>찬양</b> 탭을 열어 보세요. 오늘 이 화면까지 갑니다.</div>
     </div>
     <a class="go" href="../demo/teacher-app.html" target="_blank" rel="noopener">완성품 열어 보기 ↗</a>
   </div>
@@ -837,7 +841,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <div class="blocks" style="margin-top:1rem">
     <span class="done">4주 틀과 공과</span>
     <span class="done">5주 성경 이야기</span>
-    <span class="now">6주 퀴즈·게임</span>
+    <span class="now">6주 퀴즈·게임·찬양</span>
     <span>7주 인터넷에 올리기</span>
     <span>8주 출석</span>
     <span>9주 달란트</span>
@@ -1166,15 +1170,114 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 </section>
 
 <section class="block wrap">
+  <span class="h-eyebrow">따라하기 ③</span>
+  <h2 style="margin-bottom:.4rem">③ 찬양 탭 만들기</h2>
+  <p style="color:var(--text-dim);font-size:.95rem">
+    수업은 보통 찬양으로 열고 찬양으로 닫습니다. 그 두 곡을 <b>공과·게임과 같은 화면</b>에 두면,
+    유튜브를 따로 찾느라 흐름이 끊기지 않습니다. 목적은 가사를 읽는 것이 아니라 <b>함께 부르는 것</b>입니다.
+  </p>
+  <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.5rem">
+    같은 대화에 이어서, 짝 맞추기와 출석 사이에 <b>다섯 번째 탭</b>을 채웁니다.
+  </p>
+
+  <ol class="steps">
+
+    <li>
+      <h3>유튜브에서 곡 제목으로 찾습니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        오늘 이야기(용기, 하나님이 지켜 주심)와 어울리는 두 곡을 예로 듭니다. 반에서 늘 부르는 곡이 있다면 그것으로 바꾸셔도 됩니다.
+      </p>
+      <div class="callout">
+        <div class="t">예시 두 곡</div>
+        ① 「강하고 담대하라」 — 여호수아 1장 9절<br>
+        ② 「하나님은 너를 지키시는 자」 — 시편 121편
+      </div>
+    </li>
+
+    <li>
+      <h3>공유 → 복사로 링크를 받습니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        영상 아래의 <span class="ui-key">공유</span>를 누르고 <span class="ui-key">복사</span>를 누릅니다.
+        그러면 이런 모양의 주소가 복사됩니다. 두 곡 모두 받아 메모장에 잠깐 붙여 두세요.
+      </p>
+      <div class="where"><span class="mono">https://youtu.be/xxxxxxxxxxx</span></div>
+    </li>
+
+    <li>
+      <h3>링크를 넣어 찬양 탭을 부탁합니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        아래 프롬프트의 <b>[여기에 링크]</b> 두 곳을 방금 복사한 주소로 바꿔서 보내세요.
+      </p>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>"찬양" 탭을 새로 만들어 줘.
+짝 맞추기 탭 바로 다음, 출석 탭 바로 앞에 오는 다섯 번째 탭이야.
+다른 탭(공과, 성경 이야기, 퀴즈, 짝 맞추기 등)은 하나도 건드리지 마.
+
+1) 곡 두 개를 큰 카드 두 장으로 보여 줘
+   - 1번 곡
+     제목: 강하고 담대하라
+     구절: 강하고 담대하라 … 네 하나님 여호와가 너와 함께 하느니라 (여호수아 1:9)
+     링크: [여기에 링크]
+   - 2번 곡
+     제목: 하나님은 너를 지키시는 자
+     구절: 여호와는 너를 지키시는 이시라 (시편 121:5)
+     링크: [여기에 링크]
+
+2) 카드마다 위에서부터
+   - 제목을 아주 크게
+   - 성경 구절 한 줄
+   - 유튜브 영상 플레이어
+     (주소는 youtube-nocookie.com/embed/영상번호 방식으로 넣어 줘.
+      영상번호는 내가 준 링크에서 뽑아 줘)
+   - 그 아래에 큼직한 "유튜브에서 열기" 버튼.
+     누르면 내가 준 링크가 새 창으로 열리게
+
+3) 화면
+   - 태블릿에서 손가락으로 누르기 쉽게 버튼을 크게
+   - 화면이 넓으면 카드 두 장을 나란히, 좁으면 위아래로
+   - 화면 글자는 전부 한국어로
+   - 외부 라이브러리 없이, 지금 파일 하나 안에서 만들어 줘
+   - 이미지 파일은 쓰지 마</pre>
+      </div>
+      <p style="color:var(--text-dim);font-size:.85rem">
+        구절은 개역개정 성경으로 한 번 더 확인하세요. 시편 121편은 다른 절(3절, 7절)을 넣으셔도 좋습니다.
+      </p>
+    </li>
+
+    <li>
+      <h3>영상이 안 나와도 놀라지 마세요</h3>
+      <div class="callout warn">
+        <div class="t">Artifact 안에서는 영상이 안 나올 수 있습니다 — 정상입니다</div>
+        Artifact 미리보기는 바깥 영상을 막는 경우가 많습니다. 검은 칸이나 오류 문구가 보여도 괜찮습니다.
+        <b>7주에 내 주소에 올리면 그때부터 재생됩니다.</b> 지금은 「유튜브에서 열기」 버튼이 열리는지만 확인하세요.
+        <br><br>
+        내 주소에서도 「동영상을 재생할 수 없음」이 뜨면, 올린 사람이 <b>퍼가기를 막아 둔 영상</b>입니다.
+        같은 곡의 다른 영상을 골라 링크만 바꾸면 됩니다.
+      </div>
+      <div class="callout">
+        <div class="t">저작권 — 링크와 퍼가기만 씁니다</div>
+        영상은 유튜브에 있는 그대로 <b>링크와 퍼가기(embed)</b>로만 보여 줍니다.
+        영상을 내려받아 다시 올리거나 파일로 넣지 마세요.
+      </div>
+    </li>
+
+  </ol>
+</section>
+
+<section class="block wrap">
   <div class="hw">
     <div class="hw-title">
       <span class="badge">과제</span>
-      <h2>게임 두 개</h2>
+      <h2>게임 두 개와 찬양</h2>
     </div>
 
     <dl>
       <dt>제출물</dt>
-      <dd>퀴즈와 짝 맞추기가 다 되는 <b>Artifact 공유 링크</b> <b>+ 5문제의 근거 절 목록</b></dd>
+      <dd>퀴즈·짝 맞추기·찬양 2곡이 다 되는 <b>Artifact 공유 링크</b> <b>+ 5문제의 근거 절 목록</b></dd>
       <dt>제출 방법</dt>
       <dd>게시판에 링크와 함께 근거 절을 적어 주세요. 예: <span class="ui-key">1번 삼상 16:11 / 2번 삼상 17:39 …</span></dd>
       <dt>마감</dt>
@@ -1189,6 +1292,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <li><label><input type="checkbox" id="w6c3"><span>맞았을 때·틀렸을 때 표시와 <b>점수판</b>이 나온다</span></label></li>
         <li><label><input type="checkbox" id="w6c4"><span>답을 고른 뒤에는 다시 눌리지 않는다</span></label></li>
         <li><label><input type="checkbox" id="w6c5"><span>짝 맞추기 탭에서 게임이 되고, 다 맞히면 축하가 나온다</span></label></li>
+        <li><label><input type="checkbox" id="w6c8"><span>찬양 탭에 두 곡이 <b>제목과 함께</b> 보인다</span></label></li>
+        <li><label><input type="checkbox" id="w6c9"><span>「유튜브에서 열기」를 누르면 그 곡이 열린다</span></label></li>
         <li><label><input type="checkbox" id="w6c6"><span>공과·성경 이야기 탭이 그대로 남아 있다</span></label></li>
         <li><label><input type="checkbox" id="w6c7"><span>이번 <span class="ui-key">index.html</span>도 보관했다</span></label></li>
       </ul>
@@ -1241,6 +1346,176 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <p>그래도 안 되면 지난주 보관 파일로 되돌아가 다시 하면 됩니다.</p>
       </div>
     </details>
+  </div>
+</section>
+
+<section class="block wrap extra" id="extra">
+  <span class="h-eyebrow">더 해 보기 · 선택</span>
+  <h2 style="margin-bottom:.6rem">엑스트라 — 팀으로 하는 게임</h2>
+  <div class="extra-note">
+    <b>안 해도 됩니다.</b> 수료와 상관없고, 과제 점검에도 들어가지 않습니다.
+    이번 주 기본 과제를 마치고 <b>여유가 있고 더 해 보고 싶을 때만</b> 해 보세요.
+  </div>
+
+  <div class="prose">
+    <p>반을 <b>두 팀</b>으로 나누면 달라지는 것이 있습니다. 아는 아이 혼자 맞히는 게 아니라,
+    <b>팀이 함께 답을 찾습니다.</b> 모르는 아이도 옆 친구와 의논하며 한 몫을 합니다.</p>
+    <p>탭은 늘리지 않습니다. 이미 있는 <b>퀴즈 탭 안에 「팀 게임」 버튼</b>을 두고, 그 안에 게임을 넣습니다.
+    그래야 여덟 탭이 그대로 남습니다. 아래에서 하나만 골라 해 보셔도 충분합니다.</p>
+  </div>
+
+  <ol class="steps" style="margin-top:1.5rem">
+
+    <li>
+      <h3>먼저 팀 점수판을 만듭니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">아래 게임들이 이 점수판을 함께 씁니다.</p>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 점수판</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>퀴즈 탭 위쪽에 "팀 게임" 버튼을 하나 만들어 줘.
+새 탭을 만들지 말고, 퀴즈 탭 안에서 이 버튼을 누르면 팀 게임 화면이 열리게 해 줘.
+다른 탭은 하나도 건드리지 마.
+
+팀 게임 화면 맨 위에는 "팀 점수판"을 둬.
+- 팀은 두 개. 팀 이름은 눌러서 바꿀 수 있게 (처음엔 "사랑팀", "믿음팀")
+- 팀마다 점수를 크게, 옆에 +1 / −1 버튼
+- 지금 차례인 팀을 색과 "○○팀 차례" 글자로 크게 표시
+- "차례 넘기기" 버튼과 "점수 처음부터" 버튼
+- 이 점수판은 아래에 만들 팀 게임들이 같이 쓴다
+- 화면 글자는 전부 한국어로, 외부 라이브러리 없이, 이미지 파일은 쓰지 마
+- 교실 화면에 띄울 것이니 글씨와 버튼을 아주 크게</pre>
+      </div>
+    </li>
+
+    <li>
+      <h3>게임 ① 낱말 맞히기 — 풍선이 하나씩 터집니다</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        흔히 알려진 행맨 방식이지만, 사람이 매달리는 그림은 아이들과 교회에 맞지 않습니다.
+        대신 <b>틀릴 때마다 풍선이 하나씩 터지게</b> 합니다.
+      </p>
+      <div class="callout tip">
+        <div class="t">한글은 「음절 카드」로 맞히세요</div>
+        영어처럼 자모(ㄱ, ㅏ …)로 맞히면 받침 때문에 저학년에게 너무 어렵습니다.
+        그래서 <b>글자 한 덩어리(음절)</b> 카드를 고르게 합니다. 예: 「물맷돌」은 빈칸 세 개, 아이들은 「돌」 카드를 고릅니다.
+        고학년이면 자음(ㄱ, ㄴ …) 방식으로 어렵게 바꿔도 됩니다.
+      </div>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 낱말 맞히기</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>팀 게임 화면에 "낱말 맞히기" 게임을 더해 줘. 위의 팀 점수판을 같이 써.
+
+규칙
+- 사무엘상 17장의 낱말 하나를 빈칸으로 보여 준다. 글자(음절) 하나가 빈칸 하나
+- 빈칸 아래에 음절 카드 12장 정도를 큼직하게 깔아 둔다.
+  정답 낱말의 글자들과, 헷갈리게 섞은 다른 글자들을 섞어서
+- 차례인 팀이 카드 하나를 고른다
+  · 낱말에 있는 글자면 빈칸에 나타나고 그 팀 +1, 같은 팀이 한 번 더
+  · 없는 글자면 풍선 하나가 "펑" 터지고 다음 팀 차례
+- 풍선은 6개. 다 터지기 전에 낱말을 다 열면 마지막 글자를 연 팀에게 +2
+- 풍선이 다 터지면 정답을 보여 주고 "다음 낱말"
+- 낱말마다 힌트 한 줄을 버튼으로 숨겨 둬
+
+낱말과 힌트 (이것만 써. 새 낱말을 지어내지 마)
+- 물맷돌 / 다윗이 골리앗에게 던진 것
+- 골리앗 / 블레셋의 큰 장수
+- 엘라 골짜기 / 두 군대가 마주 선 곳 (띄어쓰기는 빈칸 없이 보여 줘)
+- 블레셋 / 골리앗이 속한 나라
+- 이새 / 다윗의 아버지
+- 사울 / 그때 이스라엘의 왕
+- 시냇가 / 다윗이 돌을 고른 곳
+
+사람이 매달리는 그림은 절대 쓰지 마. 풍선만 써.
+화면 글자는 전부 한국어로, 외부 라이브러리 없이, 이미지 파일은 쓰지 마.</pre>
+      </div>
+      <p style="color:var(--text-dim);font-size:.85rem">
+        풍선 대신 <b>「골리앗이 한 걸음씩 다가옵니다」</b>로 바꿔도 아이들이 좋아합니다 — 다 열면 다윗의 물맷돌이 날아가게.
+      </p>
+    </li>
+
+    <li>
+      <h3>게임 ② 낱말 조각 만들기 — 음절 타일로 낱말을</h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        스크래블 방식입니다. 팀마다 음절 타일을 받아 성경 낱말을 만들면, <b>글자 수만큼</b> 점수를 얻습니다.
+        정답은 <b>교사가 미리 확인한 낱말 목록</b>에 있는 것만 인정합니다. 아이가 그럴듯한 말을 만들어도 목록에 없으면 다음 기회로.
+      </p>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 낱말 조각</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>팀 게임 화면에 "낱말 조각 만들기" 게임을 더해 줘. 위의 팀 점수판을 같이 써.
+
+규칙
+- 차례인 팀에게 음절 타일 8장을 큼직하게 보여 준다
+- 타일을 순서대로 눌러 낱말을 만들고 "확인"을 누른다
+- 만든 낱말이 아래 정답 목록에 있으면 글자 수만큼 그 팀 점수 +
+  (예: 물맷돌 = 3점). 목록에 없으면 "아쉬워요" 표시만 하고 0점
+- 쓴 타일은 빠지고 새 타일이 채워진다. 그리고 다음 팀 차례
+- "지우기" 버튼으로 고르던 타일을 되돌릴 수 있게
+- 타일은 정답 목록 낱말의 글자에서 뽑아서, 낱말을 만들 수 있게 섞어 줘
+
+정답 목록 (이것만 정답이야. 다른 말은 정답으로 치지 마)
+다윗, 골리앗, 사울, 이새, 물맷돌, 시냇가, 블레셋, 이스라엘,
+투구, 갑옷, 칼, 막대기, 양, 사자, 곰
+
+화면 글자는 전부 한국어로, 외부 라이브러리 없이, 이미지 파일은 쓰지 마.</pre>
+      </div>
+    </li>
+
+    <li>
+      <h3>게임 ③ 스피드 골든벨 — 팀이 차례로 답합니다 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 하나 더 원하면</span></h3>
+      <p style="color:var(--text-dim);font-size:.92rem">
+        이미 검증한 퀴즈 5문제를 그대로 씁니다. 화면은 <b>교사가 넘깁니다.</b> 팀은 30초 동안 의논하고 한 사람이 대표로 말합니다.
+      </p>
+      <div class="prompt">
+        <div class="prompt-head">
+          <span class="lbl">Claude에 붙여넣기 · 스피드 골든벨</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+<pre>팀 게임 화면에 "스피드 골든벨"을 더해 줘. 위의 팀 점수판을 같이 써.
+
+- 퀴즈 탭에 이미 있는 5문제를 그대로 써. 새 문제를 만들지 마
+- 문제를 아주 크게 하나씩 보여 주고, 위에 "○○팀 차례"를 표시
+- 30초 타이머를 크게 (시작 버튼은 교사가 누른다)
+- "정답 보기" 버튼을 누르면 정답과 해설이 나온다
+- 교사가 "맞았어요"를 누르면 그 팀 +1, "다음 문제"를 누르면 다음 팀 차례
+- 다 끝나면 두 팀 점수와 함께 "두 팀 모두 수고했어요"를 크게
+
+화면 글자는 전부 한국어로, 외부 라이브러리 없이, 이미지 파일은 쓰지 마.</pre>
+      </div>
+    </li>
+
+    <li>
+      <h3>낱말과 정답은 성경으로 확인합니다</h3>
+      <div class="callout warn">
+        <div class="t">3주의 95/5 원칙 — 마지막 5는 교사가 성경으로</div>
+        낱말 목록과 힌트도 퀴즈와 똑같이 <b>사무엘상 17장을 펴서</b> 하나씩 확인하세요.
+        Claude가 목록에 낱말을 슬쩍 더하거나 힌트를 바꿨다면 고쳐 달라고 하세요.
+      </div>
+    </li>
+
+  </ol>
+
+  <div class="callout tip" style="margin-top:1.5rem">
+    <div class="t">팀 게임을 할 때의 팁</div>
+    <ul style="padding-left:1.2rem;margin-top:.3rem">
+      <li><b>팀을 매주 바꾸세요.</b> 늘 이기는 팀, 늘 지는 팀이 생기지 않게.</li>
+      <li><b>점수보다 협동을 칭찬하세요.</b> “둘이 의논해서 맞혔네” 한 마디가 점수보다 오래 남습니다.</li>
+      <li><b>지는 팀도 달란트를 받습니다.</b> 왜 그런지 9주 달란트 설계에서 다시 이야기합니다 — 「맞힌 것」보다 「함께한 것」에 주는 이유.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <h3 style="font-size:1rem;margin-bottom:.5rem">해 봤다면 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 선택</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" id="w6x1"><span>퀴즈 탭 안에 「팀 게임」 버튼과 팀 점수판이 생겼다 (탭은 여덟 개 그대로)</span></label></li>
+      <li><label><input type="checkbox" id="w6x2"><span>팀 게임 하나를 실제로 두 팀으로 해 봤다</span></label></li>
+      <li><label><input type="checkbox" id="w6x3"><span>낱말 목록과 힌트를 성경으로 확인했다</span></label></li>
+    </ul>
   </div>
 </section>
 
