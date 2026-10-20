@@ -890,6 +890,13 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:1.5rem">
     처음 한 번만 어렵습니다. 다음 주부터는 <b>마지막 단계만</b> 반복하면 됩니다.
   </p>
+  <div class="callout tip" style="margin-bottom:1.5rem">
+    <div class="t">오늘 할 일 한눈에</div>
+    <b>처음 한 번</b> — STEP 1~6 (30분쯤): 파일 꺼내기 → 가입 → 저장소 만들기 → 파일 올리기 → 페이지 켜기 → 주소 열기<br>
+    <b>다음 주부터</b> — STEP 7만 (2분): 새 파일 끌어다 놓기<br><br>
+    화면이 영어로 나와도 괜찮습니다. 이 페이지에 적힌 영어 글자와 <b>같은 단추</b>를 찾으면 됩니다.
+    각 단계 끝의 <b>「여기까지 되면 성공」</b>을 확인하고 다음으로 넘어가세요.
+  </div>
 
   <ol class="steps">
 
@@ -910,26 +917,43 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         그 코드를 전부 복사해서 <b>메모장</b>에 붙여넣고, 저장할 때 파일 이름을
         <span class="ui-key">index.html</span>로, 파일 형식을 <b>모든 파일</b>로 바꿔 저장하면 똑같습니다.
       </div>
+      <p class="ok-line">내 컴퓨터(보통 「다운로드」 폴더)에 <span class="ui-key">index.html</span> 파일이 있고, 두 번 누르면 브라우저에서 내 화면이 열립니다.</p>
     </li>
 
     <li>
       <h3>GitHub에 가입합니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> —
-        이메일과 비밀번호, 사용자 이름만 정하면 됩니다. 무료입니다.
+        주소창에 <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> 을 입력합니다. 무료입니다.
+        화면이 묻는 순서대로 <b>이메일</b> → <b>비밀번호</b> → <b>사용자 이름(Username)</b>을 적고
+        <span class="ui-key">Continue</span>(계속) 또는 <span class="ui-key">Create account</span>(계정 만들기)를 누릅니다.
       </p>
+      <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem">
+        <li>사람인지 확인하는 <b>퍼즐</b>이 나오면 안내대로 풉니다.</li>
+        <li>내 이메일로 온 <b>숫자</b>를 화면 칸에 넣습니다.</li>
+        <li>로그인 화면이 나오면 방금 정한 이메일과 비밀번호로 로그인합니다.</li>
+        <li>「어떤 일에 쓰나요?」 같은 질문 화면은 아무거나 고르거나 <span class="ui-key">Skip</span>(건너뛰기)를 누릅니다.</li>
+      </ol>
       <div class="callout tip">
         <div class="t">사용자 이름이 곧 주소가 됩니다</div>
         <span class="ui-key">hansem</span>으로 정하면 주소가 <span class="ui-key">hansem.github.io/…</span>가 됩니다.
-        영문 소문자로 짧게 정하세요. 나중에 바꾸기 번거롭습니다.
+        영문 소문자로 짧게 정하세요. 나중에 바꾸기 번거롭습니다. <b>종이에 적어 두세요</b> — STEP 6에서 씁니다.
       </div>
+      <p class="ok-line">GitHub 첫 화면이 나오고, 왼쪽 위에 검은 고양이 모양 아이콘이 보입니다.</p>
+      <p class="stuck-line">이메일 숫자가 안 오면 스팸함을 보세요. 「이미 있는 이름」이라고 나오면 이름 뒤에 숫자를 붙이세요 (예: <span class="ui-key">hansem7</span>).</p>
     </li>
 
     <li>
       <h3>저장소(Repository)를 하나 만듭니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        오른쪽 위 <span class="ui-key">＋</span> → <span class="ui-key">New repository</span>
+        <b>저장소</b>는 내 파일을 넣어 두는 <b>폴더</b>라고 생각하면 됩니다.
+        주소창에 <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a> 를 입력하면 만드는 화면이 바로 열립니다.
+        (오른쪽 위 <span class="ui-key">＋</span> → <span class="ui-key">New repository</span>를 눌러도 같습니다.)
       </p>
+      <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem">
+        <li><b>Repository name</b> 칸에 <span class="ui-key">sunday-class</span> 를 적습니다.</li>
+        <li><span class="ui-key">Public</span>(공개)이 골라져 있는지 확인합니다.</li>
+        <li><b>다른 칸은 건드리지 않고</b> 맨 아래 초록색 <span class="ui-key">Create repository</span>(저장소 만들기)를 누릅니다.</li>
+      </ol>
 
       <div class="mock">
         <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">GitHub · New repository</span></div>
@@ -975,13 +999,15 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         공개라는 말은 <b>주소를 아는 사람은 누구나 볼 수 있다</b>는 뜻입니다.
         그래서 이 과정에서는 아이 <b>실명과 사진을 넣지 않습니다.</b> 동물이나 성경 인물 가명을 씁니다.
       </div>
+      <p class="ok-line"><b>Quick setup</b>이라는 제목 아래 낯선 영어 명령어가 잔뜩 있는 화면이 나옵니다. 정상입니다 — 명령어는 쓰지 않으니 신경 쓰지 마세요.</p>
     </li>
 
     <li>
       <h3>파일을 올립니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        저장소 화면에서 <span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span> →
-        아까 받은 <span class="ui-key">index.html</span>을 끌어다 놓습니다.
+        <b>처음 한 번은</b> 저장소가 비어 있어서 <span class="ui-key">Add file</span> 단추가 없습니다.
+        Quick setup 화면 위쪽 문장 속의 파란 글자 <span class="ui-key">uploading an existing file</span>(있는 파일 올리기)을 누릅니다.
+        점선 상자가 나오면 아까 꺼낸 <span class="ui-key">index.html</span>을 그 안으로 끌어다 놓습니다.
       </p>
 
       <div class="mock">
@@ -1006,14 +1032,23 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
           </div>
         </div>
       </div>
-      <p class="mock-cap">끌어다 놓고 아래 <b>Commit changes</b> 누르면 끝</p>
+      <p class="mock-cap">끌어다 놓고 아래 초록색 <b>Commit changes</b>(저장하기) 누르면 끝</p>
+      <p class="ok-line">저장소 화면에 <span class="ui-key">index.html</span> 한 줄이 보입니다.</p>
+      <p class="stuck-line">끌어다 놓기가 어려우면 점선 상자 안의 <span class="ui-key">choose your files</span>(파일 고르기)를 눌러 다운로드 폴더에서 고르세요.</p>
     </li>
 
     <li>
       <h3>페이지 기능을 켭니다 <span style="font-weight:500;color:var(--text-faint);font-size:.85rem">— 이건 처음 한 번만</span></h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        저장소 위쪽 <span class="ui-key">Settings</span> → 왼쪽 목록에서 <span class="ui-key">Pages</span>
+        지금까지는 파일을 <b>넣어 두기만</b> 했습니다. 이 단계에서 그 파일을 <b>주소로 열리게</b> 합니다.
       </p>
+      <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem">
+        <li>저장소 이름 아래 탭 줄의 맨 오른쪽 <span class="ui-key">⚙ Settings</span>(설정)를 누릅니다.</li>
+        <li>왼쪽 목록을 조금 내려 <span class="ui-key">Pages</span>를 누릅니다.</li>
+        <li><b>Source</b>는 <span class="ui-key">Deploy from a branch</span> 그대로 둡니다.</li>
+        <li><b>Branch</b> 칸에 <span class="ui-key">None</span>이라고 되어 있습니다. 눌러서 <span class="ui-key">main</span>을 고릅니다. 옆 칸 <span class="ui-key">/ (root)</span>는 그대로 둡니다.</li>
+        <li>옆의 <span class="ui-key">Save</span>(저장)를 누릅니다.</li>
+      </ol>
 
       <div class="mock">
         <div class="mock-bar"><i></i><i></i><i></i><span class="ttl">Settings · Pages</span></div>
@@ -1049,13 +1084,16 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
           </div>
         </div>
       </div>
-      <p class="mock-cap">Source는 <b>Deploy from a branch</b>, 브랜치는 <b>main</b> + <b>/ (root)</b></p>
+      <p class="mock-cap">Source는 <b>Deploy from a branch</b>, 브랜치는 <b>None → main</b> + <b>/ (root)</b></p>
+      <p class="ok-line">Save 단추가 흐려지고, 저장되었다는 짧은 안내가 나옵니다.</p>
+      <p class="stuck-line">왼쪽 목록에 Pages가 안 보이면 내 계정 설정에 들어간 것입니다. 저장소 이름(<span class="ui-key">sunday-class</span>)이 보이는 화면으로 돌아가 위쪽 탭의 Settings를 누르세요.</p>
     </li>
 
     <li>
       <h3>1~2분 기다렸다가 주소를 엽니다</h3>
       <p style="color:var(--text-dim);font-size:.92rem">
-        같은 Pages 화면 위쪽에 주소가 나타납니다. 이런 모양입니다.
+        1~2분 뒤 같은 Pages 화면을 <b>새로고침</b>하면 위쪽에 <b>Your site is live at</b>(사이트가 열렸습니다)과 함께 주소가 나타납니다.
+        옆의 <span class="ui-key">Visit site</span>(사이트 열기)를 누르면 내 화면이 열립니다. 주소는 이런 모양입니다.
       </p>
       <div class="prompt">
         <div class="prompt-head"><span class="lbl">내 페이지 주소</span></div>
@@ -1075,6 +1113,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         교실 태블릿에서 주소를 열고 <b>찬양 탭의 영상이 나오는지</b> 꼭 확인해 두세요.
         그래도 안 나오는 영상은 퍼가기가 막힌 영상입니다 — 「유튜브에서 열기」 버튼을 쓰거나 다른 영상으로 바꾸면 됩니다.
       </div>
+      <p class="ok-line">내 주소에서 Claude에서 보던 것과 <b>똑같은 화면</b>이 열립니다. 처음 한 번 할 일은 여기서 끝!</p>
     </li>
 
     <li>
@@ -1083,9 +1122,10 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         Claude에서 고친다 → 내려받는다 → 같은 저장소에 <b>같은 이름으로</b> 다시 올린다. 덮어써집니다.
       </p>
       <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem">
-        <li><span class="ui-key">Add file</span> → <span class="ui-key">Upload files</span></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">github.com</a> 에서 왼쪽 목록의 <span class="ui-key">sunday-class</span>를 누른다</li>
+        <li><span class="ui-key">Add file</span>(파일 추가) → <span class="ui-key">Upload files</span>(파일 올리기) — 이제 파일이 있으니 이 단추가 보입니다</li>
         <li>새 <span class="ui-key">index.html</span>을 끌어다 놓는다</li>
-        <li><span class="ui-key">Commit changes</span></li>
+        <li>초록색 <span class="ui-key">Commit changes</span></li>
         <li>1분 뒤 내 주소를 새로고침</li>
       </ol>
       <div class="callout">
