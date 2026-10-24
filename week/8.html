@@ -1141,8 +1141,8 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   </div>
   <div class="extra-note paid">
     <b>MCP 연결(커넥터)은 무료 Claude도 1개까지 됩니다.</b> 그래서 이 엑스트라는 무료 계정으로도 해 볼 수 있습니다.
-    다만 <a href="7.html#extra">7주 엑스트라</a>에서 Vercel을 이미 연결해 두었다면, 무료 계정은 먼저 Vercel 연결을 끊어야
-    (설정 → 커넥터 → Vercel → 제거) Supabase를 연결할 수 있습니다. 둘 다 계속 연결해 두려면 유료(Pro 이상)가 필요합니다.
+    다른 커넥터가 이미 연결돼 있다면 무료 계정은 먼저 그것을 제거해야(설정 → 커넥터) Supabase를 연결할 수 있습니다.
+    둘 이상 계속 연결해 두려면 유료(Pro 이상)가 필요합니다.
     무료 계정은 사용량도 빨리 찰 수 있습니다.
     <span style="opacity:.75">— 2026년 10월 Anthropic 도움말 기준이며, 바뀔 수 있습니다.</span>
   </div>
@@ -1177,12 +1177,9 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     <h3>안 하면 어떻게 되나요</h3>
     <p><b>아무 문제 없습니다.</b> 수업용 기기 하나로 계속 찍으면 오늘 만든 출석부로 충분합니다. 9주에 백업도 만듭니다.
       대신 인터넷 장부에는 <b>지켜야 할 것</b>도 생깁니다 — 아래 「꼭 알아 두세요」를 먼저 읽어 보세요.</p>
-    <h3>Vercel 주소에서도 그대로 연동됩니다</h3>
-    <p>기록은 Supabase에 저장되고, 페이지는 인터넷만 되면 어디서든 Supabase와 직접 주고받습니다. 그래서 주소가 어디든 상관없습니다.</p>
-    <ul>
-      <li><b><a href="7.html#extra">7주 엑스트라</a>에서 Vercel을 연결했다면</b> — 같은 <span class="ui-key">index.html</span>이 Vercel 주소(<span class="ui-key">….vercel.app</span>)에서도 Supabase와 연동됩니다. 평소처럼 GitHub에 올리기만 하면 Vercel이 알아서 새 파일로 바꿉니다.</li>
-      <li><b>7주 엑스트라를 안 했다면</b> — GitHub Pages 주소(<span class="ui-key">….github.io</span>)에서 똑같이 됩니다. Vercel은 없어도 됩니다.</li>
-    </ul>
+    <h3>주소는 지금 그대로입니다</h3>
+    <p>기록은 Supabase에 저장되고, 페이지는 인터넷만 되면 어디서든 Supabase와 직접 주고받습니다.
+      그래서 7주에 만든 <b>GitHub Pages 주소(<span class="ui-key">….github.io</span>)에서 그대로</b> 됩니다. 다른 곳에 새로 올릴 필요가 없습니다.</p>
   </div>
 
   <ol class="steps" style="margin-top:1.8rem">
@@ -1289,7 +1286,7 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
       <h3>내려받아 올리고, 두 기기로 시험합니다</h3>
       <div class="where">Artifact 내려받기 → GitHub → <span class="ui-key">Upload files</span> → <span class="ui-key">Commit changes</span></div>
       <p style="color:var(--text-dim);font-size:.92rem;margin-top:.7rem">
-        Vercel을 연결한 분도 똑같이 GitHub에 올리기만 하면 됩니다. Vercel이 알아서 새 파일로 바꿉니다. 1~2분 기다린 뒤 시험하세요.
+        평소처럼 GitHub에 올리고 1~2분 기다린 뒤 시험하세요.
       </p>
       <ol style="padding-left:1.35rem;color:var(--text-dim);font-size:.92rem;margin-top:.7rem">
         <li>내 주소를 <b>태블릿</b>과 <b>휴대폰</b>에서 각각 엽니다.</li>
@@ -1297,9 +1294,6 @@ footer.site .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
         <li>휴대폰에서 <b>새로고침</b>합니다.</li>
         <li>두 화면의 숫자가 같으면 <b>성공</b>입니다.</li>
       </ol>
-      <p style="color:var(--text-dim);font-size:.92rem">
-        Vercel을 연결했다면 <b>Vercel 주소(….vercel.app)</b>로도 한 번 열어 보세요. GitHub Pages 주소와 Vercel 주소가 <b>같은 숫자</b>를 보여 주면 둘 다 Supabase에 잘 연동된 것입니다.
-      </p>
       <div class="callout tip">
         <div class="t">기록장을 눈으로 보고 싶다면</div>
         supabase.com에 들어가 <b>sunday-class</b> 프로젝트를 누르고, 왼쪽 메뉴의 <span class="ui-key">Table Editor</span>를 누르세요.
